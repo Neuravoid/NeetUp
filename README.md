@@ -58,7 +58,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 | Fotoğraf | İsim | Rol | Sosyal Medya |
 | :---: | :--- | :--- | :---: |
 | | Umut Alkan | Product Owner | [LinkedIn](https://www.linkedin.com/in/umutalkan42) |
-| | Rüya İşlek | Scrum Master | [LinkedIn]() |
+| | Rüya İşlek | Scrum Master | [LinkedIn](www.linkedin.com/in/ruyaislek) |
 | | Zeynep Turhanoğlu | Developer | [LinkedIn](https://www.linkedin.com/in/zeynepturhanoglu/) |
 | | Ebru Güleç | Developer | [LinkedIn](https://www.linkedin.com/in/ebrugulec/) |
 | | Ahmet Tarık Karakaş  | Developer | [LinkedIn](http://www.linkedin.com/in/ahmettarikkarakas) |
@@ -84,7 +84,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Miro üzerinde şeffaf bir �
 
 ### Sprint 2 Raporu
 
-- **Ana Odak:** Mekaniklerin ve içeriğin zenginleştirilmesi.
+- **Ana Odak:** 
 - **Tamamlanan Puan:** 
 - **Daily Scrum Raporları:** 
 - **Sprint Sonu Görüntüsü:**
@@ -93,7 +93,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Miro üzerinde şeffaf bir �
 
 ### Sprint 3 Raporu
 
-- **Ana Odak:** Projenin final ürünü haline getirilmesi ve cilalanması.
+- **Ana Odak:**
 - **Tamamlanan Puan:** 
 - **Daily Scrum Raporları:**
 - **Sprint Sonu Görüntüsü:**
