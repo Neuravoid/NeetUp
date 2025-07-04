@@ -6,8 +6,7 @@
 
 -----
 
-## 📜 İçindekiler
-
+## 📚 İçindekiler
 - [🚀 Projenin Amacı](#projenin-amacı)
 - [✨ Temel Özellikler](#temel-özellikler)
 - [🎯 Hedef Kitle](#hedef-kitle)
@@ -15,6 +14,7 @@
 - [💻 Kullanılan Teknolojiler](#kullanılan-teknolojiler)
 - [👥 Takımımız](#takımımız)
 - [📂 Proje Yönetimi ve Raporlar](#proje-yönetimi-ve-raporlar)
+
 
 -----
 
