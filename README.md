@@ -3,14 +3,13 @@
 <h1>NeetUp</h1>
 
 ## 👥 Takımımız
-
-| Fotoğraf | İsim | Rol | Sosyal Medya |
-| :---: | :--- | :--- | :---: |
-| | Umut Alkan | Product Owner | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/umutalkan42) |
-| | Rüya İşlek | Scrum Master | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/ruyaislek) |
-| | Zeynep Turhanoğlu | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/zeynepturhanoglu/) |
-| | Ebru Güleç | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/ebrugulec/) |
-| | Ahmet Tarık Karakaş | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](http://www.linkedin.com/in/ahmettarikkarakas) |
+|    | <div align="center">İsim</div>   | <div align="center">Rol</div>  | <div align="center">Sosyal Medya</div>     |
+| :-----------: | :---------- | :---------- | :----------: |
+|<img src="https://media.licdn.com/dms/image/v2/D4D03AQGuXaCv257ctA/profile-displayphoto-shrink_400_400/B4DZdoaiRZG8Ao-/0/1749803477088?e=1756944000&v=beta&t=6QMGFoCZfS505aAKaAPaZAIxQm3RqEK7kIX90fE0UFE" alt="Profil Fotoğrafı" width="100"/>  | Umut Alkan| Product Owner     | [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/umutalkan42)   | 
+|<img src="https://media.licdn.com/dms/image/v2/D4D03AQHDZJ2e6BGRnA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1699962563484?e=1756944000&v=beta&t=xsh0-pw3QB0Ktkc4FEuxa93Y7Il4PC2Ti32ygcWG8-Q" alt="Rüya Foto" width="100"/>  | Rüya İşlek    | Scrum Master     |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ruyaislek/) |
+|<img src="https://media.licdn.com/dms/image/v2/D4D03AQEoMRn-_uDOOQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709408151491?e=1756944000&v=beta&t=D1Ii9e5fTkdeMIZxfRjBOkYchsFmOi7PJpcSgVnYq4o" alt="Zeynep Foto" width="100"/> | Zeynep Turhanoğlu    | Developer      |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/zeynepturhanoglu/)   |
+|| Ebru Güleç     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ebrugulec/)    |
+|<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
 
 ## Ürün Logosu
 
