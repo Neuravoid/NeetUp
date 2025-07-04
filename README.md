@@ -53,7 +53,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Versiyon Kontrol:** Git & GitHub
 
 
-##  Proje Yönetimi ve Raporlar
+##  Proje Yönetimi ve Sprint Raporları
 
 Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üzerinde şeffaf bir şekilde yönetilmektedir.
 
