@@ -66,7 +66,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 
 Tüm proje planlama ve görev takibi süreçlerimiz Miro üzerinde şeffaf bir şekilde yönetilmektedir.
 
-[**Product Backlog Board'a Göz Atın**](https://docs.google.com/spreadsheets/d/1YclEtN6_b6VcYgTKuhjry0rFeNMG__QC0wMk-4hHQ98/edit?usp=sharing)
+[**Product Backlog Board'a Göz Atın**](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
 
 <details>
 <summary><b>Sprint Raporları (Detayları görmek için tıklayın)</b></summary>
