@@ -66,7 +66,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 - Görsel konulacak*
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
-- **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır: [Sprint 1- Daily Scrum Chats](link koymalıyız)
+- **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 1- Daily Scrum Chats](https://docs.google.com/document/d/1ceD93420mWSQ7z6oyGNA4c5Odzx6i33OlA1Xxl0Bft4/edit?usp=sharing)
 - **Sprint Board:** Back
 - görsel eklenecek*
 - **Sprint Sonu Görüntüsü:**
