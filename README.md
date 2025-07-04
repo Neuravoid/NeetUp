@@ -6,11 +6,11 @@
 
 | Fotoğraf | İsim | Rol | Sosyal Medya |
 | :---: | :--- | :--- | :---: |
-| | Umut Alkan | Product Owner | [LinkedIn](https://www.linkedin.com/in/umutalkan42) |
-| | Rüya İşlek | Scrum Master | [LinkedIn](https://www.linkedin.com/in/ruyaislek) |
-| | Zeynep Turhanoğlu | Developer | [LinkedIn](https://www.linkedin.com/in/zeynepturhanoglu/) |
-| | Ebru Güleç | Developer | [LinkedIn](https://www.linkedin.com/in/ebrugulec/) |
-| | Ahmet Tarık Karakaş  | Developer | [LinkedIn](http://www.linkedin.com/in/ahmettarikkarakas) |
+| | Umut Alkan | Product Owner | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/umutalkan42) |
+| | Rüya İşlek | Scrum Master | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/ruyaislek) |
+| | Zeynep Turhanoğlu | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/zeynepturhanoglu/) |
+| | Ebru Güleç | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](https://www.linkedin.com/in/ebrugulec/) |
+| | Ahmet Tarık Karakaş | Developer | [<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20"/>](http://www.linkedin.com/in/ahmettarikkarakas) |
 
 ## Ürün Logosu
 
