@@ -1,22 +1,21 @@
-<div align="center">
-<h1>NeetUp: Potansiyelini Ateşle</h1>
-</div>
 
-> NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış, yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
+## Takım & Ürün İsmi
+<h1>NeetUp</h1>
 
------
+## 👥 Takımımız
 
-## 📚 İçindekiler
-- [🚀 Projenin Amacı](#projenin-amacı)
-- [✨ Temel Özellikler](#temel-özellikler)
-- [🎯 Hedef Kitle](#hedef-kitle)
-- [💡 İş Modeli ve Gelecek Planları](#iş-modeli-ve-gelecek-planları)
-- [💻 Kullanılan Teknolojiler](#kullanılan-teknolojiler)
-- [👥 Takımımız](#takımımız)
-- [📂 Proje Yönetimi ve Raporlar](#proje-yönetimi-ve-raporlar)
+| Fotoğraf | İsim | Rol | Sosyal Medya |
+| :---: | :--- | :--- | :---: |
+| | Umut Alkan | Product Owner | [LinkedIn](https://www.linkedin.com/in/umutalkan42) |
+| | Rüya İşlek | Scrum Master | [LinkedIn](https://www.linkedin.com/in/ruyaislek) |
+| | Zeynep Turhanoğlu | Developer | [LinkedIn](https://www.linkedin.com/in/zeynepturhanoglu/) |
+| | Ebru Güleç | Developer | [LinkedIn](https://www.linkedin.com/in/ebrugulec/) |
+| | Ahmet Tarık Karakaş  | Developer | [LinkedIn](http://www.linkedin.com/in/ahmettarikkarakas) |
 
+## Ürün Logosu
 
------
+## Projenin Açıklaması
+NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış, yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
 
 ## 🚀 Projenin Amacı
 
@@ -50,34 +49,26 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Front-end:** React / Vue.js
 - **Back-end:** Python (FastAPI)
 - **Veritabanı:** PostgreSQL
-- **Proje Yönetimi:** Miro, Trello
+- **Proje Yönetimi:** Trello, Google Sheets
 - **Versiyon Kontrol:** Git & GitHub
 
-## 👥 Takımımız
 
-| Fotoğraf | İsim | Rol | Sosyal Medya |
-| :---: | :--- | :--- | :---: |
-| | Umut Alkan | Product Owner | [LinkedIn](https://www.linkedin.com/in/umutalkan42) |
-| | Rüya İşlek | Scrum Master | [LinkedIn](www.linkedin.com/in/ruyaislek) |
-| | Zeynep Turhanoğlu | Developer | [LinkedIn](https://www.linkedin.com/in/zeynepturhanoglu/) |
-| | Ebru Güleç | Developer | [LinkedIn](https://www.linkedin.com/in/ebrugulec/) |
-| | Ahmet Tarık Karakaş  | Developer | [LinkedIn](http://www.linkedin.com/in/ahmettarikkarakas) |
 ## 📂 Proje Yönetimi ve Raporlar
 
-Tüm proje planlama ve görev takibi süreçlerimiz Miro üzerinde şeffaf bir şekilde yönetilmektedir.
+Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üzerinde şeffaf bir şekilde yönetilmektedir.
 
 [**Product Backlog Board'a Göz Atın**](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
 
-<details>
-<summary><b>Sprint Raporları (Detayları görmek için tıklayın)</b></summary>
-
------
 
 ### Sprint 1 Raporu
 
-- **Ana Odak:** Projenin temellerinin atılması ve çekirdek kullanıcı akışının oluşturulması.
-- **Tamamlanan Puan:** 
-- **Daily Scrum Raporları:** 
+- **Sprint Notları:** Google Sheets'te tuttuğumuz product backlog'da üç sprintlik işleri önceden belirledik. Bu bize daha uzun vadeli bir görünüm sağladı. Trello'da oluşturduğumuz sprint board'da ise yalnızca ilk sprintin işlerine odaklandık. Bu sayede ekibimiz mevcut sprint hedeflerine daha iyi odaklandı.
+- Görsel konulacak*
+- **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
+- **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
+- **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır: [Sprint 1- Daily Scrum Chats](link koymalıyız)
+- **Sprint Board:** Back
+- görsel eklenecek*
 - **Sprint Sonu Görüntüsü:**
 
 -----
