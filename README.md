@@ -15,11 +15,11 @@
 ## Ürün Logosu
 
 ## Projenin Açıklaması
-NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış, yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
+NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
 
 ##  Projenin Amacı
 
-Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik problemine teknoloji odaklı bir çözüm sunmaktır. Amacımız, atıl durumdaki milyonlarca gencin potansiyelini bir "kıvılcım" ile ateşleyerek, onları nitelikli birer çalışan veya kendi işini kuran birer girişimciye dönüştürmektir. NeetUp, kaybolmuş hisseden gençlere bir **kariyer pusulası** olmayı hedefler.
+Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik problemine teknoloji odaklı bir çözüm sunmaktır. Amacımız, atıl durumdaki milyonlarca gencin potansiyelini bir "kıvılcım" ile ateşleyerek onları nitelikli birer çalışan veya kendi işini kuran birer girişimciye dönüştürmektir. NeetUp, kaybolmuş hisseden gençlere bir **kariyer pusulası** olmayı hedefler.
 
 ##  Temel Özellikler
 
@@ -41,7 +41,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Freemium Model:** Platformun temel özellikleri (test, yol haritası) ücretsiz sunulacaktır.
 - **Premium Özellikler:** Detaylı portfolyo analizi, doğrulanmış dijital sertifikalar ve özel mentorluk seansları gibi özellikler için ücretli üyelik planları oluşturulacaktır.
 - **B2B Ortaklıklar:** Şirketlerin yetenek havuzuna erişim sağlaması, kendi "yetenek programlarını" açması ve işe alım süreçlerini platform üzerinden yönetmesi için kurumsal paketler sunulacaktır.
-- **Gelir Paylaşım Anlaşması (ISA):** Uzun vadede, platformumuz aracılığıyla işe yerleşen kullanıcılarla, başlangıçta hiçbir ücret ödemeyecekleri ve işe girdikten sonra maaşlarının küçük bir yüzdesini belirli bir süre için ödeyecekleri bir model hedeflenmektedir.
+- **Gelir Paylaşım Anlaşması (ISA):** Uzun vadede platformumuz aracılığıyla işe yerleşen kullanıcılarla, başlangıçta hiçbir ücret ödemeyecekleri ve işe girdikten sonra maaşlarının küçük bir yüzdesini belirli bir süre için ödeyecekleri bir model hedeflenmektedir.
 
 ##  Kullanılan Teknolojiler
 
