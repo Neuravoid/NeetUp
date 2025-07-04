@@ -17,11 +17,11 @@
 ## Projenin Açıklaması
 NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış, yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
 
-## 🚀 Projenin Amacı
+##  Projenin Amacı
 
 Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik problemine teknoloji odaklı bir çözüm sunmaktır. Amacımız, atıl durumdaki milyonlarca gencin potansiyelini bir "kıvılcım" ile ateşleyerek, onları nitelikli birer çalışan veya kendi işini kuran birer girişimciye dönüştürmektir. NeetUp, kaybolmuş hisseden gençlere bir **kariyer pusulası** olmayı hedefler.
 
-## ✨ Temel Özellikler
+##  Temel Özellikler
 
 - **AI Destekli Yetenek Analizi:** Kullanıcıların ilgi alanlarını ve gizli yeteneklerini ortaya çıkaran akıllı testler.
 - **Kişiselleştirilmiş Yol Haritası:** Her kullanıcıya özel, adım adım ilerleyen bir beceri ve kariyer planı.
@@ -30,20 +30,20 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Gerçek Zamanlı İş İlanı Eşleştirmesi:** Kullanıcının kazandığı yetkinliklerle uyumlu, gerçek staj ve iş fırsatlarının sunulması.
 - **Portfolyo Oluşturma:** Platform içi interaktif projelerle kullanıcıların öğrendiklerini somut bir portfolyoya dönüştürme imkanı.
 
-## 🎯 Hedef Kitle
+##  Hedef Kitle
 
 - **Birincil:** 18-29 yaş arası, ne eğitimde ne istihdamda olan (NEET) gençler.
 - **İkincil:** Yeni mezunlar, kariyer değiştirmek isteyenler.
 - **B2B Müşterileri:** Nitelikli başlangıç seviyesi yetenek arayan teknoloji şirketleri, KOBİ'ler ve kurumsal firmalar.
 
-## 💡 İş Modeli ve Gelecek Planları
+##  İş Modeli ve Gelecek Planları
 
 - **Freemium Model:** Platformun temel özellikleri (test, yol haritası) ücretsiz sunulacaktır.
 - **Premium Özellikler:** Detaylı portfolyo analizi, doğrulanmış dijital sertifikalar ve özel mentorluk seansları gibi özellikler için ücretli üyelik planları oluşturulacaktır.
 - **B2B Ortaklıklar:** Şirketlerin yetenek havuzuna erişim sağlaması, kendi "yetenek programlarını" açması ve işe alım süreçlerini platform üzerinden yönetmesi için kurumsal paketler sunulacaktır.
 - **Gelir Paylaşım Anlaşması (ISA):** Uzun vadede, platformumuz aracılığıyla işe yerleşen kullanıcılarla, başlangıçta hiçbir ücret ödemeyecekleri ve işe girdikten sonra maaşlarının küçük bir yüzdesini belirli bir süre için ödeyecekleri bir model hedeflenmektedir.
 
-## 💻 Kullanılan Teknolojiler
+##  Kullanılan Teknolojiler
 
 - **Yapay Zeka & Makine Öğrenmesi:** Gemini, TensorFlow, Scikit-learn
 - **Front-end:** React / Vue.js
@@ -53,7 +53,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Versiyon Kontrol:** Git & GitHub
 
 
-## 📂 Proje Yönetimi ve Raporlar
+##  Proje Yönetimi ve Raporlar
 
 Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üzerinde şeffaf bir şekilde yönetilmektedir.
 
