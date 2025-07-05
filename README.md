@@ -66,9 +66,17 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
 - **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 1- Daily Scrum Chats](https://docs.google.com/document/d/1ceD93420mWSQ7z6oyGNA4c5Odzx6i33OlA1Xxl0Bft4/edit?usp=sharing)
-- **Sprint Board Updates:** Backlog’umuz, gelecek sprintlerin temelini oluşturacak şekilde planlanmıştır. Görevler, her sprint için öngörülen puan sınırını aşmayacak biçimde dağıtılmıştır. Trello’da koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir.
+- **Sprint Board Updates:** Backlog’umuz, gelecek sprintlerin temelini oluşturacak şekilde planlanmıştır. Görevler her sprint için öngörülen puan sınırını aşmayacak biçimde dağıtılmıştır. Trello’da koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir.
+
  <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprintboard.jpg" alt="sprintboard" width="800"/> <br>
+
+<details>
+  <summary><b>Burndown Chart </b> </summary>
+Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir şekilde tamamlamak için çalıştı. Ancak ideal burndown çizgisine kıyasla ilerleme biraz daha yavaş kaldı. Gelecek sprintte daha gerçekçi planlama ve önceliklendirme ile sürecin iyileştirilmesi hedefleniyor.  
+ 
   <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/burndownchart.jpg" alt="burndownchart" width="500"/> <br>
+ </details>
+ 
 <details>
   <summary><b>Uygulamanın Sprint 1 Sonu Görselleri:</b> </summary>
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/test.jpg" alt="test" width="300"/> <br> 
@@ -77,23 +85,35 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/roadmap.png" alt="yol_haritasi" width="300"/>
 </details>
 
-### Sprint Review:
-- Toplantıya tüm ekip üyeleri katıldı.Kullanıcı yetenek testi modülünü ve kişiselleştirilmiş yol haritası prototipini ekipçe gözden geçirdik. Sonraki sprint için öncelikli geliştirme alanlarını belirledik.
+## Sprint Review:
 
+- Sprint boyunca kullanıcı yetenek testi modülünü ve kişiselleştirilmiş yol haritası prototipini tamamlayarak gözden geçirdik. Ortaya çıkan tasarımlar hedeflediğimiz kullanıcı deneyimine uygun bulundu.
 
-### Sprint Retrospective:
+- Sprint sürecinde genel olarak planladığımız ilerleme temposuna yakındık. Ekip içinde görev paylaşımı uyumlu bir şekilde ilerledi. Ancak modül üzerinde bazı kararları almakta zaman kaybettik.
+
+- Bu sprint boyunca proje yönetimi için birçok farklı yöntem üzerinden ilerledik. Trello üzerinde gelecek görevlendirmelere devam ettik. Ayrıca günlük toplantılarda sürecimiz WhatsApp ve Google Meets üzerinden takip edilmeye devam etti.
+
+- Sprint sonunda sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevlerin önceliklerini düzenledik.
+
+**Katılımcılar:** Tüm ekip üyeleri
+
+## Sprint Retrospective:
 
 **Güçlü Yönlerimiz**
-- İyi bir ekip çalışması yaptık ve hepimiz sorumluluk aldık.
+- Ekip olarak iyi bir iş birliği sergiledik ve tüm üyeler sorumluluk aldı.
 - Süreci baştan iyi analiz edip güzel planladık.
 - Hızlı karar alabilen bir ekip olduk.
   
 **Geliştirmemiz Gereken Yönlerimiz**
-- Başlangıçta organize olmakta zorlandık.
-- Teknik bilgi eksikliğimizi toparlamalıyız.
+- Sprint başında organizasyon konusunda zorlandık.
+- Teknik bilgi eksikliğimizi toparlamamız gerektiğini fark ettik.
   
-Toplantıya tüm ekip üyeleri katıldı.Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık, akşam saatlerinde olabildiğince her gün toplantılar yaparak projenin ilerleme hızını arttırmaya karar verdik.
+**Alınan Kararlar**
+- Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık.
+- Proje ilerleme hızını artırmak amacıyla akşam saatlerinde mümkün olduğunca her gün düzenli toplantılar yapılmasına karar verdik.
 
+**Katılımcılar:** Tüm ekip üyeleri
+  
 ## 📝 Jüri Notları
 
 - **Asset Kullanımı:** Projemizin MVP aşamasında, kullanıcı arayüzü ve ikonografide telif hakkı problemi olmayan ücretsiz asset kütüphanelerinden faydalanılmıştır.
