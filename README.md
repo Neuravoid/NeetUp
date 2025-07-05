@@ -72,7 +72,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
   <summary><b>Uygulamanın Sprint 1 Sonu Durumu:</b> </summary>
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/uygulama_aray%C3%BCz.png" alt="uygulama_arayüz" width="300"/> <br>  
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/ai_asistan.png" alt="ai_asistan" width="300"/>
-
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/roadmap.png" alt="yol_haritasi" width="300"/>
 </details>
 
 ### Sprint Review:
