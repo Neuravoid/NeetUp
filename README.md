@@ -74,10 +74,21 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 görsel eklenecek*
 </details>
 
-- **Sprint Review:**
+### **Sprint Review:**
 
-- **Sprint Retrospective**
 
+### **Sprint Retrospective**
+
+**Güçlü Yönlerimiz**
+- İyi bir ekip çalışması yaptık ve hepimiz sorumluluk aldık.
+- Süreci baştan iyi analiz edip güzel planladık.
+- Hızlı karar alabilen bir ekip olduk.
+  
+**Geliştirmemiz Gereken Yönlerimiz**
+- Başlangıçta organize olmakta zorlandık.
+- Teknik bilgi eksikliğimizi toparlamalıyız.
+  
+Toplantıya tüm ekip üyeleri katılım sağladı.Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık, akşam saatlerinde olabildiğince her gün toplantılar yaparak projenin ilerleme hızını arttırmaya karar verdik.
 
 ## 📝 Jüri Notları
 
