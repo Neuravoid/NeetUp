@@ -69,7 +69,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 - **Sprint Board Updates:** Backlog’umuz, gelecek sprintlerin temelini oluşturacak şekilde planlanmıştır. Görevler, her sprint için öngörülen puan sınırını aşmayacak biçimde dağıtılmıştır. Trello’da koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir.
 - görsel eklenecek*
 <details>
-  <summary><b>Uygulamanın Sprint 1 Sonu Durumu:</b> </summary>
+  <summary><b>Uygulamanın Sprint 1 Sonu Görselleri:</b> </summary>
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/uygulama_arayuz.png" alt="uygulama_arayüz" width="300"/> <br>  
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/ai_asistan.png" alt="ai_asistan" width="300"/> <br>
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/roadmap.png" alt="yol_haritasi" width="300"/>
