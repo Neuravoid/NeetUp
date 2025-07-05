@@ -67,7 +67,8 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
 - **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 1- Daily Scrum Chats](https://docs.google.com/document/d/1ceD93420mWSQ7z6oyGNA4c5Odzx6i33OlA1Xxl0Bft4/edit?usp=sharing)
 - **Sprint Board Updates:** Backlog’umuz, gelecek sprintlerin temelini oluşturacak şekilde planlanmıştır. Görevler, her sprint için öngörülen puan sınırını aşmayacak biçimde dağıtılmıştır. Trello’da koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir.
- <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprintboard.jpg" alt="sprintboard" width="800"/>
+ <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprintboard.jpg" alt="sprintboard" width="800"/> <br>
+  <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/burndownchart.jpg" alt="burndownchart" width="500"/> <br>
 <details>
   <summary><b>Uygulamanın Sprint 1 Sonu Görselleri:</b> </summary>
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/test.jpg" alt="test" width="300"/> <br> 
