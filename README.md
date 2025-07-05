@@ -74,10 +74,11 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 görsel eklenecek*
 </details>
 
-### **Sprint Review:**
+### Sprint Review:
+- Toplantıya tüm ekip üyeleri katıldı.Kullanıcı yetenek testi modülünü ve kişiselleştirilmiş yol haritası prototipini ekipçe gözden geçirdik. Sonraki sprint için öncelikli geliştirme alanlarını belirledik.
 
 
-### **Sprint Retrospective**
+### Sprint Retrospective:
 
 **Güçlü Yönlerimiz**
 - İyi bir ekip çalışması yaptık ve hepimiz sorumluluk aldık.
@@ -88,7 +89,7 @@ görsel eklenecek*
 - Başlangıçta organize olmakta zorlandık.
 - Teknik bilgi eksikliğimizi toparlamalıyız.
   
-Toplantıya tüm ekip üyeleri katılım sağladı.Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık, akşam saatlerinde olabildiğince her gün toplantılar yaparak projenin ilerleme hızını arttırmaya karar verdik.
+Toplantıya tüm ekip üyeleri katıldı.Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık, akşam saatlerinde olabildiğince her gün toplantılar yaparak projenin ilerleme hızını arttırmaya karar verdik.
 
 ## 📝 Jüri Notları
 
