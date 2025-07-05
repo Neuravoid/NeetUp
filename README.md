@@ -12,7 +12,7 @@
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
 
 ## Ürün Logosu
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/neetup_logo.jpg" alt="NeetUp Logo" width="200"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/NeetUp.PNG" alt="NeetUp Logo" width="200"/>
 
 ## Projenin Açıklaması
 NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
@@ -63,15 +63,16 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 ### Sprint 1 Raporu
 
 - **Sprint Notları:** Google Sheets'te tuttuğumuz product backlog'da üç sprintlik işleri önceden belirledik. Bu bize daha uzun vadeli bir görünüm sağladı. Trello'da oluşturduğumuz sprint board'da ise yalnızca ilk sprintin işlerine odaklandık. Bu sayede ekibimiz mevcut sprint hedeflerine daha iyi odaklandı.
-- Görsel konulacak*
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
 - **Daily Scrum Raporları:** Daily Scrum Toplantıları Whatsapp ve Google Meets üzerinden gerçekleşmiştir. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 1- Daily Scrum Chats](https://docs.google.com/document/d/1ceD93420mWSQ7z6oyGNA4c5Odzx6i33OlA1Xxl0Bft4/edit?usp=sharing)
 - **Sprint Board Updates:** Backlog’umuz, gelecek sprintlerin temelini oluşturacak şekilde planlanmıştır. Görevler, her sprint için öngörülen puan sınırını aşmayacak biçimde dağıtılmıştır. Trello’da koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir.
 - görsel eklenecek*
 <details>
-  <summary><b>Uygulamanın Sprint 1 Sonu Durumu:</b> </summary>
-görsel eklenecek*
+  <summary><b>Uygulamanın Sprint 1 Sonu Görselleri:</b> </summary>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/uygulama_arayuz.png" alt="uygulama_arayüz" width="300"/> <br>  
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/ai_asistan.png" alt="ai_asistan" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/roadmap.png" alt="yol_haritasi" width="300"/>
 </details>
 
 ### Sprint Review:
