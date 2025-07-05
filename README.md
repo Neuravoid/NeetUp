@@ -89,7 +89,7 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
 - Sprint boyunca kullanıcı yetenek testi modülünü ve kişiselleştirilmiş yol haritası prototipini tamamlayarak gözden geçirdik. Ortaya çıkan tasarımlar hedeflediğimiz kullanıcı deneyimine uygun bulundu.
 
-- Sprint sürecinde genel olarak planladığımız ilerleme temposuna yakındık. Ekip içinde görev paylaşımı uyumlu bir şekilde ilerledi. Ancak modül üzerinde bazı kararları almakta zaman kaybettik.
+- Sprint sürecinde genel olarak planladığımız ilerleme temposuna yakındık. Ekip içinde görev paylaşımı uyumlu bir şekilde ilerledi. AAncak karar alma sürecinde yaşanan zorluklar zaman kaybına sebep oldu ve bu durum ürünün teknik tarafında hedeflediğimiz ilerlemeyi tam olarak sağlamamıza engel oldu.
 
 - Bu sprint boyunca proje yönetimi için birçok farklı yöntem üzerinden ilerledik. Trello üzerinde gelecek görevlendirmelere devam ettik. Ayrıca günlük toplantılarda sürecimiz WhatsApp ve Google Meets üzerinden takip edilmeye devam etti.
 
