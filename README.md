@@ -93,7 +93,7 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
 - Bu sprint boyunca proje yönetimi için birçok farklı yöntem üzerinden ilerledik. Trello üzerinden görevleri planlamaya devam ettik, sürecin takibi ise günlük toplantılarla WhatsApp ve Google Meets üzerinden sürdürüldü
 
-- Sprint sonunda, bir sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevleri yeniden önceliklendirdik.
+- Bir sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevleri yeniden önceliklendirdik.
 
 **Katılımcılar:** Tüm ekip üyeleri
 
