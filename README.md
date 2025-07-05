@@ -12,6 +12,7 @@
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
 
 ## Ürün Logosu
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/neetup_logo.jpg" alt="NeetUp Logo" width="200"/>
 
 ## Projenin Açıklaması
 NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış yapay zeka destekli bir kariyer ve girişimcilik platformudur. Kişiselleştirilmiş yol haritaları, beceri geliştirme programları ve girişimcilik araçlarıyla gençleri geleceğe hazırlıyoruz.
