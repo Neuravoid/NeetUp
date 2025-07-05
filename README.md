@@ -91,9 +91,9 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
 - Sprint sürecinde genel olarak planladığımız ilerleme temposuna yakındık. Ekip içinde görev paylaşımı uyumlu bir şekilde ilerledi. Ancak karar alma sürecinde yaşanan zorluklar zaman kaybına sebep oldu ve bu durum ürünün teknik tarafında hedeflediğimiz ilerlemeyi tam olarak sağlamamıza engel oldu.
 
-- Bu sprint boyunca proje yönetimi için birçok farklı yöntem üzerinden ilerledik. Trello üzerinde gelecek görevlendirmelere devam ettik. Ayrıca günlük toplantılarda sürecimiz WhatsApp ve Google Meets üzerinden takip edilmeye devam etti.
+- Bu sprint boyunca proje yönetimi için birçok farklı yöntem üzerinden ilerledik. Trello üzerinden görevleri planlamaya devam ettik, sürecin takibi ise günlük toplantılarla WhatsApp ve Google Meets üzerinden sürdürüldü
 
-- Sprint sonunda sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevlerin önceliklerini düzenledik.
+- Sprint sonunda, bir sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevleri yeniden önceliklendirdik.
 
 **Katılımcılar:** Tüm ekip üyeleri
 
