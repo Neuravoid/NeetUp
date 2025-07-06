@@ -110,11 +110,8 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
   
 **Alınan Kararlar**
 - Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık.
-- Proje ilerleme hızını artırmak amacıyla akşam saatlerinde mümkün olduğunca her gün düzenli toplantılar yapılmasına karar verdik.
+- Proje ilerleme hızını artırmak amacıyla akşam saatlerinde mümkün olduğunca her gün düzenli toplantılar yapılmasına karar verdik. Ayrıca süreci motive devam ettirebilmek adına pazar günlerinin tatil olmasına karar verdik
 
 **Katılımcılar:** Tüm ekip üyeleri
   
-## 📝 Jüri Notları
 
-- **Asset Kullanımı:** Projemizin MVP aşamasında, kullanıcı arayüzü ve ikonografide telif hakkı problemi olmayan ücretsiz asset kütüphanelerinden faydalanılmıştır.
-- **Odak:** 1 aylık MVP sürecinde, projenin en temel değeri olan "kişiselleştirilmiş yol haritası oluşturma" akışına odaklanılmış, diğer gelişmiş özellikler (iş ilanı tarama, iş planı çıkarma) konsept olarak sunulmuştur.
