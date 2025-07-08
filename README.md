@@ -9,7 +9,7 @@
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQHDZJ2e6BGRnA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1699962563484?e=1756944000&v=beta&t=xsh0-pw3QB0Ktkc4FEuxa93Y7Il4PC2Ti32ygcWG8-Q" alt="Rüya Foto" width="100"/>  | Rüya İşlek    | Scrum Master     |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ruyaislek/) |
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQEoMRn-_uDOOQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709408151491?e=1756944000&v=beta&t=D1Ii9e5fTkdeMIZxfRjBOkYchsFmOi7PJpcSgVnYq4o" alt="Zeynep Foto" width="100"/> | Zeynep Turhanoğlu    | Developer      |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/zeynepturhanoglu/)   |
 |<img src="https://avatars.githubusercontent.com/u/47587417?v=4" alt="Ebru Foto" width="100"/>| Ebru Güleç     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ebrugulec/)    |
-|<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_800/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
+|<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
 
 ## Ürün Logosu
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/NeetUp.PNG" alt="NeetUp Logo" width="200"/>
@@ -92,7 +92,4 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
   
 Toplantıya tüm ekip üyeleri katıldı.Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık, akşam saatlerinde olabildiğince her gün toplantılar yaparak projenin ilerleme hızını arttırmaya karar verdik.
 
-## 📝 Jüri Notları
 
-- **Asset Kullanımı:** Projemizin MVP aşamasında, kullanıcı arayüzü ve ikonografide telif hakkı problemi olmayan ücretsiz asset kütüphanelerinden faydalanılmıştır.
-- **Odak:** 1 aylık MVP sürecinde, projenin en temel değeri olan "kişiselleştirilmiş yol haritası oluşturma" akışına odaklanılmış, diğer gelişmiş özellikler (iş ilanı tarama, iş planı çıkarma) konsept olarak sunulmuştur.
