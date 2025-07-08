@@ -25,9 +25,8 @@ async def root():
     return {"message": "Welcome to NeetUp API"}
 
 # Import and include routers
-# from app.api.v1.endpoints import users, auth, courses, etc.
-# app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
-# app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
+from app.api.v1.endpoints import api_router
+app.include_router(api_router, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn
