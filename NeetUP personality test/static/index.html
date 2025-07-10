@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeetUp Kariyer ve Gelişim Testi</title>
+    <link rel="icon" href="/static/NeetUp.PNG" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; color: #1a202c; line-height: 1.6; margin: 0; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
+        .header-logo { max-width: 200px; margin: 0 auto 1.5rem auto; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; color: #34495e; margin-top: 2rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.1rem; font-weight: 600; color: #2980b9; margin-bottom: 0.5rem; }
+        .question { margin-bottom: 2.5rem; padding: 1.25rem; border-left: 5px solid #3498db; background-color: #f8fafc; border-radius: 8px; }
+        .question p { margin: 0 0 15px 0; font-weight: 500; font-size: 1.1rem; text-align: center; }
+        button, .button { display: inline-block; width: 100%; padding: 15px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 1.2em; font-weight: 600; cursor: pointer; margin-top: 30px; transition: all 0.3s; box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2); }
+        button:hover, .button:hover { background-color: #2980b9; transform: translateY(-2px); box-shadow: 0 7px 14px rgba(52, 152, 219, 0.3); }
+        .spinner { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 40px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .progress-bar-container { width: 100%; background-color: #e0e0e0; border-radius: 10px; margin-bottom: 2rem; }
+        .progress-bar { height: 15px; background-color: #3498db; border-radius: 10px; text-align: center; color: white; font-weight: bold; line-height: 15px; transition: width 0.5s ease-in-out; }
+        .result-card { background-color: #f8fafc; padding: 1.5rem; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .lock-icon { font-size: 4rem; color: #95a5a6; }
+        .view { display: none; }
+        .form-input { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-input:focus { border-color: #3498db; box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25); outline: none; }
+        .scale-container { position: relative; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; margin: 10px auto; max-width: 450px; }
+        .scale-container::before { content: ''; position: absolute; top: 50%; left: 20px; right: 20px; height: 2px; background-color: #dbe4ee; z-index: 1; }
+        .scale-radio { position: relative; z-index: 2; }
+        .scale-radio input[type="radio"] { display: none; }
+        .scale-radio label { display: block; width: 28px; height: 28px; border-radius: 50%; background-color: #fff; border: 2px solid #bdc3c7; cursor: pointer; transition: all 0.2s ease-in-out; }
+        .scale-radio input[type="radio"]:hover + label { transform: scale(1.2); border-color: #3498db; }
+        .scale-radio input[type="radio"]:checked + label { background-color: #3498db; border-color: #2980b9; transform: scale(1.3); box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
+        .scale-labels { display: flex; justify-content: space-between; max-width: 500px; margin: 5px auto 0 auto; font-size: 0.9em; color: #7f8c8d; padding: 0 5px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="app-container" class="container">
+        <header><img src="/static/NeetUp.PNG" class="header-logo" alt="NeetUp Logosu"></header>
+        <div id="loading-spinner" class="view"><div class="spinner"></div></div>
+        <div id="error-message" class="view p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert"></div>
+        <div id="start-page" class="view">
+            <h1 id="intro-title"></h1>
+            <p id="intro-description" class="text-lg text-gray-600 mb-4"></p>
+            <div id="intro-instructions" class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md mb-6"></div>
+            <button id="start-button"></button>
+        </div>
+        <div id="test-page" class="view">
+            <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
+            <form id="test-form">
+                <div id="questions-container"></div>
+                <button type="submit" id="next-button"></button>
+            </form>
+        </div>
+        <div id="demographics-page" class="view">
+             <h1>Profilini Oluştur</h1>
+             <p>Seni daha iyi tanımamız ve en doğru önerileri sunabilmemiz için bu bilgileri doldurman gerekiyor.</p>
+             <form id="demographics-form" class="mt-6 space-y-4">
+                <div><label for="demog-full_name" class="block text-sm font-medium text-gray-700">Ad Soyad</label><input type="text" id="demog-full_name" name="full_name" required class="form-input"></div>
+                <div><label for="demog-birth_year" class="block text-sm font-medium text-gray-700">Doğum Yılı</label><input type="number" id="demog-birth_year" name="birth_year" required class="form-input"></div>
+                <div><label for="demog-country" class="block text-sm font-medium text-gray-700">Yaşanılan Ülke</label><input type="text" id="demog-country" name="country" required class="form-input"></div>
+                <div><label for="demog-email" class="block text-sm font-medium text-gray-700">E-posta Adresi</label><input type="email" id="demog-email" name="email" required class="form-input"></div>
+                <div><label for="demog-education" class="block text-sm font-medium text-gray-700">Eğitim Durumu</label><select id="demog-education" name="education" required class="form-input"><option value="">Seçiniz...</option><option>Lise</option><option>Önlisans</option><option>Lisans</option><option>Yüksek Lisans</option></select></div>
+                <div id="university-major-container" class="hidden"><label for="demog-university_major" class="block text-sm font-medium text-gray-700">Okuduğun / Mezun Olduğun Bölüm</label><input type="text" id="demog-university_major" name="university_major" class="form-input"></div>
+                <div><label class="block text-sm font-medium text-gray-700">Bildiğin Diller</label><div id="languages-container" class="space-y-2 mt-1"></div><button type="button" id="add-language-button" class="mt-2 text-sm !w-auto !py-1 !px-3 !bg-gray-200 !text-gray-700 hover:!bg-gray-300">Yeni Dil Ekle +</button></div>
+                <div><label for="demog-interests" class="block text-sm font-medium text-gray-700">İlgi Alanların (Virgülle ayırarak yaz, örn: yazılım, tasarım, müzik)</label><input type="text" id="demog-interests" name="interests" required class="form-input"></div>
+                <div><label for="demog-open_ended_1" class="block text-sm font-medium text-gray-700">Kariyerindeki en büyük hedefin nedir?</label><textarea id="demog-open_ended_1" name="open_ended_1" rows="3" required class="form-input"></textarea></div>
+                <div><label for="demog-open_ended_2" class="block text-sm font-medium text-gray-700">Kendinde en güçlü gördüğün 3 özelliğin nedir?</label><textarea id="demog-open_ended_2" name="open_ended_2" rows="3" required class="form-input"></textarea></div>
+                <button type="submit" id="submit-demographics-button"></button>
+             </form>
+        </div>
+        
+        <div id="competency-page" class="view">
+             <h1>Yetkinlik Soruları</h1>
+             <p id="competency-coalition-info" class="text-lg text-gray-600 mb-4">Belirlenen koalisyon tipine göre yetkinlik sorularını cevapla.</p>
+             <form id="competency-form" class="mt-6 space-y-6">
+                <div id="competency-questions-container" class="space-y-6"></div>
+                <button type="submit" id="submit-competency-button" class="primary-button">Sonuçları Görüntüle</button>
+             </form>
+        </div>
+        <div id="results-page" class="view">
+            <div id="results-locked" style="display: none;"><div class="text-center p-8 border-2 border-dashed rounded-lg"><div class="lock-icon">🔒</div><h2 class="text-2xl font-bold mt-4">Sonuçların Kilitli</h2><p class="text-gray-600 mt-2">Profilini oluşturarak sonuçların kilidini açabilirsin.</p><button id="go-to-demographics-button" class="mt-6">Profili Oluştur</button></div></div>
+            <div id="results-unlocked" style="display: none;">
+                <div id="summary-container"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="result-card"><h3>Kişilik Puanların</h3><canvas id="personality-chart"></canvas></div>
+                    <div class="result-card">
+                        <h3>Güçlü Yönlerin (Koalisyonların)</h3><ul id="strengths-list" class="list-disc list-inside space-y-2"></ul>
+                        <h3 class="mt-4">Geliştirilebilecek Alanlar</h3><ul id="areas-to-improve-list" class="list-disc list-inside"></ul>
+                        <h3 class="mt-4">Analiz Edilen Anahtar Kelimeler</h3><div id="keywords-container" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+                <div id="career-recommendations-container" class="mt-6"></div>
+                <div id="course-recommendations-container" class="mt-6"></div>
+                <div id="tactical-suggestions-container" class="mt-6"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const API_BASE_URL = 'http://127.0.0.1:8003';
+            let state = { resultId: null };
+            let personalityChart = null;
+            const t = { startButton: "Teste Başla", nextButton: "Sonraki Sayfa", finishButton: "Profilini Oluştur", submitDemographicsButton: "Sonuçların Kilidini Aç", allQuestionsRequired: "Lütfen devam etmeden önce bu sayfadaki tüm soruları cevaplayın.", generic: "Bir hata oluştu. Lütfen daha sonra tekrar deneyin." };
+            const views = { 
+                start: document.getElementById('start-page'), 
+                test: document.getElementById('test-page'), 
+                demographics: document.getElementById('demographics-page'),
+                'competency-page': document.getElementById('competency-page'), 
+                results: document.getElementById('results-page'), 
+                resultsLocked: document.getElementById('results-locked'), 
+                resultsUnlocked: document.getElementById('results-unlocked'), 
+                loading: document.getElementById('loading-spinner'), 
+                error: document.getElementById('error-message') 
+            };
+            console.log("Views yüklendi:", views);
+            const intro = { title: document.getElementById('intro-title'), description: document.getElementById('intro-description'), instructions: document.getElementById('intro-instructions'), startButton: document.getElementById('start-button') };
+            const test = { form: document.getElementById('test-form'), questionsContainer: document.getElementById('questions-container'), progressBar: document.getElementById('progress-bar'), nextButton: document.getElementById('next-button') };
+            const demographics = { form: document.getElementById('demographics-form'), educationSelect: document.getElementById('demog-education'), universityMajorContainer: document.getElementById('university-major-container'), languagesContainer: document.getElementById('languages-container'), addLanguageButton: document.getElementById('add-language-button') };
+            
+            const api = {
+                fetchJSON: async (url, options = {}) => {
+                    try {
+                        console.log(`API çağrısı: ${options.method || 'GET'} ${url}`, options.body ? JSON.parse(options.body) : '');
+                        const response = await fetch(url, options);
+                        console.log(`API yanıt status: ${response.status}`);
+                        if (!response.ok) { 
+                            const errorText = await response.text(); 
+                            console.error(`API hata yanıtı: ${errorText}`);
+                            throw new Error(`Ağ yanıtı sorunlu. Durum: ${response.status}. Gövde: ${errorText}`); 
+                        }
+                        const data = await response.json();
+                        console.log(`API yanıt verisi:`, data);
+                        return data;
+                    } catch (error) { console.error('Fetch API Hatası:', error); throw error; }
+                },
+                start: () => api.fetchJSON(`${API_BASE_URL}/test/start`),
+                getQuestions: (page) => api.fetchJSON(`${API_BASE_URL}/test/questions/${page}`),
+                submitAnswers: (payload) => api.fetchJSON(`${API_BASE_URL}/test/answers`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }),
+                getResults: (resultId) => api.fetchJSON(`${API_BASE_URL}/test/results/${resultId}`),
+                submitDemographics: (resultId, payload) => {
+                    console.log(`submitDemographics çağrılıyor, resultId: ${resultId}`);
+                    return api.fetchJSON(`${API_BASE_URL}/test/demographics/${resultId}`, { 
+                        method: 'POST', 
+                        headers: { 'Content-Type': 'application/json' }, 
+                        body: JSON.stringify(payload) 
+                    });
+                },
+                getCompetencyQuestions: (resultId) => {
+                    console.log(`getCompetencyQuestions çağrılıyor, resultId: ${resultId}`);
+                    return api.fetchJSON(`${API_BASE_URL}/test/competency_questions/${resultId}`);
+                },
+                submitCompetencyAnswers: (resultId, payload) => {
+                    console.log(`submitCompetencyAnswers çağrılıyor, resultId: ${resultId}`);
+                    return api.fetchJSON(`${API_BASE_URL}/test/competency_answers/${resultId}`, { 
+                        method: 'POST', 
+                        headers: { 'Content-Type': 'application/json' }, 
+                        body: JSON.stringify(payload) 
+                    });
+                },
+            };
+
+            const showView = (viewName) => { Object.values(views).forEach(v => { if(v) v.style.display = 'none'; }); if(views[viewName]) views[viewName].style.display = 'block'; };
+            const showError = (message) => { views.error.textContent = message; showView('error'); };
+            
+            const renderTestPage = (data) => {
+                state.currentPage = data.current_page;
+                state.totalPages = data.total_pages;
+                test.progressBar.style.width = `${(state.currentPage / state.totalPages) * 100}%`;
+                test.progressBar.textContent = `Sayfa ${state.currentPage} / ${state.totalPages}`;
+                test.questionsContainer.innerHTML = '';
+                data.questions.forEach(q => {
+                    const questionEl = document.createElement('div');
+                    questionEl.className = 'question';
+                    questionEl.innerHTML = `<p class="font-medium text-gray-800">${q.text}</p><div class="scale-container">${[1,2,3,4,5].map(v => `<div class="scale-radio"><input type="radio" name="${q.id}" value="${v}" id="${q.id}-${v}" required><label for="${q.id}-${v}"></label></div>`).join('')}</div><div class="flex justify-between max-w-sm mx-auto text-xs text-gray-500"><span>Kesinlikle Katılmıyorum</span><span>Kesinlikle Katılıyorum</span></div>`;
+                    test.questionsContainer.appendChild(questionEl);
+                });
+                test.nextButton.textContent = state.currentPage === state.totalPages ? t.finishButton : t.nextButton;
+                showView('test');
+            };
+            
+            const renderResultsPage = (data) => {
+                showView('results');
+                if (data.locked) {
+                    views.resultsUnlocked.style.display = 'none';
+                    views.resultsLocked.style.display = 'block';
+                } else {
+                    views.resultsLocked.style.display = 'none';
+                    views.resultsUnlocked.style.display = 'block';
+                    const summary = data.summary;
+                    document.getElementById('summary-container').innerHTML = `<h1 class="!border-b-0">${summary.greeting}</h1><p class="text-lg text-gray-600 -mt-4 mb-4">Senin için hazırladığımız kişisel rapor aşağıda. Profilin: <strong class="text-blue-600">${summary.personality_type}</strong></p>`;
+                    document.getElementById('strengths-list').innerHTML = (summary.strengths || []).map(s => `<li>${s}</li>`).join('');
+                    document.getElementById('areas-to-improve-list').innerHTML = (summary.areas_to_improve || []).map(a => `<li>${a}</li>`).join('');
+                    document.getElementById('keywords-container').innerHTML = (summary.extracted_keywords || []).map(k => `<span class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">${k}</span>`).join('');
+                    if (summary.scores) {
+                        const chartCanvas = document.getElementById('personality-chart');
+                        if (personalityChart) personalityChart.destroy();
+                        personalityChart = new Chart(chartCanvas, { type: 'radar', data: { labels: Object.keys(summary.scores), datasets: [{ label: 'Kişilik Puanları', data: Object.values(summary.scores), fill: true, backgroundColor: 'rgba(52, 152, 219, 0.2)', borderColor: 'rgb(52, 152, 219)' }] }, options: { scales: { r: { beginAtZero: true, max: 5 } } } });
+                    }
+                    let careerHtml = '<h2>Sana Özel Kariyer Önerileri</h2>';
+                    (data.career_recommendations || []).forEach(rec => { careerHtml += `<div class="result-card mb-4"><h3>${rec.title}</h3><p class="text-sm text-gray-600">${rec.why}</p></div>`; });
+                    document.getElementById('career-recommendations-container').innerHTML = careerHtml;
+                    let courseHtml = '<h2>Önerilen Kurslar</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">';
+                    (data.course_recommendations || []).forEach(rec => { courseHtml += `<a href="${rec.url}" target="_blank" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition"><h4 class="font-bold">${rec.title}</h4><p class="text-sm text-gray-600">${rec.description}</p><span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full mt-2 inline-block">${rec.difficulty}</span></a>`; });
+                    courseHtml += '</div>';
+                    document.getElementById('course-recommendations-container').innerHTML = courseHtml;
+                    let tacticalHtml = '<h2>Sonraki Adımlar & Taktiksel Öneriler</h2><ul class="list-disc list-inside bg-green-50 p-4 rounded-md text-green-800 space-y-2">';
+                    (data.tactical_suggestions || []).forEach(sugg => { tacticalHtml += `<li>${sugg}</li>`; });
+                    tacticalHtml += '</ul>';
+                    document.getElementById('tactical-suggestions-container').innerHTML = tacticalHtml;
+                }
+            };
+
+            const addLanguageRow = () => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center space-x-2 language-row';
+                row.innerHTML = `<input type="text" placeholder="Dil (örn: İngilizce)" class="form-input language-name"><select class="form-input language-level"><option value="A1">A1</option><option value="A2">A2</option><option value="B1">B1</option><option value="B2">B2</option><option value="C1">C1</option><option value="C2">C2</option></select><button type="button" class="remove-language-button !w-auto !p-2 !m-0 !bg-red-500 hover:!bg-red-600 rounded-full text-white leading-none">X</button>`;
+                demographics.languagesContainer.appendChild(row);
+                row.querySelector('.remove-language-button').addEventListener('click', () => row.remove());
+            };
+
+            const handleNextPage = async (e) => {
+                e.preventDefault();
+                if (test.form.querySelectorAll('input[type="radio"]:checked').length < test.form.querySelectorAll('.question').length) return alert(t.allQuestionsRequired);
+                showView('loading');
+                const formData = new FormData(test.form);
+                // Backend doğrudan Answer nesnelerinin listesini bekliyor
+                const payload = Array.from(formData.entries()).map(([qid, ans]) => ({ question_id: qid, answer_value: parseInt(ans) }));
+                try {
+                    const response = await api.submitAnswers(payload);
+                    if (response.result_id) state.resultId = response.result_id;
+                    const nextPage = state.currentPage + 1;
+                    if (nextPage > state.totalPages) {
+                        document.getElementById('submit-demographics-button').textContent = t.submitDemographicsButton;
+                        showView('demographics');
+                    } else {
+                        const questionsData = await api.getQuestions(nextPage);
+                        renderTestPage(questionsData);
+                    }
+                } catch (err) { showError(t.generic); }
+            };
+
+            const handleSubmitDemographics = async (e) => {
+                e.preventDefault();
+                console.log("Demografik form submit edildi");
+                console.log("Current state.resultId:", state.resultId);
+                const form = demographics.form;
+                if (!form.checkValidity()) { form.reportValidity(); return; }
+                showView('loading');
+                const payload = {
+                    full_name: form.querySelector('#demog-full_name').value,
+                    birth_year: parseInt(form.querySelector('#demog-birth_year').value, 10),
+                    country: form.querySelector('#demog-country').value,
+                    email: form.querySelector('#demog-email').value,
+                    education: form.querySelector('#demog-education').value,
+                    university_major: form.querySelector('#demog-university_major').value || "",
+                    interests: form.querySelector('#demog-interests').value,
+                    open_ended_1: form.querySelector('#demog-open_ended_1').value,
+                    open_ended_2: form.querySelector('#demog-open_ended_2').value,
+                    languages: {}
+                };
+                console.log("Demografik payload:", payload);
+                console.log("submitDemographics için kullanılacak result_id:", state.resultId);
+                document.querySelectorAll('.language-row').forEach(row => {
+                    const name = row.querySelector('.language-name').value;
+                    const level = row.querySelector('.language-level').value;
+                    if (name) payload.languages[name] = level;
+                });
+                try {
+                    console.log("submitDemographics API çağrısı yapılıyor...");
+                    // Demografik bilgileri gönder ve yanıt olarak top_coalition al
+                    const demographicsResponse = await api.submitDemographics(state.resultId, payload);
+                    console.log("Demografik yanıt alındı:", demographicsResponse);
+                    
+                    console.log("getCompetencyQuestions API çağrısı yapılıyor...");
+                    // Koalisyon yetkinlik sorularını al
+                    const competencyQuestionsData = await api.getCompetencyQuestions(state.resultId);
+                    console.log("Yetkinlik soruları alındı:", competencyQuestionsData);
+                    
+                    // Koalisyon bilgisini göster
+                    const coalitionInfoElement = document.getElementById('competency-coalition-info');
+                    console.log("Koalisyon bilgisi elemanı:", coalitionInfoElement);
+                    if (coalitionInfoElement) {
+                        coalitionInfoElement.textContent = `Belirlenen koalisyon tipiniz: ${competencyQuestionsData.coalition}. Lütfen aşağıdaki soruları cevaplayın.`;
+                    } else {
+                        console.error("competency-coalition-info elemanı bulunamadı!");
+                    }
+                    
+                    // Koalisyon yetkinlik sorularını ekrana göster
+                    console.log("renderCompetencyQuestions çağrılıyor...");
+                    renderCompetencyQuestions(competencyQuestionsData);
+                    
+                } catch (err) { 
+                    console.error("Hata oluştu:", err); 
+                    showError(t.generic); 
+                }
+            };
+            
+            // Koalisyon yetkinlik sorularını ekrana yazdıran fonksiyon
+            const renderCompetencyQuestions = (data) => {
+                console.log("renderCompetencyQuestions called with data:", data);
+                const container = document.getElementById('competency-questions-container');
+                console.log("Container element found:", container);
+                
+                if (!container) {
+                    console.error("competency-questions-container bulunamadı!");
+                    return;
+                }
+                
+                if (!data || !data.questions || !Array.isArray(data.questions)) {
+                    console.error("Yetkinlik soruları veri formatı hatalı:", data);
+                    showError("Yetkinlik soruları yüklenirken bir hata oluştu.");
+                    return;
+                }
+                
+                container.innerHTML = '';
+                
+                // Ölçek açıklamasını ekle
+                const scaleDescription = document.createElement('div');
+                scaleDescription.className = 'scale-description bg-blue-50 p-3 rounded mb-6';
+                scaleDescription.innerHTML = `
+                    <h3 class="font-medium text-blue-800">Yetkinlik Değerlendirme Ölçeği</h3>
+                    <ul class="text-sm text-blue-700 mt-1">
+                        <li><strong>1</strong> — Hiç bilgim yok</li>
+                        <li><strong>2</strong> — Başlangıç</li>
+                        <li><strong>3</strong> — Orta</li>
+                        <li><strong>4</strong> — İyi</li>
+                        <li><strong>5</strong> — Uzman</li>
+                    </ul>
+                `;
+                container.appendChild(scaleDescription);
+                
+                if (data.questions.length === 0) {
+                    console.warn("Yetkinlik soruları boş!");
+                    const emptyMessage = document.createElement('p');
+                    emptyMessage.textContent = "Yetkinlik soruları bulunamadı. Lütfen sistem yöneticisi ile iletişime geçin.";
+                    container.appendChild(emptyMessage);
+                } else {
+                    console.log("Rendering", data.questions.length, "competency questions");
+                    data.questions.forEach(q => {
+                        console.log("Processing question:", q);
+                        const questionEl = document.createElement('div');
+                        questionEl.className = 'competency-question mb-6 pb-4 border-b';
+                        
+                        // Soru başlığı
+                        const questionTitle = document.createElement('div');
+                        questionTitle.className = 'block text-sm font-medium text-gray-700 mb-3';
+                        questionTitle.textContent = q.text;
+                        questionEl.appendChild(questionTitle);
+                        
+                        // Radio butonları içeren div
+                        const radioGroup = document.createElement('div');
+                        radioGroup.className = 'flex items-center justify-between space-x-2 mt-2';
+                        
+                        // 1'den 5'e kadar radio butonlar ekle
+                        for (let i = 1; i <= 5; i++) {
+                            const radioContainer = document.createElement('div');
+                            radioContainer.className = 'flex flex-col items-center';
+                            
+                            const radioInput = document.createElement('input');
+                            radioInput.type = 'radio';
+                            radioInput.name = q.id;
+                            radioInput.value = i;
+                            radioInput.id = `${q.id}_${i}`;
+                            radioInput.className = 'form-radio h-5 w-5 text-blue-600';
+                            radioInput.required = true;
+                            
+                            const radioLabel = document.createElement('label');
+                            radioLabel.htmlFor = `${q.id}_${i}`;
+                            radioLabel.className = 'block text-sm font-medium text-gray-700 mt-1';
+                            radioLabel.textContent = i;
+                            
+                            radioContainer.appendChild(radioInput);
+                            radioContainer.appendChild(radioLabel);
+                            radioGroup.appendChild(radioContainer);
+                        }
+                        
+                        questionEl.appendChild(radioGroup);
+                        container.appendChild(questionEl);
+                    });
+                }
+                
+                console.log("Switching view to competency-page");
+                showView('competency-page');
+            };
+            
+            // Koalisyon yetkinlik sorularının cevaplarını gönderen fonksiyon
+            const handleSubmitCompetencyAnswers = async (e) => {
+                e.preventDefault();
+                const form = document.getElementById('competency-form');
+                if (!form.checkValidity()) { form.reportValidity(); return; }
+                
+                showView('loading');
+                
+                const answers = [];
+                // Radio butonlarını işle
+                const questions = document.querySelectorAll('.competency-question');
+                questions.forEach(questionDiv => {
+                    // Seçili radio butonu bul
+                    const selectedRadio = questionDiv.querySelector('input[type="radio"]:checked');
+                    if (selectedRadio) {
+                        answers.push({
+                            question_id: selectedRadio.name,
+                            answer_value: parseInt(selectedRadio.value, 10) // Cevabı sayı olarak gönder
+                        });
+                    }
+                });
+                
+                console.log('Gönderilecek cevaplar:', answers);
+                
+                try {
+                    await api.submitCompetencyAnswers(state.resultId, answers);
+                    const resultsData = await api.getResults(state.resultId);
+                    renderResultsPage(resultsData);
+                } catch (err) { 
+                    console.error('Cevaplar gönderilirken hata:', err);
+                    showError(t.generic); 
+                }
+            };
+
+            const init = async () => {
+                showView('loading');
+                try {
+                    const data = await api.start();
+                    intro.title.textContent = data.title;
+                    intro.description.textContent = data.description;
+                    intro.instructions.textContent = data.instructions;
+                    intro.startButton.textContent = t.startButton;
+                    showView('start');
+                } catch (err) { showError(t.generic); }
+            };
+
+            document.getElementById('start-button').addEventListener('click', async () => {
+                showView('loading');
+                try {
+                    const data = await api.getQuestions(1);
+                    renderTestPage(data);
+                } catch (err) { showError(t.generic); }
+            });
+            test.form.addEventListener('submit', handleNextPage);
+            demographics.form.addEventListener('submit', handleSubmitDemographics);
+            demographics.educationSelect.addEventListener('change', (e) => {
+                demographics.universityMajorContainer.classList.toggle('hidden', !['Lisans', 'Yüksek Lisans'].includes(e.target.value));
+            });
+            demographics.addLanguageButton.addEventListener('click', addLanguageRow);
+            document.getElementById('go-to-demographics-button').addEventListener('click', () => showView('demographics'));
+            document.getElementById('competency-form').addEventListener('submit', handleSubmitCompetencyAnswers);
+            
+            addLanguageRow();
+            init();
+        });
+    </script>
+</body>
+</html>
