@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+# NeetUp Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application for NeetUp, a platform connecting learners with opportunities based on personality test results and professional profiles.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+NeetUp is a comprehensive platform that helps users discover career opportunities, courses, and projects tailored to their skills and personality profiles. The application includes features for user authentication, profile management, personality assessment, opportunity browsing, and community engagement.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Frontend library for building the user interface
+- **Redux Toolkit**: State management with support for async operations
+- **Material UI**: Component library for consistent design
+- **React Router**: Navigation and routing
+- **i18next**: Localization (English and Turkish)
+- **Axios**: HTTP client for API communication
+- **date-fns**: Date formatting and manipulation
+- **Redux Persist**: Persistence for selected state slices
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14.x or higher)
+- npm (v7.x or higher)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start development server
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> **Note**: The `--legacy-peer-deps` flag is required due to some dependency compatibility issues with TypeScript versions.
 
-### `npm run eject`
+### Available Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **npm start**: Runs the app in development mode at [http://localhost:3000](http://localhost:3000)
+- **npm test**: Launches the test runner
+- **npm run build**: Builds the app for production
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+src/
+├── api/               # API client and service modules
+├── assets/            # Static assets (images, fonts, etc.)
+├── components/        # Reusable UI components
+│   ├── auth/          # Authentication related components
+│   ├── common/        # Common UI elements
+│   ├── dashboard/     # Dashboard specific components
+│   ├── opportunities/ # Opportunity listing and detail components
+│   ├── profile/       # User profile components
+│   └── community/     # Community features components
+├── hooks/             # Custom React hooks
+├── layouts/           # Page layout components
+│   ├── AuthLayout.js  # Layout for auth pages
+│   └── MainLayout.js  # Main application layout with navigation
+├── locales/           # i18n translation files
+│   ├── en/            # English translations
+│   └── tr/            # Turkish translations
+├── pages/             # Page components
+│   ├── auth/          # Authentication pages
+│   ├── dashboard/     # Dashboard page
+│   ├── profile/       # Profile pages
+│   └── opportunities/ # Opportunity pages
+├── store/             # Redux store configuration
+│   ├── slices/        # Redux toolkit slices
+│   └── store.js       # Store configuration
+├── theme/             # Theme configuration
+├── utils/             # Utility functions
+├── App.js             # Root App component
+├── index.js           # Entry point
+└── i18n.js            # i18n configuration
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Key Components
 
-## Learn More
+### Core Components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **MainLayout**: Main application layout with header, navigation, and content areas
+- **AuthLayout**: Simplified layout for authentication pages
+- **ProtectedRoute**: Route wrapper that handles authentication state
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Authentication
 
-### Code Splitting
+- **LoginPage**: User login with email and password
+- **RegisterPage**: User registration with multi-step form
+- **ForgotPasswordPage**: Password reset functionality
+- **EmailVerificationPage**: Email verification process
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Profile
 
-### Analyzing the Bundle Size
+- **ProfilePage**: User profile display with sections for about, skills, experience, education
+- **AboutSection**: User bio and personal information
+- **SkillsSection**: User skills with endorsements
+- **ExperienceSection**: Work experience history
+- **EducationSection**: Educational background
+- **ConnectionsSection**: Network connections
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Opportunities
 
-### Making a Progressive Web App
+- **OpportunitiesPage**: Filterable listings of jobs, courses, and projects
+- **OpportunityCard**: Card component for opportunity preview
+- **OpportunityDetailPage**: Detailed view of a specific opportunity
+- **ApplicationDialog**: Form for applying to opportunities
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Dashboard
 
-### Advanced Configuration
+- **DashboardPage**: User dashboard with activity, recommendations
+- **ActivityFeed**: Recent activity from connections and followed topics
+- **RecommendedOpportunities**: AI-powered opportunity recommendations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## State Management
 
-### Deployment
+The application uses Redux Toolkit for state management with the following slices:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **authSlice**: Authentication state, user session
+- **profileSlice**: User profile data and related actions
+- **opportunitiesSlice**: Opportunities listing and details
+- **personalityTestSlice**: Personality test questions and results
 
-### `npm run build` fails to minify
+## API Services
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+API services use Axios for communication with the backend:
+
+- **authService**: Authentication endpoints
+- **profileService**: User profile management
+- **opportunitiesService**: Job, course, and project endpoints
+- **personalityTestService**: Personality test operations
+
+## Localization
+
+The application supports English and Turkish languages using i18next:
+
+- Translations organized by namespaces in `/locales/{language}/` directories
+- Language detection based on browser settings
+- User language preference saved in local storage
+
+## Theme
+
+Material-UI theme customization in `/theme/index.js` with:
+
+- Custom color palette
+- Typography settings
+- Component style overrides
+
+## Getting Help
+
+If you encounter any issues or have questions about the application, please contact the development team.
