@@ -113,5 +113,19 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 - Proje ilerleme hızını artırmak amacıyla akşam saatlerinde mümkün olduğunca her gün düzenli toplantılar yapılmasına karar verdik. Ayrıca süreci motive devam ettirebilmek adına pazar günlerinin tatil olmasına karar verdik
 
 **Katılımcılar:** Tüm ekip üyeleri
-  
+
+
+### Sprint 2 Raporu
+
+- **Sprint Notları:** Google Sheets’te tuttuğumuz product backlog Sprint 1’de yaşanan bazı teknik eksiklikler ve özellikle frontend/backend tarafında ortaya çıkan problemler nedeniyle güncellendi. Ayrıca önceliklendirme çalışmaları doğrultusunda bazı User Story'ler revize edildi, bazı görevlerin öncelikleri yeniden belirlendi. Sprint board’daki görevler yine yalnızca bu sprint için planlanan işlere odaklanacak şekilde düzenlendi. Böylece ekibimiz mevcut sprint hedeflerine daha iyi odaklanmayı sürdürdü.
+- [Güncellenmiş Product Backlog](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
+- **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
+- **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
+- **Daily Scrum Raporları:** Daily Scrum toplantıları planlandığı üzere her gün saat 19.00’da düzenli olarak gerçekleştirildi. Pazar günleri ise ekip dinlenmesi için tatil günü uygulamasına devam edildi. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 2- Daily Scrum Chats](link eklenecek)  
+- **Sprint Board Updates:** Product backlog, yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler, her sprint için belirlenen 120 puanlık sınırı aşmayacak biçimde dağıtıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi. Yeni olarak, kritik bugfix ve iyileştirme görevleri için turuncu renk eklenmiştir. *görsel eklenecek
+* burndown chart eklenecek
+* uygulama görselleri eklenecek
+* sprint review eklenecek
+* sprint retrospective eklenecek
+
 
