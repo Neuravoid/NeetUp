@@ -124,14 +124,14 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 - **Sprint Board Updates:** Product backlog yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir. Yeni olarak Critical fixes and optimizations görevleri için turuncu renk eklenmiştir. *görsel eklenecek
 * burndown chart eklenecek
 * uygulama görselleri eklenecek
-## Sprint_2 Review:
+## Sprint Review:
 - İkinci sprint sürecinde backend-frontend bağlantıları, database tablo ve bağlantıları oluşturulması gibi noktalar fazlaca zaman aldı.
 - Sprint sürecinde günlük toplantılara ve planlanan ilerleme hızına uyulsa da kişi sayısındaki eksilme görev yükünü artırdı.
 - Üçüncü sprintte hem uygulamanın son halini alıp düzgün çalışması hem de ikinci sprintten kalan kısımların biran önce tamamlanmasına karar verdik.
   
 **Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
   
-## Sprint_2 Retrospective:
+## Sprint Retrospective:
 
 **Güçlü Yönlerimiz**
 - İkinci sprint boyunca günlük toplantılarımızı aksatmadık ve bu düzeni oturtup koruyabildik.
