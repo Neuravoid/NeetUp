@@ -59,7 +59,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 [**Product Backlog Board'a Göz Atın**](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
 
 
-### Sprint 1 Raporu
+## Sprint 1 Raporu
 
 - **Sprint Notları:** Google Sheets'te tuttuğumuz product backlog'da üç sprintlik işleri önceden belirledik. Bu bize daha uzun vadeli bir görünüm sağladı. Trello'da oluşturduğumuz sprint board'da ise yalnızca ilk sprintin işlerine odaklandık. Bu sayede ekibimiz mevcut sprint hedeflerine daha iyi odaklandı.
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
@@ -114,7 +114,7 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 **Katılımcılar:** Tüm ekip üyeleri
 
 
-### Sprint 2 Raporu
+## Sprint 2 Raporu
 
 - **Sprint Notları:** Google Sheets’te tuttuğumuz product backlog Sprint 1’de yaşanan bazı teknik eksiklikler ve özellikle frontend/backend tarafında ortaya çıkan problemler nedeniyle güncellendi. Ayrıca önceliklendirme çalışmaları doğrultusunda bazı User Story'ler revize edildi, bazı görevlerin öncelikleri yeniden belirlendi. Sprint board’daki görevler yine yalnızca bu sprint için planlanan işlere odaklanacak şekilde düzenlendi. Böylece ekibimiz mevcut sprint hedeflerine daha iyi odaklanmayı sürdürdü: [Güncellenmiş Product Backlog](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
 - **Ekip Durumu:** Projemiz başlangıçta 5 kişilik bir ekip ile başlamıştır. Ancak Sprint 2 sürecinin başlangıcında ekip üyelerinden Ebru Güleç proje ekibinden kalıcı olarak ayrılmıştır. Bu gelişme sonrası iş yükü ekipte kalan 4 kişi arasında yeniden paylaştırılmış ve çalışmalar bu doğrultuda sürdürülmüştür.
