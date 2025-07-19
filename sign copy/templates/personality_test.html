@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeetUp Kişilik Testi</title>
+    <link rel="icon" href="{{ url_for('static', filename='NeetUp.PNG') }}" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .view { display: none; }
+        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); width: 36px; height: 36px; border-radius: 50%; border-left-color: #4f46e5; animation: spin 1s ease infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .custom-radio input { display: none; }
+        .custom-radio label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-weight: 600;
+        }
+        .custom-radio input:hover + label { background-color: #d1d5db; }
+        .custom-radio input:checked + label {
+            background-color: #4f46e5;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-800 min-h-screen flex items-center justify-center p-4">
+
+    <div id="app-container" class="w-full max-w-2xl mx-auto bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl">
+        <header class="text-center mb-6">
+            <img src="{{ url_for('static', filename='NeetUp.PNG') }}" class="h-16 mx-auto mb-4" alt="NeetUp Logosu">
+            <h1 id="test-title" class="text-3xl font-bold text-gray-800">Kişilik ve İlgi Alanı Testi</h1>
+        </header>
+        
+        <div id="loading-spinner" class="view flex justify-center py-10"><div class="spinner"></div></div>
+        
+        <div id="error-panel" class="view hidden p-4 mb-4 text-red-700 bg-red-100 rounded-lg" role="alert">
+            <h4 class="font-bold">Bir Hata Oluştu</h4>
+            <p id="error-message" class="mt-2"></p>
+            <button class="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="location.reload()">Sayfayı Yenile</button>
+        </div>
+
+        <div id="start-page" class="view text-center">
+            <p id="intro-description" class="text-lg text-gray-600 mb-4">Bu test, kişilik tipini, ilgi alanlarını ve yeteneklerini keşfederek sana özel kariyer ve kurs önerileri sunmamıza yardımcı olacak.</p>
+            <button id="start-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Teste Başla</button>
+        </div>
+        
+        <div id="test-page" class="view">
+            <div id="progress-container" class="mb-4">
+                 <p id="progress-text" class="text-center text-sm font-semibold text-gray-600 mb-2"></p>
+                 <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+            <form id="test-form" class="space-y-8">
+                <div id="questions-container" class="max-h-[50vh] overflow-y-auto p-2"></div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" id="next-button" class="w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Sonraki</button>
+                    <button type="submit" id="finish-button" class="w-auto hidden bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg">Testi Bitir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const state = { currentPage: 1, totalPages: 0, allAnswers: [], allQuestions: [] };
+            
+            const views = {
+                start: document.getElementById('start-page'),
+                test: document.getElementById('test-page'),
+                loading: document.getElementById('loading-spinner'),
+                error: document.getElementById('error-panel')
+            };
+            const testElements = {
+                form: document.getElementById('test-form'),
+                questionsContainer: document.getElementById('questions-container'),
+                progressBar: document.getElementById('progress-bar'),
+                progressText: document.getElementById('progress-text'),
+                nextButton: document.getElementById('next-button'),
+                finishButton: document.getElementById('finish-button')
+            };
+
+            const showView = (viewName) => {
+                Object.values(views).forEach(v => v.style.display = 'none');
+                views[viewName].style.display = 'block';
+            };
+            const showError = (message) => {
+                document.getElementById('error-message').textContent = message;
+                showView('error');
+            };
+
+            async function fetchApi(url, options = {}) {
+                try {
+                    const response = await fetch(url, options);
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Bilinmeyen bir sunucu hatası oluştu.');
+                    }
+                    return data;
+                } catch (error) {
+                    showError(error.message);
+                    throw error;
+                }
+            }
+
+            function renderQuestions(page) {
+                const questionsToShow = state.allQuestions.slice((page - 1) * 7, page * 7);
+                testElements.questionsContainer.innerHTML = '';
+                questionsToShow.forEach(q => {
+                    const questionEl = document.createElement('div');
+                    questionEl.className = 'question bg-gray-50 p-6 rounded-lg shadow-sm';
+                    questionEl.innerHTML = `
+                        <p class="font-semibold text-gray-800 text-center mb-4">${q.text}</p>
+                        <div class="flex justify-center space-x-3 md:space-x-4">
+                            <span class="text-xs text-gray-500 self-center">Katılmıyorum</span>
+                            ${[1,2,3,4,5].map(v => `
+                                <div class="custom-radio">
+                                    <input type="radio" name="${q.id}" value="${v}" id="${q.id}-${v}" required>
+                                    <label for="${q.id}-${v}">${v}</label>
+                                </div>
+                            `).join('')}
+                            <span class="text-xs text-gray-500 self-center">Katılıyorum</span>
+                        </div>
+                    `;
+                    testElements.questionsContainer.appendChild(questionEl);
+                });
+            }
+
+            function updateProgress() {
+                const answeredCount = state.allAnswers.length;
+                const totalCount = state.allQuestions.length;
+                const progressPercentage = totalCount > 0 ? (answeredCount / totalCount) * 100 : 0;
+                
+                testElements.progressBar.style.width = `${progressPercentage}%`;
+                testElements.progressText.textContent = `İlerleme: ${answeredCount} / ${totalCount}`;
+
+                testElements.nextButton.style.display = state.currentPage === state.totalPages ? 'none' : 'inline-block';
+                testElements.finishButton.style.display = state.currentPage === state.totalPages ? 'inline-block' : 'none';
+            }
+
+            function validateCurrentPage() {
+                const questionsOnPage = testElements.questionsContainer.querySelectorAll('.question');
+                let allAnswered = true;
+                questionsOnPage.forEach(qDiv => {
+                    const radioName = qDiv.querySelector('input[type="radio"]').name;
+                    if (!testElements.form.querySelector(`input[name="${radioName}"]:checked`)) {
+                        allAnswered = false;
+                    }
+                });
+                if (!allAnswered) {
+                    alert('Lütfen bu sayfadaki tüm soruları cevaplayın.');
+                }
+                return allAnswered;
+            }
+
+            function collectCurrentPageAnswers() {
+                const formData = new FormData(testElements.form);
+                for (const [key, value] of formData.entries()) {
+                    // Tekrarlı eklemeyi önle
+                    const existingIndex = state.allAnswers.findIndex(ans => ans.question_id === key);
+                    if (existingIndex > -1) {
+                        state.allAnswers[existingIndex].answer_value = value;
+                    } else {
+                        state.allAnswers.push({ question_id: key, answer_value: value });
+                    }
+                }
+            }
+
+            document.getElementById('start-button').addEventListener('click', async () => {
+                showView('loading');
+                try {
+                    const data = await fetchApi('/api/test/questions');
+                    state.allQuestions = data.questions;
+                    state.totalPages = Math.ceil(state.allQuestions.length / 7);
+                    state.currentPage = 1;
+                    renderQuestions(state.currentPage);
+                    updateProgress();
+                    showView('test');
+                } catch (error) {
+                    // Hata zaten gösterildi.
+                }
+            });
+
+            testElements.nextButton.addEventListener('click', () => {
+                if (validateCurrentPage()) {
+                    collectCurrentPageAnswers();
+                    state.currentPage++;
+                    renderQuestions(state.currentPage);
+                    updateProgress();
+                }
+            });
+
+            testElements.form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (validateCurrentPage()) {
+                    collectCurrentPageAnswers();
+                    showView('loading');
+                    try {
+                        const result = await fetchApi('/api/test/submit', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ answers: state.allAnswers })
+                        });
+                        if (result.redirectUrl) {
+                            window.location.href = result.redirectUrl;
+                        }
+                    } catch (error) {
+                        // Hata zaten gösterildi.
+                    }
+                }
+            });
+
+            showView('start');
+        });
+    </script>
+</body>
+</html>

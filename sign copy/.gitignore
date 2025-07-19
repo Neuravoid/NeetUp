@@ -1,0 +1,26 @@
+# Python için genel
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Sanal ortamlar
+env/
+venv/
+ENV/
+.venv/
+
+# IDE dosyaları
+.vscode/
+.idea/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Gizli dosyalar
+.env
+_env.template
+
+# Loglar
+*.log

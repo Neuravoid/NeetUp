@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap - Neet Up</title>
+    <link rel="icon" href="/static/NeetUp.PNG" type="image/png">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-placeholder::placeholder { color: #a0aec0; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-800 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Signin Form Container -->
+    <div class="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 space-y-6">
+
+        <!-- Logo -->
+        <div class="text-center">
+            <img 
+                src="{{ url_for('static', filename='NeetUp.PNG') }}" 
+                alt="NeetUp Logo" 
+                class="mx-auto mb-4 h-24 w-24 rounded-full"
+            >
+        </div>
+
+        <!-- Header -->
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-white">Hoş Geldiniz</h1>
+            <p class="text-blue-200 mt-2">Lütfen devam etmek için giriş yapın</p>
+        </div>
+
+        <!-- Form -->
+        <form id="signin-form" class="space-y-4">
+            <!-- Username Field -->
+            <div>
+                <label for="username" class="block text-sm font-medium text-blue-100 mb-2">Kullanıcı Adı</label>
+                <input type="text" id="username" name="username" placeholder="Kullanıcı adınız" class="w-full px-4 py-3 bg-gray-900/50 border border-transparent rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-blue-100 mb-2">Parola</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" class="w-full px-4 py-3 bg-gray-900/50 border border-transparent rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+
+            <!-- Forgot Password Link -->
+            <div class="text-right">
+                <a href="/forgot-password-page" class="text-sm text-blue-200 hover:text-white transition">Parolayı Unuttunuz?</a>
+            </div>
+
+            <!-- Login Button -->
+            <div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                    Giriş Yap
+                </button>
+            </div>
+        </form>
+
+        <!-- Sign-up Link -->
+        <div class="text-center text-blue-200">
+            <p>Üyelik yapmadınız mı? <a href="/signup-page" class="font-semibold text-white hover:underline">Üyelik Yap</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('#signin-form');
+
+            if (form) {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+
+                    try {
+                        const response = await fetch('/api/auth/signin', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            alert(result.message);
+                            // On success, redirect to the URL provided by the backend
+                            window.location.href = result.redirectUrl;
+                        } else {
+                            alert('Hata: ' + result.message);
+                        }
+                    } catch (error) {
+                        console.error('İstek başarısız:', error);
+                        alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeetUp - Geleceğin Burada Başlar</title>
+    <link rel="icon" href="/static/NeetUp.PNG" type="image/png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo - points to the root URL -->
+            <a href="{{ url_for('index') }}" class="text-2xl font-bold text-blue-600">NeetUp</a>
+            
+            <!-- Navigation Buttons - points to the correct Flask routes -->
+            <div class="flex items-center space-x-4">
+                <a href="{{ url_for('signin_page') }}" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Giriş Yap</a>
+                <a href="{{ url_for('signup_page') }}" class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-all shadow-sm hover:shadow-md">
+                    Üye Ol
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Potansiyelini Keşfet, Geleceğini İnşa Et.</h1>
+                <p class="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto mb-8">
+                    NeetUp, ne eğitimde ne istihdamda olan (NEET) gençlerin potansiyelini ortaya çıkarmak için tasarlanmış yapay zeka destekli bir kariyer ve girişimcilik platformudur.
+                </p>
+                <a href="{{ url_for('signup_page') }}" class="bg-white text-blue-600 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                    Kıvılcımı Ateşle &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- Section: Projenin Amacı -->
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Projemizin Amacı</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik problemine teknoloji odaklı bir çözüm sunmaktır. Amacımız, atıl durumdaki milyonlarca gencin potansiyelini bir "kıvılcım" ile ateşleyerek onları nitelikli birer çalışan veya kendi işini kuran birer girişimciye dönüştürmektir. NeetUp, kaybolmuş hisseden gençlere bir kariyer pusulası olmayı hedefler.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section: Temel Özellikler -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Temel Özellikler</h2>
+                    <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="brain-circuit"></i></div>
+                        <h3 class="text-xl font-bold mb-2">AI Destekli Yetenek Analizi</h3>
+                        <p class="text-gray-600">Kullanıcıların ilgi alanlarını ve gizli yeteneklerini ortaya çıkaran akıllı testler.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="map"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Kişiselleştirilmiş Yol Haritası</h3>
+                        <p class="text-gray-600">Her kullanıcıya özel, adım adım ilerleyen bir beceri ve kariyer planı.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="book-open-check"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Akıllı Kurs ve İçerik Önerileri</h3>
+                        <p class="text-gray-600">Kullanıcının yol haritasına en uygun online kurs ve kaynakların sunulması.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="bot"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Girişimci Koçu Chatbot</h3>
+                        <p class="text-gray-600">İş fikirlerini test etme, geliştirme ve iş planı oluşturma süreçlerinde yapay zeka desteği.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="briefcase"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Gerçek Zamanlı İş İlanı Eşleştirmesi</h3>
+                        <p class="text-gray-600">Kullanıcının kazandığı yetkinliklerle uyumlu, gerçek staj ve iş fırsatlarının sunulması.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow border border-gray-200">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4"><i data-lucide="layout-template"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Portfolyo Oluşturma</h3>
+                        <p class="text-gray-600">Platform içi interaktif projelerle kullanıcıların öğrendiklerini somut bir portfolyoya dönüştürme imkanı.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Ekibimiz -->
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <i data-lucide="users-2" class="w-16 h-16 text-blue-500 mx-auto mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ekibimiz</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Biz, Yapay Zeka Akademisi’nin Bootcamp sürecinde bir araya gelmiş 4 kişilik bir ekibiz. Amacımız NEET gençler için anlamlı ve teknoloji odaklı bir çözüm geliştirmek. Farklı yetenek ve bakış açılarıyla bu projeyi oluşturduk ve geliştirmeye devam ediyoruz.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section: İletişim -->
+        <section class="py-16 md:py-24 bg-blue-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Bizimle İletişime Geçin</h2>
+                <p class="text-blue-200 max-w-2xl mx-auto mb-6">Sorularınız, önerileriniz veya iş birliği talepleriniz için bize ulaşmaktan çekinmeyin.</p>
+                <a href="mailto:neetup@neetup.com" class="bg-white text-blue-600 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
+                    neetup@neetup.com
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 NeetUp. Tüm hakları saklıdır.</p>
+            <p class="text-gray-400 text-sm mt-2">Geleceğinize yön vermek için buradayız.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
