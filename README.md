@@ -122,23 +122,26 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
 - **Daily Scrum Raporları:** Daily Scrum toplantıları planlandığı üzere her gün saat 19.00’da düzenli olarak gerçekleştirildi. Pazar günleri ise ekibin dinlenmesi adına tatil günü uygulamasına devam edildi. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 2- Daily Scrum Chats](https://docs.google.com/document/d/1hY6M5jKc257hj3juAayWF2ntffvdPKxiDnqV3PBf3Is/edit)  
-- **Sprint Board Updates:** Product backlog yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir. Yeni olarak Critical fixes and optimizations görevleri için turuncu renk eklenmiştir. *görsel eklenecek
+- **Sprint Board Updates:** Product backlog yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir. Yeni olarak Critical fixes and optimizations görevleri için turuncu renk eklenmiştir.
+ <img src="images/1. hafta sonu trello.png" alt="sprintboard1" width="700"/> <br>
+ <img src="images/2. hafta trello.png" alt="sprintboard2" width="700"/> <br>
+ 
 <details>
   <summary><b>Burndown Chart </b> </summary>
 Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir şekilde tamamlamak için çalıştı. Ancak ideal burndown çizgisine kıyasla ilerleme biraz daha yavaş kaldı. Gelecek sprintte daha gerçekçi planlama ve önceliklendirme ile sürecin iyileştirilmesi hedefleniyor.  
  
-  <img görsel eklenecek <br>
+ <img src="images/burndownchart 2.png" alt="burndownchart2" width="500"/> <br>
  
 </details>
 
  <details>
   <summary><b>Uygulamanın Sprint 2 Sonu Görselleri:</b> </summary>
-<img > 
-<img >  
-<img >
-<img>
-<img >
-<img >
+<img src="images/Uygulama görsel 6.png" alt="potansiyelini_keşfet" width="500"/> <br> 
+<img src="images/uygulama görseli.png" alt="uygulama_arayüz" width="500"/> <br>  
+<img src="images/uygulama görsel 3.png" alt="üye_ol" width="500"/> <br>
+<img src="images/uygulama görsel 2.png" alt="giris_yap" width="500"/> <br>
+<img src="images/uygulama görsel5.png" alt="ana_sayfa" width="500"/> <br> 
+<img src="images/uygulama görsel 4.png" alt="test_sayfası" width="500"/> <br>  
 </details>
 
 ## Sprint Review:
