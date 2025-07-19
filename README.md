@@ -47,7 +47,7 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Yapay Zeka & Makine Öğrenmesi:** Gemini, TensorFlow, Scikit-learn
 - **Front-end:** React / Vue.js
 - **Back-end:** Python (FastAPI, Flask)
-- **Veritabanı:** PostgreSQL
+- **Veritabanı:** PostgreSQL, SQLite
 - **Proje Yönetimi:** Trello, Google Sheets
 - **Versiyon Kontrol:** Git & GitHub
 
