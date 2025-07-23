@@ -11,6 +11,10 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPersonalityTest, setShowPersonalityTest] = useState(false);
+<<<<<<< HEAD
+=======
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+>>>>>>> 7480609 (tasarımsal düzeltmeler)
   
   const handleLogout = () => {
     dispatch(logout());
@@ -79,13 +83,28 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center">
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
+<<<<<<< HEAD
                 <div className="relative group">
                   <button className="flex items-center space-x-2 text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white">
+=======
+                <div className="relative">
+                  <button 
+                    className="flex items-center space-x-2 text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    onBlur={(e) => {
+                      // Only close if clicking outside the dropdown
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                        setTimeout(() => setIsDropdownOpen(false), 150);
+                      }
+                    }}
+                  >
+>>>>>>> 7480609 (tasarımsal düzeltmeler)
                     <span>{user?.firstName} {user?.lastName}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
                   </button>
+<<<<<<< HEAD
                   <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 hidden group-hover:block z-10">
                     <div className="py-1">
                       <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
@@ -99,6 +118,30 @@ const Navbar: React.FC = () => {
                       </button>
                     </div>
                   </div>
+=======
+                  {isDropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 z-10">
+                      <div className="py-1">
+                        <Link 
+                          to="/profile" 
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Profil
+                        </Link>
+                        <button 
+                          onClick={() => {
+                            handleLogout();
+                            setIsDropdownOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                        >
+                          Çıkış Yap
+                        </button>
+                      </div>
+                    </div>
+                  )}
+>>>>>>> 7480609 (tasarımsal düzeltmeler)
                 </div>
               </div>
             ) : (

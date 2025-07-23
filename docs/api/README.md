@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # API Dokümantasyonu
 
 Bu klasör, NeetUp API'sinin dokümantasyonunu içerir:
@@ -9,3 +10,16 @@ Bu klasör, NeetUp API'sinin dokümantasyonunu içerir:
 - Hata kodları ve açıklamaları
 
 API dokümantasyonu, geliştiricilerin platforma entegrasyon yapabilmesi için gerekli tüm bilgileri sağlar.
+=======
+# API Dokümantasyonu
+
+Bu klasör, NeetUp API'sinin dokümantasyonunu içerir:
+
+- API endpoint'lerinin tanımları
+- İstek ve yanıt örnekleri
+- Parametreler ve gövde şemaları
+- Yetkilendirme gereksinimleri
+- Hata kodları ve açıklamaları
+
+API dokümantasyonu, geliştiricilerin platforma entegrasyon yapabilmesi için gerekli tüm bilgileri sağlar.
+>>>>>>> 7480609 (tasarımsal düzeltmeler)
