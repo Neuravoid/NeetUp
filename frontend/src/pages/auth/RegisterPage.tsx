@@ -80,8 +80,52 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="card max-w-md w-full space-y-8">
+=======
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Transparan Arkaplan Görselleri */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Sol üst köşe - Education Background 1 */}
+        <div className="absolute top-3 left-20 opacity-15 transform rotate-15">
+          <img 
+            src="/images/education-bg-1.png" 
+            alt="Education Background" 
+            className="w-70 h-70 object-contain"
+          />
+        </div>
+
+        {/* Sağ üst köşe - Education Background 2 */}
+        <div className="absolute top-10 right-10 opacity-15 transform -rotate-8">
+          <img 
+            src="/images/education-bg-2.png" 
+            alt="Education Background" 
+            className="w-70 h-70 object-contain"
+          />
+        </div>
+
+        {/* Sol alt köşe - Education Background 3 */}
+        <div className="absolute bottom-10 left-40 opacity-15 transform rotate-15">
+          <img 
+            src="/images/education-bg-3.png" 
+            alt="Education Background" 
+            className="w-80 h-80 object-contain"
+          />
+        </div>
+
+        {/* Sağ alt köşe - Education Background 3 (küçük) */}
+        <div className="absolute bottom-10 right-10 opacity-15 transform -rotate-30">
+          <img 
+            src="/images/education-bg-4.png" 
+            alt="Education Background" 
+            className="w-60 h-60 object-contain"
+          />
+        </div>
+      </div>
+
+      <div className="card max-w-md w-full space-y-8 relative z-10">
+>>>>>>> 7480609 (tasarımsal düzeltmeler)
         <div>
           <h1 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Hesap Oluştur
