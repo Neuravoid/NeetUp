@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 ## Takım & Ürün İsmi
 <h1>NeetUp</h1>
@@ -171,7 +171,7 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 **Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
   
   
-=======
+
 
 ## Takım & Ürün İsmi
 <h1>NeetUp</h1>
@@ -344,4 +344,3 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 **Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
   
   
->>>>>>> 7480609 (tasarımsal düzeltmeler)
