@@ -105,20 +105,6 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
-<<<<<<< HEAD
-    builder.addCase(register.fulfilled, (state, action: PayloadAction<any>) => {
-      state.isLoading = false;
-      state.isAuthenticated = true;
-      state.error = null;
-      // action.payload is the whole response, data is in action.payload.data
-      const authData = action.payload.data;
-      state.user = authData.user;
-      state.token = authData.token;
-      // Store token in localStorage
-      if (authData.token) {
-        localStorage.setItem('token', authData.token);
-      }
-=======
     builder.addCase(register.fulfilled, (state) => {
       state.isLoading = false;
       // Do NOT automatically log in user after registration
@@ -128,7 +114,6 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
       state.token = null;
->>>>>>> 7480609 (tasarımsal düzeltmeler)
     });
     builder.addCase(register.rejected, (state, action) => {
       state.isLoading = false;
