@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 7480609 (tasarımsal düzeltmeler)
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../hooks/reduxHooks';
 import { useState, useEffect } from 'react';
@@ -53,11 +49,7 @@ const DashboardPage = () => {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-<<<<<<< HEAD
-          Hoş Geldiniz, {user?.firstName} {user?.lastName}
-=======
           Hoş Geldiniz, {user?.full_name || `${user?.firstName} ${user?.lastName}`}
->>>>>>> 7480609 (tasarımsal düzeltmeler)
         </h1>
         <p className="mt-1 text-gray-600 dark:text-gray-400">
           Kariyer yolculuğunuzu planlamaya başlayın ve hedeflerinize ulaşın.

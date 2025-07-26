@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useState } from 'react';
->>>>>>> 7480609 (tasarımsal düzeltmeler)
 import type { InputHTMLAttributes } from 'react';
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -18,10 +14,6 @@ const FormInput: React.FC<FormInputProps> = ({
   error,
   helper,
   className = '',
-<<<<<<< HEAD
-  ...props
-}) => {
-=======
   type,
   ...props
 }) => {
@@ -33,20 +25,11 @@ const FormInput: React.FC<FormInputProps> = ({
     setShowPassword(!showPassword);
   };
 
->>>>>>> 7480609 (tasarımsal düzeltmeler)
   return (
     <div className="mb-4">
       <label htmlFor={name} className="form-label">
         {label}
       </label>
-<<<<<<< HEAD
-      <input
-        id={name}
-        name={name}
-        className={`form-input ${error ? 'border-red-500' : ''} ${className}`}
-        {...props}
-      />
-=======
       <div className="relative">
         <input
           id={name}
@@ -101,7 +84,6 @@ const FormInput: React.FC<FormInputProps> = ({
           </button>
         )}
       </div>
->>>>>>> 7480609 (tasarımsal düzeltmeler)
       {helper && !error && (
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{helper}</p>
       )}

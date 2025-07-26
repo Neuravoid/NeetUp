@@ -80,10 +80,6 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="card max-w-md w-full space-y-8">
-=======
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Transparan Arkaplan Görselleri */}
       <div className="absolute inset-0 pointer-events-none">
@@ -125,7 +121,6 @@ const RegisterPage: React.FC = () => {
       </div>
 
       <div className="card max-w-md w-full space-y-8 relative z-10">
->>>>>>> 7480609 (tasarımsal düzeltmeler)
         <div>
           <h1 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Hesap Oluştur

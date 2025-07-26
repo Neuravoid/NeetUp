@@ -5,10 +5,7 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-<<<<<<< HEAD
-=======
   full_name?: string;
->>>>>>> 7480609 (tasarımsal düzeltmeler)
   role: UserRole;
   createdAt: string;
   updatedAt: string;
