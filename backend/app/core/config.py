@@ -16,12 +16,9 @@ class Settings(BaseSettings):
     # SQLite Database Configuration
     SQLITE_DB: str = os.getenv("SQLITE_DB", "career_dev.db")
     SQLALCHEMY_DATABASE_URI: str = f"sqlite:///{SQLITE_DB}"
-<<<<<<< HEAD
-=======
     
     # Google API Configuration
     GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
->>>>>>> 7480609 (tasarımsal düzeltmeler)
 
     class Config:
         case_sensitive = True
