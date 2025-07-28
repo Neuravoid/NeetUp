@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAppSelector } from '../../hooks/reduxHooks';
 
 interface Skill {
   id: string;
@@ -10,7 +9,6 @@ interface Skill {
 }
 
 const SkillsPage = () => {
-  const { user } = useAppSelector(state => state.auth);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newSkill, setNewSkill] = useState({

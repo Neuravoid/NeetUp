@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
 import { logout } from '../../store/slices/authSlice';
-import PersonalityTestModal from '../PersonalityTestModal';
-import { type PersonalityTestResult } from '../../services/personality-test.service';
+import PersonalityTest from '../tests/PersonalityTest';
 
 const Navbar: React.FC = () => {
   const { isAuthenticated, user } = useAppSelector(state => state.auth);
@@ -22,12 +21,6 @@ const Navbar: React.FC = () => {
     setShowPersonalityTest(true);
   };
 
-  const handleTestComplete = async (_result: PersonalityTestResult) => {
-    setShowPersonalityTest(false);
-    // Navigate to roadmap page after test completion
-    navigate('/roadmap');
-  };
-  
   return (
     <nav className="bg-white shadow-md dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +34,7 @@ const Navbar: React.FC = () => {
             <div className="hidden md:ml-6 md:flex md:space-x-2">
               <Link to="/" className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/10 dark:text-gray-300 dark:hover:text-white dark:hover:bg-primary/20 transition-all duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v3H8V5z" />
                 </svg>
                 <span>Dashboard</span>
@@ -198,11 +191,10 @@ const Navbar: React.FC = () => {
       
       {/* Personality Test Modal */}
       {showPersonalityTest && (
-        <PersonalityTestModal
-          isOpen={showPersonalityTest}
-          onClose={() => setShowPersonalityTest(false)}
-          onComplete={handleTestComplete}
-        />
+       <PersonalityTest
+       isOpen={showPersonalityTest}
+       onClose={() => setShowPersonalityTest(false)}
+     />
       )}
     </nav>
   );

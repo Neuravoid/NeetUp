@@ -4,7 +4,7 @@ from .user import User
 from .course import Course, UserCourse
 from .roadmap import CareerPath, UserRoadmap, RoadmapStep
 from .test import Test, Question, Answer, UserTestResult
-from .personality_test import PersonalityTest, PersonalityQuestion, PersonalityCoalition
+from .personality_test import PersonalityTest, PersonalityQuestion
 
 __all__ = [
     "BaseModel",
@@ -19,6 +19,5 @@ __all__ = [
     "Answer", 
     "UserTestResult",
     "PersonalityTest",
-    "PersonalityQuestion", 
-    "PersonalityCoalition"
+    "PersonalityQuestion"
 ]
