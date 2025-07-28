@@ -5,15 +5,6 @@ export interface PersonalityAnswer {
   answer_value: number;
 }
 
-export interface PersonalityDemographics {
-  full_name: string;
-  birth_year: number;
-  education: string;
-  interests: string;
-  career_goals: string;
-  work_experience: string;
-}
-
 export interface CompetencyAnswer {
   question_id: string;
   answer_value: number;
@@ -66,9 +57,14 @@ export interface CoalitionMatch {
 export interface CareerRecommendation {
   title: string;
   description: string;
-  match_reason: string;
-  skills_needed: string[];
+  match_reason?: string;
+  skills_needed?: string[];
   salary_range?: string;
+  match_percentage?: number;
+  score?: number;
+  all_scores?: Record<string, number>;
+  compatibility_level?: string;
+  normalized_score?: number;
 }
 
 export interface CourseRecommendation {
@@ -139,17 +135,6 @@ export const personalityTestService = {
       return response.data;
     } catch (error) {
       console.error('Error submitting answers:', error);
-      throw error;
-    }
-  },
-
-  // Submit demographic information
-  submitDemographics: async (testId: string, demographics: PersonalityDemographics): Promise<PersonalityTestResponse> => {
-    try {
-      const response = await api.post(`/personality-test/demographics/${testId}`, demographics);
-      return response.data;
-    } catch (error) {
-      console.error('Error submitting demographics:', error);
       throw error;
     }
   },
