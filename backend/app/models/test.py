@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Text, Enum, DateTime, Float
+from sqlalchemy import Column, String, Integer, ForeignKey, Text, Enum, DateTime, Float, Boolean
 from sqlalchemy.orm import relationship
 import enum, json
 
@@ -16,6 +16,12 @@ class QuestionType(str, enum.Enum):
     MULTIPLE_CHOICE = "multiple_choice"
     LIKERT_SCALE = "likert_scale"
     FREE_TEXT = "free_text"
+
+
+class DifficultyLevel(str, enum.Enum):
+    KOLAY = "kolay"
+    ORTA = "orta"
+    ZOR = "zor"
 
 
 class Test(Base, BaseModel):
@@ -40,6 +46,7 @@ class Question(Base, BaseModel):
     question_text = Column(Text, nullable=False)
     question_type = Column(Enum(QuestionType), nullable=False)
     order = Column(Integer, nullable=False)
+    difficulty = Column(Enum(DifficultyLevel), nullable=True)  # Bilgi testleri için zorluk seviyesi
 
     # Relationships
     test = relationship("Test", back_populates="questions")
@@ -53,6 +60,7 @@ class Answer(Base, BaseModel):
     question_id = Column(String(36), ForeignKey("questions.id"), nullable=False)
     answer_text = Column(Text, nullable=False)
     score_value = Column(Float)
+    is_correct = Column(Boolean, default=False)  # Bilgi testleri için doğru cevap işaretleme
 
     # Relationships
     question = relationship("Question", back_populates="answers")

@@ -37,6 +37,31 @@ export default {
       fontFamily: {
         sans: ['Inter', 'Roboto', 'sans-serif'],
       },
+      animation: {
+        'pulse-border': 'pulse-border 2s infinite',
+        'pulse-subtle': 'pulse-subtle 3s infinite',
+      },
+      keyframes: {
+        'pulse-border': {
+          '0%': { 
+            borderColor: 'rgba(99, 102, 241, 0.3)',
+            boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.3)'
+          },
+          '50%': { 
+            borderColor: 'rgba(99, 102, 241, 0.6)',
+            boxShadow: '0 0 0 4px rgba(99, 102, 241, 0.2)'
+          },
+          '100%': { 
+            borderColor: 'rgba(99, 102, 241, 0.3)',
+            boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.3)'
+          },
+        },
+        'pulse-subtle': {
+          '0%': { boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.1)' },
+          '50%': { boxShadow: '0 0 10px 0px rgba(99, 102, 241, 0.3)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.1)' },
+        },
+      },
     },
   },
   plugins: [],
