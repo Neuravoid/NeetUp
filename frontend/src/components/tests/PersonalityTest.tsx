@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { personalityTestService } from '../../services/personality-test.service';
 import { useAppSelector } from '../../hooks/reduxHooks';
 
@@ -19,6 +20,7 @@ interface TestResult {
 
 const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) => {
   const { user } = useAppSelector(state => state.auth);
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>(new Array(15).fill(0));
   const [showResult, setShowResult] = useState(false);
@@ -159,10 +161,10 @@ const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) =>
     const pmScore = answers[1] + answers[3] + answers[8] + answers[11];
 
     const results: TestResult[] = [
-      { area: "UI/UX Designer", score: uxScore, description: "Kişiliğiniz UI/UX Designer alanına uygun. Tasarım sevginiz, kullanıcı deneyimine odaklanmanız ve yaratıcı çözümler üretme beceriniz bu alanla uyumunuzu gösteriyor. Bilgi testi aşamasına geçmek için becerilerim sayfasından UI/UX Designer testlerini çözün." },
-      { area: "Backend Developer", score: backendScore, description: "Kişiliğiniz Backend Developer alanına uygun. Sistemlerin arkasındaki detaylarla çalışma beceriniz, mantıksal düşünce yapınız ve teknik bağlantıları kurma yeteneğiniz bu alanla uyumunuzu gösteriyor. Bilgi testi aşamasına geçmek için becerilerim sayfasından Backend Developer testlerini çözün." },
-      { area: "Data Science", score: dataScore, description: "Kişiliğiniz Data Science alanına uygun. Analitik düşünce yapınız, verileri anlama ve yorumlama beceriniz ile karmaşık problemleri çözme yaklaşımınız bu alanla uyumunuzu gösteriyor. Bilgi testi aşamasına geçmek için becerilerim sayfasından Data Science testlerini çözün." },
-      { area: "Project Management", score: pmScore, description: "Kişiliğiniz Project Management alanına uygun. Yönetim beceriniz, ekip koordinasyonu yapabilmeniz ve planlama yaklaşımınız bu alanla uyumunuzu gösteriyor. Bilgi testi aşamasına geçmek için becerilerim sayfasından Project Management testlerini çözün." }
+      { area: "UI/UX Designer", score: uxScore, description: "Kişiliğiniz UI/UX Designer alanına uygun. Tasarım sevginiz, kullanıcı deneyimine odaklanmanız ve yaratıcı çözümler üretme beceriniz bu alanla uyumunuzu gösteriyor." },
+      { area: "Backend Developer", score: backendScore, description: "Kişiliğiniz Backend Developer alanına uygun. Sistemlerin arkasındaki detaylarla çalışma beceriniz, mantıksal düşünce yapınız ve teknik bağlantıları kurma yeteneğiniz bu alanla uyumunuzu gösteriyor. " },
+      { area: "Data Science", score: dataScore, description: "Kişiliğiniz Data Science alanına uygun. Analitik düşünce yapınız, verileri anlama ve yorumlama beceriniz ile karmaşık problemleri çözme yaklaşımınız bu alanla uyumunuzu gösteriyor." },
+      { area: "Project Management", score: pmScore, description: "Kişiliğiniz Project Management alanına uygun. Yönetim beceriniz, ekip koordinasyonu yapabilmeniz ve planlama yaklaşımınız bu alanla uyumunuzu gösteriyor." }
     ];
 
     // En yüksek skorları sırala
@@ -362,27 +364,26 @@ const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) =>
               ) : (
                 /* Results */
                 <div className="text-center">
-                  <div className="mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                      Kişilik Testi Tamamlandı!
+                      Kişilik Testi Sonuçlarınız
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Kariyer alanı belirlendi ve sonuçlarınız kaydedildi
+                      Size en uygun kariyer alanları belirlendi
                     </p>
                   </div>
 
-                  {/* Career Area Result */}
                   {careerResult ? (
-                    <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 rounded-lg border border-green-200 dark:border-green-700 mb-6">
+                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-lg border border-purple-200 dark:border-purple-700 mb-6">
                       <div className="flex items-center justify-center mb-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mr-3">
+                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
                           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6.5" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6.5"></path>
                           </svg>
                         </div>
                         <h4 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -390,64 +391,45 @@ const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) =>
                         </h4>
                       </div>
                       
-                      {/* Career Area Explanation */}
-                      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-4">
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Neden Bu Alan Size Uygun?</h5>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                          {(() => {
-                            switch (careerResult.career_area) {
-                              case 'UI/UX Designer':
-                                return 'Yaratıcı düşünce yapınız, kullanıcı deneyimini önemsemeniz ve insanların ihtiyaçlarını anlama beceriniz bu alanda başarılı olmanızı sağlayacak. Tasarım süreçlerinde empati kurabilme ve görsel çözümler üretme yeteneğiniz öne çıkıyor.';
-                              case 'Backend Developer':
-                                return 'Sistemlerin arkasındaki mantığı anlama yeteneğiniz, detaylı ve metodical yaklaşımınız, uzun süreli odaklanma beceriniz bu alanda mükemmel bir uyum sağlıyor. Teknik problemleri çözme ve sağlam altyapılar kurma konusunda doğal bir yeteneğiniz var.';
-                              case 'Data Science':
-                                return 'Analitik düşünce yapınız, veri odaklı karar verme yaklaşımınız ve karmaşık problemleri parçalara ayırarak çözme beceriniz bu alanda başarılı olmanızı destekliyor. Sayılar ve istatistiklerle çalışma konusunda güçlü bir temel var.';
-                              case 'Project Management':
-                                return 'Organizasyon becerileriniz, ekip koordinasyonu yeteneğiniz ve planlama konusundaki sistematik yaklaşımınız bu alanda öne çıkmanızı sağlayacak. İnsanları yönlendirme ve hedeflere ulaşma konusunda doğal bir liderlik yeteneğiniz bulunuyor.';
-                              default:
-                                return 'Kişilik özellikleriniz bu kariyer alanının gerektirdiği beceriler ile uyumlu görünüyor.';
-                            }
-                          })()}
-                        </p>
-                      </div>
-                      
-                      <p className="text-gray-700 dark:text-gray-300 text-lg">
-                        {careerResult.message}
+                      <p className="text-purple-700 dark:text-purple-300 text-lg font-medium">
+                        {careerResult.message.replace(/\d+\s*puan/g, '').replace(/\s+/g, ' ').trim()}
                       </p>
                     </div>
                   ) : (
                     <div className="space-y-4 mb-6">
                       {result.map((res, index) => (
                         <div key={index} className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-lg border border-purple-200 dark:border-purple-700">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                              {res.area}
+                          <div className="flex items-center justify-center mb-4">
+                            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
+                              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6.5"></path>
+                              </svg>
+                            </div>
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white">
+                              🎯 Kariyer Alanınız: {res.area}
                             </h4>
-                            <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                              {res.score} puan
-                            </span>
                           </div>
-                          <p className="text-purple-700 dark:text-purple-300 font-medium">
-                            ✨ {res.description}
+                          
+                          <p className="text-purple-700 dark:text-purple-300 text-lg font-medium">
+                            {res.description.replace(/\d+\s*puan/g, '').replace(/\s+/g, ' ').trim()}
                           </p>
                         </div>
                       ))}
                     </div>
                   )}
 
-                  {/* Knowledge Test Guidance */}
-                  <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6">
+                  {/* Single guidance message */}
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
                     <div className="flex items-center mb-2">
-                      <svg className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <h5 className="font-semibold text-yellow-800 dark:text-yellow-200">Sonraki Adım</h5>
+                      <h5 className="font-semibold text-blue-800 dark:text-blue-200">Sonraki Adım</h5>
                     </div>
-                    <p className="text-yellow-700 dark:text-yellow-300 text-sm">
+                    <p className="text-blue-700 dark:text-blue-300 text-sm">
                       Bilgi testi aşamasına geçmek için <strong>Becerilerim</strong> sayfasından 
-                      {careerResult ? ` ${careerResult.career_area}` : ' ilgili alan'} testlerini çözün.
-                      <br />
-                      <span className="text-xs opacity-75">(Bilgi testleri yakında eklenecek)</span>
+                      belirlenen kariyer alanlarındaki testleri çözün. Bu testler teknik bilgi seviyenizi ölçerek 
+                      size en uygun öğrenme yolunu belirleyecektir.
                     </p>
                   </div>
 
@@ -459,10 +441,13 @@ const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) =>
                       Tekrar Dene
                     </button>
                     <button
-                      onClick={handleClose}
+                      onClick={() => {
+                        onClose(); // Modal'ı kapat
+                        navigate('/skills'); // Doğru route'a yönlendir
+                      }}
                       className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors"
                     >
-                      Kapat
+                      Becerilerim
                     </button>
                   </div>
                 </div>

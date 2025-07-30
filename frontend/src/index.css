@@ -62,3 +62,39 @@
     @apply text-red-500 text-sm mt-1;
   }
 }
+
+/* Pulse animations for recommended tests */
+@keyframes pulse-border {
+  0% {
+    border-color: rgba(79, 70, 229, 0.3);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    border-color: rgba(79, 70, 229, 0.6);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+  }
+  100% {
+    border-color: rgba(79, 70, 229, 0.3);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3);
+  }
+}
+
+@keyframes pulse-subtle {
+  0% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px 0px rgba(79, 70, 229, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.1);
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite;
+}

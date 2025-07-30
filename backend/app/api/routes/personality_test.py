@@ -203,7 +203,7 @@ async def get_test_results(
                 "description": career_result["message"],
                 "match_percentage": career_result["percentage"],
                 "score": career_result["score"],
-                "all_scores": career_result.get("all_scores", {}),
+                "all_scores": career_scores,
                 "match_reason": "Kişilik analizi sonucu",
                 "skills_needed": ["İlgili alanda deneyim"],
                 "compatibility_level": career_result["compatibility_level"],
@@ -252,6 +252,35 @@ def get_user_personality_tests(
         "total_tests": len(test_summaries)
     }
 
+@router.get("/result")
+def get_current_user_personality_result(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Get the current user's personality test result"""
+    
+    # Find the user's most recent personality test
+    user_test = db.query(PersonalityTest).filter(
+        PersonalityTest.user_id == current_user.id
+    ).order_by(PersonalityTest.updated_at.desc()).first()
+    
+    if not user_test:
+        raise HTTPException(
+            status_code=404,
+            detail="Kişilik testi sonucu bulunamadı. Lütfen önce kişilik testini tamamlayın."
+        )
+    
+    if not user_test.personality_result:
+        raise HTTPException(
+            status_code=404,
+            detail="Kişilik testi sonucu bulunamadı. Lütfen önce kişilik testini tamamlayın."
+        )
+    
+    return {
+        "personality_result": user_test.personality_result,
+        "test_id": user_test.id,
+        "test_date": user_test.retest_date or user_test.first_test_date
+    }
 def determine_career_area_from_answers(answers: List[Dict]) -> Dict[str, Any]:
     """
     Determine career area based on specific question-career mapping

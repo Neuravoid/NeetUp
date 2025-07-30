@@ -17,6 +17,7 @@ import RoadmapPage from './pages/roadmap/RoadmapPage.tsx';
 import SkillsPage from './pages/skills/SkillsPage.tsx';
 import CoursesPage from './pages/courses/CoursesPage.tsx';
 import ProfilePage from './pages/profile/ProfilePage.tsx';
+import KnowledgeTestPage from './pages/KnowledgeTestPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
 import UnauthorizedPage from './pages/UnauthorizedPage.tsx';
 
@@ -46,6 +47,9 @@ function App() {
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              
+              {/* Knowledge Test Route */}
+              <Route path="/knowledge-test/:testId" element={<KnowledgeTestPage />} />
               
               {/* Admin routes - Example */}
               {/* <Route path="admin" element={
