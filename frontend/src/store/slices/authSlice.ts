@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { AuthState, LoginRequest, RegisterRequest } from '../../types/index.js';
+import type { AuthState, LoginRequest, RegisterRequest, UserProfile } from '../../types/index.js';
 import authService from '../../services/auth.service';
 
 // Initial state
@@ -58,6 +58,22 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+// New thunk for updating profile
+export const updateProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async ({ userId, profileData }: { userId: string, profileData: Partial<UserProfile> }, { rejectWithValue }) => {
+    try {
+      const response = await authService.updateProfile(userId, profileData);
+      if (!response.success) {
+        return rejectWithValue(response.error || 'Failed to update profile');
+      }
+      return response.data;
+    } catch (error) {
+      return rejectWithValue('Failed to update profile. Please try again.');
+    }
+  }
+);
+
 // Auth slice
 const authSlice = createSlice({
   name: 'auth',
@@ -107,37 +123,59 @@ const authSlice = createSlice({
     });
     builder.addCase(register.fulfilled, (state) => {
       state.isLoading = false;
-      // Do NOT automatically log in user after registration
-      // User should be redirected to login page instead
       state.error = null;
-      // Clear any existing auth state
-      state.isAuthenticated = false;
-      state.user = null;
-      state.token = null;
+      // We don't automatically log in after registration
     });
     builder.addCase(register.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
     });
 
-    // Get current user
+    // Get Current User
     builder.addCase(getCurrentUser.pending, (state) => {
       state.isLoading = true;
       state.error = null;
     });
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload ? action.payload : null;
+      state.user = action.payload || null;
+      state.error = null;
     });
     builder.addCase(getCurrentUser.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
-      state.isAuthenticated = false;
+      // If getting user data fails, we should log out
       state.user = null;
       state.token = null;
+      state.isAuthenticated = false;
       localStorage.removeItem('token');
     });
-  },
+
+    // Update Profile
+    builder.addCase(updateProfile.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateProfile.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      
+      // Update the user profile in the state
+      if (state.user && action.payload) {
+        state.user = {
+          ...state.user,
+          profile: {
+            ...state.user.profile,
+            ...action.payload
+          }
+        };
+      }
+    });
+    builder.addCase(updateProfile.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
+    });
+  }
 });
 
 export const { logout, clearError } = authSlice.actions;

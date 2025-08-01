@@ -1,8 +1,40 @@
-
-import { useAppSelector } from '../../hooks/reduxHooks';
+import React, { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
+import ProfileEditModal from '../../components/profile/ProfileEditModal';
+import { updateProfile } from '../../store/slices/authSlice';
 
 const ProfilePage = () => {
   const { user } = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  // Debug user data
+  useEffect(() => {
+    console.log('User data in ProfilePage:', user);
+  }, [user]);
+
+  // Handle opening the edit modal
+  const handleOpenEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  // Handle closing the edit modal
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  // Handle saving profile changes
+  const handleSaveProfile = (profileData: { bio: string, avatarUrl?: string }) => {
+    if (user) {
+      // Dispatch action to update profile
+      dispatch(updateProfile({
+        userId: user.id,
+        profileData: {
+          ...profileData
+        }
+      }) as any);
+    }
+  };
 
   return (
     <div>
@@ -20,13 +52,14 @@ const ProfilePage = () => {
             <div className="flex flex-col items-center">
               <div className="relative">
                 <img
-                  className="h-24 w-24 rounded-full bg-gray-200 dark:bg-gray-700"
-                  src={`https://ui-avatars.com/api/?name=${user?.firstName}+${user?.lastName}&background=4f46e5&color=fff`}
-                  alt={`${user?.firstName} ${user?.lastName}`}
+                  className="h-24 w-24 rounded-full object-cover bg-gray-200 dark:bg-gray-700"
+                  src={user?.profile?.avatarUrl || (user?.full_name ? `https://ui-avatars.com/api/?name=${encodeURIComponent(user.full_name)}&background=4f46e5&color=fff` : '')}
+                  alt={user?.full_name || ''}
                 />
                 <button
                   type="button"
                   className="absolute -bottom-2 -right-2 inline-flex items-center p-1.5 border border-gray-300 rounded-full shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  onClick={handleOpenEditModal}
                 >
                   <svg
                     className="h-5 w-5 text-gray-500"
@@ -40,7 +73,7 @@ const ProfilePage = () => {
                 </button>
               </div>
               <h2 className="mt-4 text-xl font-medium text-gray-900 dark:text-white">
-                {user?.firstName} {user?.lastName}
+                {user?.full_name || `${user?.firstName || ''} ${user?.lastName || ''}`}
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {user?.email}
@@ -50,7 +83,7 @@ const ProfilePage = () => {
             <div className="mt-8">
               <h3 className="text-sm font-medium text-gray-900 dark:text-white">Hakkımda</h3>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                Kısa bir özgeçmiş veya kendiniz hakkında bilgiler buraya gelebilir.
+                {user?.profile?.bio || "Kısa bir özgeçmiş veya kendiniz hakkında bilgiler buraya gelebilir."}
               </p>
             </div>
 
@@ -58,6 +91,7 @@ const ProfilePage = () => {
               <button
                 type="button"
                 className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                onClick={handleOpenEditModal}
               >
                 Profili Düzenle
               </button>
@@ -84,13 +118,13 @@ const ProfilePage = () => {
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Ad</dt>
                     <dd className="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 sm:col-span-2">
-                      {user?.firstName}
+                      {user?.firstName || (user?.full_name ? user.full_name.split(' ')[0] : '')}
                     </dd>
                   </div>
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">Soyad</dt>
                     <dd className="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 sm:col-span-2">
-                      {user?.lastName}
+                      {user?.lastName || (user?.full_name ? user.full_name.split(' ').slice(1).join(' ') : '')}
                     </dd>
                   </div>
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -154,6 +188,14 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Profile Edit Modal */}
+      <ProfileEditModal
+        isOpen={isEditModalOpen}
+        onClose={handleCloseEditModal}
+        user={user}
+        onSave={handleSaveProfile}
+      />
     </div>
   );
 };
