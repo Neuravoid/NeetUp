@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from jose.exceptions import JWTError
 
 from app.core.config import settings
-from app.api.routes import auth, tests, roadmaps, courses, users, admin, personality_test, knowledge_test
+from app.api.routes import auth, tests, roadmaps, courses, users, admin, personality_test, knowledge_test, career_paths
 from app.middleware.error_handlers import (
     sqlalchemy_exception_handler,
     jwt_exception_handler,
@@ -41,6 +41,7 @@ app.include_router(users.router, prefix="/api/users")
 app.include_router(admin.router, prefix="/api/admin")
 app.include_router(personality_test.router, prefix="/api")
 app.include_router(knowledge_test.router, prefix="/api/knowledge-tests")
+app.include_router(career_paths.router, prefix="/api/career-paths")
 
 @app.get("/")
 def read_root():

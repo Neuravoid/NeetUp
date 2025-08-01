@@ -1,7 +1,8 @@
-from pydantic import BaseModel, Field
-from typing import List, Optional
+from pydantic import BaseModel, Field, field_validator
+from typing import List, Optional, Any
 from uuid import UUID
 from datetime import datetime
+import json
 
 from app.models.roadmap import StepStatus
 
@@ -21,6 +22,17 @@ class CareerPathResponse(CareerPathBase):
     id: UUID
     created_at: datetime
     updated_at: datetime
+
+    @field_validator('skills_required', mode='before')
+    @classmethod
+    def parse_skills_required(cls, v: Any) -> List[str]:
+        """JSON string'i listeye dönüştür"""
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except json.JSONDecodeError:
+                return []
+        return v or []
 
     class Config:
         from_attributes = True
