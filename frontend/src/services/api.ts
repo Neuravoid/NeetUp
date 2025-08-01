@@ -92,6 +92,18 @@ export const apiService = {
     }
   },
 
+  patch: async <T>(endpoint: string, data?: any): Promise<ApiResponse<T>> => {
+    try {
+      const response = await api.patch<ApiResponse<T>>(endpoint, data);
+      return response.data;
+    } catch (error: any) {
+      return {
+        success: false,
+        error: error.response?.data?.error || error.response?.data?.detail || 'İstek sırasında bir hata oluştu',
+      };
+    }
+  },
+
   delete: async <T>(endpoint: string): Promise<ApiResponse<T>> => {
     try {
       const response = await api.delete<ApiResponse<T>>(endpoint);

@@ -1,5 +1,5 @@
 import { apiService } from './api';
-import type { ApiResponse, AuthResponse, LoginRequest, RegisterRequest, User } from '../types/index.js';
+import type { ApiResponse, AuthResponse, LoginRequest, RegisterRequest, User, UserProfile } from '../types/index.js';
 
 export const authService = {
   /**
@@ -30,6 +30,13 @@ export const authService = {
    */
   getCurrentUser: async (): Promise<ApiResponse<User>> => {
     return await apiService.get<User>('/users/me');
+  },
+
+  /**
+   * Kullanıcı profilini günceller
+   */
+  updateProfile: async (userId: string, profileData: Partial<UserProfile>): Promise<ApiResponse<UserProfile>> => {
+    return await apiService.patch<UserProfile>(`/users/${userId}/profile`, profileData);
   },
 
   /**
