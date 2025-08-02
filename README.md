@@ -180,7 +180,8 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
 - **Daily Scrum Raporları:** Daily Scrum toplantıları, planlandığı üzere her gün düzenli olarak gerçekleştirildi ancak başlangıç saati gün içindeki yoğunluk nedeniyle 19.00'dan 22.00'ye alınmıştır. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 3- Daily Scrum Chats](https://docs.google.com/document/d/1-yaF38E22qbmYsxQcHqUN6zEnDffd9EexkxmfM8osio/edit?usp=sharing)
-- **Sprint Board Updates:** Product backlog bazı ekip üyelerinin bilgisayarlarında yaşanan teknik arızalar ve buna bağlı aksaklıklar nedeniyle yeniden gözden geçirilerek düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam etti: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, kritik düzeltmeler ve optimizasyonlar için turuncu renk, koyu sarı item’lar ise user story’leri temsil etmektedir. **görsel eklenecek
+- **Sprint Board Updates:** Product backlog bazı ekip üyelerinin bilgisayarlarında yaşanan teknik arızalar ve buna bağlı aksaklıklar nedeniyle yeniden gözden geçirilerek düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam etti: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, kritik düzeltmeler ve optimizasyonlar için turuncu renk, koyu sarı item’lar ise user story’leri temsil etmektedir.
+ <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint 3 sprint board.png" alt="sprintboard" width="800"/> <br>
 
 <details>
   <summary><b>Burndown Chart </b> </summary>
@@ -228,3 +229,4 @@ Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak içi
 
 
  
+
