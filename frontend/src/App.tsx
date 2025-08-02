@@ -20,6 +20,7 @@ import ProfilePage from './pages/profile/ProfilePage.tsx';
 import KnowledgeTestPage from './pages/KnowledgeTestPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
 import UnauthorizedPage from './pages/UnauthorizedPage.tsx';
+import JobListingsPage from './pages/jobs/JobListingsPage.tsx';
 
 // Protected Route
 import ProtectedRoute from './components/auth/ProtectedRoute.tsx';
@@ -47,6 +48,7 @@ function App() {
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/jobs" element={<JobListingsPage />} />
               
               {/* Knowledge Test Route */}
               <Route path="/knowledge-test/:testId" element={<KnowledgeTestPage />} />

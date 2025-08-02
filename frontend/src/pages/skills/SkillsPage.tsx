@@ -50,10 +50,6 @@ const SkillsPage = () => {
     }, 500);
   }, []);
 
-  const handleDeleteSkill = (skillId: string) => {
-    setSkills(skills.filter(skill => skill.id !== skillId));
-  };
-
   const getLevelColor = (level: string) => {
     switch (level) {
       case 'expert': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
@@ -89,9 +85,6 @@ const SkillsPage = () => {
     // Check if we have any results
     if (Object.keys(results).length === 0) return;
 
-    // Get the personality test result
-    const personalityArea = personalityResult;
-    
     // Process each test result
     Object.values(results).forEach(result => {
       // Get test title and category from result data
@@ -168,7 +161,14 @@ const SkillsPage = () => {
                   </div>
                   <button 
                     className="mt-4 w-full py-2 px-3 flex items-center justify-center text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md transition-colors shadow-md"
-                    onClick={() => navigate('/roadmap')}
+                    onClick={() => {
+                      // Get the skill level for this career area from the skills list
+                      const careerSkill = skills.find(s => s.category === skill.category);
+                      const knowledgeLevel = careerSkill ? getLevelText(careerSkill.level) : 'Başlangıç';
+                      
+                      // Navigate to roadmap with career area and knowledge level as query params
+                      navigate(`/roadmap?career=${encodeURIComponent(skill.category)}&level=${encodeURIComponent(knowledgeLevel)}`);
+                    }}
                   >
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
