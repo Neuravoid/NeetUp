@@ -1,8 +1,11 @@
 #root {
-  max-width: 1280px;
+  /* max-width ve padding değerlerini kaldırıyoruz çünkü Layout bileşeni ile çakışıyor */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* text-align center tüm içeriği ortalar, bu da layout sorunlarına neden olabilir */
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Yatay scroll'u engelle */
 }
 
 .logo {

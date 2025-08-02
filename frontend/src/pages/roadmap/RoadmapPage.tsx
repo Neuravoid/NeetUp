@@ -3,13 +3,28 @@ import { roadmapService, type UserRoadmap, type CareerPath } from '../../service
 import RoadmapTimeline from '../../components/roadmap/RoadmapTimeline';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useLocation } from 'react-router-dom';
 
-// Test knowledge levels
-const KNOWLEDGE_LEVELS = {
-  BEGINNER: 'Başlangıç', // 0-40 points
-  INTERMEDIATE: 'Orta',  // 41-70 points
-  ADVANCED: 'İleri'      // 71-100 points
-};
+// Yeni iskelet yükleyici bileşeni
+const RoadmapSkeleton = () => (
+  <div className="roadmap-skeleton" style={{ minHeight: '500px' }}>
+    <div className="animate-pulse flex flex-col items-center">
+      <div className="h-8 bg-gray-200 rounded w-1/3 mb-6"></div>
+      <div className="h-4 bg-gray-200 rounded w-1/4 mb-10"></div>
+      <div className="flex flex-col space-y-12 w-full">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="flex items-center space-x-4">
+            <div className="h-12 w-12 bg-gray-200 rounded-full"></div>
+            <div className="flex-1">
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
 const RoadmapPage = () => {
   const [roadmap, setRoadmap] = useState<UserRoadmap | null>(null);
@@ -18,10 +33,7 @@ const RoadmapPage = () => {
   const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
   const [selectedCareerPath, setSelectedCareerPath] = useState<string | null>(null);
   const [creatingRoadmap, setCreatingRoadmap] = useState(false);
-
-  // For testing purposes
-  const [showTestPanel, setShowTestPanel] = useState(false);
-  const [testKnowledgeLevel, setTestKnowledgeLevel] = useState<string>(KNOWLEDGE_LEVELS.INTERMEDIATE);
+  const [aiAnimation, setAiAnimation] = useState(false);
 
   // Ensure we have default career paths if needed
   const ensureCareerPaths = useCallback(() => {
@@ -66,14 +78,25 @@ const RoadmapPage = () => {
     return careerPaths;
   }, [careerPaths]);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const careerParam = queryParams.get('career');
+  const knowledgeLevelParam = queryParams.get('level');
+
   useEffect(() => {
     const fetchRoadmap = async () => {
       try {
         console.log('Roadmap yükleniyor...');
         setLoading(true);
-        const userRoadmap = await roadmapService.getPersonalRoadmap();
-        console.log('Roadmap başarıyla yüklendi:', userRoadmap);
-        setRoadmap(userRoadmap);
+        if (careerParam && knowledgeLevelParam) {
+          const newRoadmap = await roadmapService.createRoadmapWithKnowledge(careerParam, knowledgeLevelParam);
+          console.log('Oluşturulan roadmap:', newRoadmap);
+          setRoadmap(newRoadmap);
+        } else {
+          const userRoadmap = await roadmapService.getPersonalRoadmap();
+          console.log('Roadmap başarıyla yüklendi:', userRoadmap);
+          setRoadmap(userRoadmap);
+        }
       } catch (error: any) {
         console.error('Roadmap yükleme hatası:', error);
         if (error.response?.status === 404) {
@@ -92,59 +115,17 @@ const RoadmapPage = () => {
     };
 
     fetchRoadmap();
-  }, []);
+  }, [careerParam, knowledgeLevelParam]);
 
-  const fetchCareerPathsAndAutoSelect = useCallback(async () => {
-    try {
-      console.log('Kariyer alanları ve önerilen yol haritası alınıyor...');
-      setLoading(true);
-      
-      // Try to get recommended career path based on user's tests
-      const { careerPath, knowledgeLevel } = await roadmapService.getUserRecommendedCareerPath();
-      console.log('Önerilen kariyer yolu ve seviye:', { careerPath, knowledgeLevel });
-      
-      // Fetch available career paths
-      const availablePaths = await roadmapService.getCareerPaths();
-      console.log('Mevcut kariyer alanları:', availablePaths);
-      setCareerPaths(availablePaths);
-      
-      if (careerPath) {
-        console.log('Otomatik seçilen kariyer yolu:', careerPath.title);
-        setSelectedCareerPath(careerPath.id);
-        setTestKnowledgeLevel(knowledgeLevel);
-      } else if (availablePaths && availablePaths.length > 0) {
-        // Kariyer yolu önerisi yoksa ilk yolu seç
-        console.log('Kariyer yolu önerisi bulunamadı, ilk yol seçiliyor:', availablePaths[0].title);
-        setSelectedCareerPath(availablePaths[0].id);
-        setTestKnowledgeLevel('başlangıç'); // Varsayılan seviye
-      } else {
-        console.warn('Hiçbir kariyer yolu bulunamadı!');
-        setError('Kariyer alanları bulunamadı. Lütfen daha sonra tekrar deneyin.');
-        // Varsayılan kariyer alanlarını ekle
-        const defaultPaths = ensureCareerPaths();
-        setSelectedCareerPath(defaultPaths[0].id);
-      }
-    } catch (error) {
-      console.error('Kariyer alanı ve öneriler alınırken hata:', error);
-      // Hata durumunda varsayılan kariyer alanlarını ekle
-      const defaultPaths = ensureCareerPaths();
-      setSelectedCareerPath(defaultPaths[0].id);
-    } finally {
-      setLoading(false);
-    }
-  }, [ensureCareerPaths]);
-
-  const handleCreateRoadmap = useCallback(async (careerPathId: string, knowledgeLevel?: string) => {
+  // Önce handleCreateRoadmap fonksiyonunu tanımla
+  const handleCreateRoadmap = useCallback(async (careerPathId: string) => {
     try {
       setCreatingRoadmap(true);
       
-      // Kullanıcının bilgi seviyesini al - parametre olarak geldiyse onu kullan
-      const userKnowledgeLevel = knowledgeLevel || testKnowledgeLevel || 'başlangıç'; // Varsayılan olarak başlangıç seviyesi
-      
-      console.log(`Roadmap oluşturuluyor: Kariyer Alanı ID=${careerPathId}, Bilgi Seviyesi=${userKnowledgeLevel}`);
+      console.log(`Roadmap oluşturuluyor: Kariyer Alanı ID=${careerPathId}`);
       
       // Roadmap oluştur - createRoadmapWithKnowledge kullanıyoruz (2 parametre alan)
-      const newRoadmap = await roadmapService.createRoadmapWithKnowledge(careerPathId, userKnowledgeLevel);
+      const newRoadmap = await roadmapService.createRoadmapWithKnowledge(careerPathId);
       
       console.log('Oluşturulan roadmap:', newRoadmap);
       
@@ -175,50 +156,108 @@ const RoadmapPage = () => {
     } finally {
       setCreatingRoadmap(false);
     }
-  }, [testKnowledgeLevel]);
-  
+  }, []);
+
+  // Sonra fetchCareerPathsAndAutoSelect fonksiyonunu tanımla
+  const fetchCareerPathsAndAutoSelect = useCallback(async () => {
+    try {
+      console.log('Kariyer alanları ve önerilen yol haritası alınıyor...');
+      setLoading(true);
+      
+      // Try to get recommended career path based on user's tests
+      const { careerPath } = await roadmapService.getUserRecommendedCareerPath();
+      console.log('Önerilen kariyer yolu:', { careerPath });
+      
+      // Fetch available career paths
+      const availablePaths = await roadmapService.getCareerPaths();
+      console.log('Mevcut kariyer alanları:', availablePaths);
+      setCareerPaths(availablePaths);
+      
+      if (careerPath) {
+        console.log('Otomatik seçilen kariyer yolu:', careerPath.title);
+        setSelectedCareerPath(careerPath.id);
+        
+        // Kullanıcının kişilik testi sonucuna göre otomatik olarak roadmap oluştur
+        if (careerPath.id) {
+          console.log('Otomatik roadmap oluşturuluyor...');
+          await handleCreateRoadmap(careerPath.id);
+        }
+      } else if (availablePaths && availablePaths.length > 0) {
+        // Kariyer yolu önerisi yoksa ilk yolu seç
+        console.log('Kariyer yolu önerisi bulunamadı, ilk yol seçiliyor:', availablePaths[0].title);
+        setSelectedCareerPath(availablePaths[0].id);
+      } else {
+        console.warn('Hiçbir kariyer yolu bulunamadı!');
+        setError('Kariyer alanları bulunamadı. Lütfen daha sonra tekrar deneyin.');
+        // Varsayılan kariyer alanlarını ekle
+        const defaultPaths = ensureCareerPaths();
+        setSelectedCareerPath(defaultPaths[0].id);
+      }
+    } catch (error) {
+      console.error('Kariyer alanı ve öneriler alınırken hata:', error);
+      // Hata durumunda varsayılan kariyer alanlarını ekle
+      const defaultPaths = ensureCareerPaths();
+      setSelectedCareerPath(defaultPaths[0].id);
+    } finally {
+      setLoading(false);
+    }
+  }, [ensureCareerPaths, handleCreateRoadmap]);
+
+  // Yol haritası oluşturma butonuna tıklandığında
   const handleCreateRoadmapClick = useCallback(async () => {
     try {
       setCreatingRoadmap(true);
+      setError(null);
       
-      // Eğer seçili bir kariyer alanı yoksa, kullanıcının test sonuçlarına göre önerilen kariyer alanını al
-      if (!selectedCareerPath) {
-        const { careerPath, knowledgeLevel } = await roadmapService.getUserRecommendedCareerPath();
+      // Yapay zeka animasyonu için 1.5 saniye bekle
+      setAiAnimation(true);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setAiAnimation(false);
+      
+      console.log('Yol haritası oluşturma başlatılıyor...');
+      
+      // Önce kullanıcının önerilen kariyer yolunu al
+      const { careerPath, knowledgeLevel } = await roadmapService.getUserRecommendedCareerPath();
+      console.log('Kullanıcının önerilen kariyer yolu:', careerPath);
+      console.log('Kullanıcının bilgi seviyesi:', knowledgeLevel);
+      
+      if (careerPath) {
+        console.log(`Önerilen kariyer yolu bulundu: ${careerPath.title} (ID: ${careerPath.id})`);
         
-        if (careerPath) {
-          setSelectedCareerPath(careerPath.id);
-          setTestKnowledgeLevel(knowledgeLevel);
-          await handleCreateRoadmap(careerPath.id, knowledgeLevel);
+        // Kariyer yolunu state'e kaydet
+        setSelectedCareerPath(careerPath.id);
+        
+        // Veritabanından roadmap oluştur
+        console.log(`Roadmap oluşturuluyor: Kariyer Alanı ID=${careerPath.id}, Bilgi Seviyesi=${knowledgeLevel}`);
+        const newRoadmap = await roadmapService.createRoadmap(careerPath.id);
+        
+        if (newRoadmap) {
+          console.log('Veritabanından roadmap başarıyla alındı:', newRoadmap);
+          setRoadmap(newRoadmap);
+          toast.success('Kariyer yol haritanız başarıyla yüklendi.');
         } else {
-          // Önerilen kariyer alanı yoksa varsayılan alanları kullan
-          const paths = await roadmapService.getCareerPaths();
-          
-          if (paths.length > 0) {
-            setCareerPaths(paths);
-            setSelectedCareerPath(paths[0].id);
-            await handleCreateRoadmap(paths[0].id);
-          } else {
-            // API'den kariyer alanı gelmezse varsayılan alanları kullan
-            const defaultPaths = ensureCareerPaths();
-            await handleCreateRoadmap(defaultPaths[0].id);
-          }
+          console.log('Veritabanında roadmap bulunamadı, yeni oluşturuluyor...');
+          // Veritabanında roadmap yoksa yeni oluştur
+          const createdRoadmap = await roadmapService.createRoadmapWithKnowledge(careerPath.id, knowledgeLevel || 'orta');
+          console.log('Yeni roadmap oluşturuldu:', createdRoadmap);
+          setRoadmap(createdRoadmap);
+          toast.success('Kişiselleştirilmiş kariyer yol haritanız başarıyla oluşturuldu.');
         }
       } else {
-        // Zaten seçili bir kariyer alanı varsa, direkt olarak yol haritası oluştur
-        await handleCreateRoadmap(selectedCareerPath);
+        console.error('Önerilen kariyer yolu bulunamadı');
+        toast.error('Önerilen kariyer yolu bulunamadı. Lütfen kişilik ve bilgi testlerini tamamlayın.');
+        setError('Önerilen kariyer yolu bulunamadı. Lütfen kişilik ve bilgi testlerini tamamlayın.');
       }
     } catch (error) {
       console.error('Yol haritası oluşturulurken hata:', error);
       toast.error('Yol haritası oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.');
+      setError('Roadmap yüklenirken bir hata oluştu');
+    } finally {
       setCreatingRoadmap(false);
     }
-  }, [selectedCareerPath, ensureCareerPaths, handleCreateRoadmap]);
+  }, []);
 
-  // Kullanılmayan fonksiyonu kaldırdık
-
-  // Kullanılmayan fonksiyonu kaldırdık
-
-  const handleStepStatusUpdate = async (stepId: string, newStatus: 'not_started' | 'in_progress' | 'completed') => {
+  const handleUpdateStepStatus = useCallback(async (stepId: string, newStatus: 'not_started' | 'in_progress' | 'completed') => {
     const success = await roadmapService.updateStepStatus(stepId, newStatus);
     if (success && roadmap) {
       const updatedSteps = roadmap.steps.map(step => 
@@ -226,36 +265,7 @@ const RoadmapPage = () => {
       );
       setRoadmap({ ...roadmap, steps: updatedSteps });
     }
-  };
-
-  const handleTestKnowledgeLevelChange = (level: string) => {
-    setTestKnowledgeLevel(level);
-    if (roadmap) {
-      // Simulate different recommended starting points based on knowledge level
-      let recommendedIndex = 0;
-      
-      switch (level) {
-        case KNOWLEDGE_LEVELS.BEGINNER:
-          recommendedIndex = 0; // Start from the beginning
-          break;
-        case KNOWLEDGE_LEVELS.INTERMEDIATE:
-          recommendedIndex = Math.floor(roadmap.steps.length / 3); // Start from about 1/3 of the way
-          break;
-        case KNOWLEDGE_LEVELS.ADVANCED:
-          recommendedIndex = Math.floor(roadmap.steps.length * 2 / 3); // Start from about 2/3 of the way
-          break;
-      }
-      
-      setRoadmap({
-        ...roadmap,
-        recommended_start_index: recommendedIndex
-      });
-    }
-  };
-
-  const toggleTestPanel = () => {
-    setShowTestPanel(!showTestPanel);
-  };
+  }, [roadmap]);
 
   // Ensure we have career paths when modal is shown
   // Kariyer yolu seçimi için varsayılan değerleri ayarla
@@ -288,58 +298,45 @@ const RoadmapPage = () => {
               Kariyer hedeflerinizi görüntüleyin ve yönetin
             </p>
           </div>
-          
-          {/* Test Panel Toggle Button */}
-          <button
-            onClick={toggleTestPanel}
-            className="px-3 py-1 text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            {showTestPanel ? 'Test Panelini Gizle' : 'Test Panelini Göster'}
-          </button>
         </div>
         
-        {/* Test Panel */}
-        {showTestPanel && (
-          <div className="card p-4 mb-4 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-            <h3 className="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Test Paneli</h3>
-            <div className="flex flex-wrap gap-3 items-center">
-              <div>
-                <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Bilgi Seviyesi:</label>
-                <select
-                  value={testKnowledgeLevel}
-                  onChange={(e) => handleTestKnowledgeLevelChange(e.target.value)}
-                  className="text-sm border border-gray-300 dark:border-gray-600 rounded px-2 py-1 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                >
-                  {Object.values(KNOWLEDGE_LEVELS).map((level) => (
-                    <option key={level} value={level}>{level}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        )}
-        
         {loading ? (
-          <div className="card p-6">
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">Roadmap yükleniyor...</p>
-            </div>
-          </div>
+          <RoadmapSkeleton />
         ) : error ? (
-          <div className="card p-6">
+          <div className="card p-8 bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border border-blue-100 dark:border-blue-800/30 shadow-lg">
             <div className="text-center py-12">
-              <svg className="mx-auto h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-              </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">Hata Oluştu</h3>
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
+              <div className="mx-auto h-24 w-24 text-primary-500 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Kariyer Yolunuzu Keşfedin</h3>
+              <p className="text-base text-gray-600 dark:text-gray-300 max-w-md mx-auto mb-8">
+                Yapay zeka destekli kariyer yol haritanızı oluşturarak profesyonel gelişiminizi hızlandırın.
+              </p>
               <div className="mt-6">
                 <button
-                  onClick={() => window.location.reload()}
-                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  onClick={handleCreateRoadmapClick}
+                  disabled={creatingRoadmap || aiAnimation}
+                  className="inline-flex items-center px-6 py-3 border border-transparent shadow-lg text-base font-medium rounded-md text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300 transform hover:scale-105"
                 >
-                  Tekrar Dene
+                  {aiAnimation ? (
+                    <>
+                      <div className="animate-pulse mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <span>Yapay Zeka Kariyer Yolunuzu Oluşturuyor...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      Yapay Zeka Destekli Kariyer Yolu Oluştur
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -364,7 +361,7 @@ const RoadmapPage = () => {
                     <div className="flex items-center">
                       <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                         </svg>
                       </div>
                       <div>
@@ -388,7 +385,13 @@ const RoadmapPage = () => {
                     <div className="flex items-center">
                       <div className="p-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                          <path
+                            vectorEffect="non-scaling-stroke"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2z"
+                          />
                         </svg>
                       </div>
                       <div>
@@ -406,16 +409,16 @@ const RoadmapPage = () => {
                 ></div>
               </div>
             </div>
-
+            
             {/* Roadmap Timeline Visualization */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Yol Haritası</h3>
               <RoadmapTimeline 
                 roadmap={roadmap}
-                onStepStatusUpdate={handleStepStatusUpdate} 
+                onStepStatusUpdate={handleUpdateStepStatus} 
               />
             </div>
-
+            
             {/* Skills Required */}
             {roadmap.career_path.skills_required && (
               <div className="card p-6 mt-8">
@@ -492,7 +495,6 @@ const RoadmapPage = () => {
           </div>
         )}
 
-        {/* Modal kaldırıldı - artık otomatik seçim yapılıyor */}
       </div>
     </div>
   );

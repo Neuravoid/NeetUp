@@ -249,49 +249,6 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Upcoming Deadlines */}
-      <div className="card">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Yaklaşan Son Tarihler</h3>
-          <button className="text-sm text-primary hover:text-primary-600">Tümünü Gör</button>
-        </div>
-        <div className="space-y-4">
-          {loading ? (
-            <div className="text-center py-4">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Yükleniyor...</p>
-            </div>
-          ) : upcomingDeadlines.length > 0 ? (
-            upcomingDeadlines.map((item) => (
-              <div key={item.id} className="pb-4 border-b border-gray-200 dark:border-gray-700 last:border-0 last:pb-0">
-                <div className="flex items-start">
-                  <div className="p-2 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 dark:text-white">{item.title}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Son Tarih: {item.date}</p>
-                    <div className="mt-2 w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                      <div 
-                        className="bg-yellow-500 h-2 rounded-full" 
-                        style={{ width: `${item.progress}%` }}
-                      ></div>
-                    </div>
-                    <p className="text-xs text-right mt-1 text-gray-500 dark:text-gray-400">%{item.progress} Tamamlandı</p>
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-sm text-gray-500 dark:text-gray-400">Yaklaşan son tarih bulunmuyor.</p>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 };

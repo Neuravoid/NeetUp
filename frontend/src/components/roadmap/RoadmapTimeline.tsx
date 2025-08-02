@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { RoadmapStep, UserRoadmap } from '../../services/roadmap.service';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
@@ -86,6 +86,23 @@ const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ roadmap, onStepStatus
     }
   };
 
+  const stepRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Sadece bir adım önerilmişse ve ilk render sırasında kaydır
+    if (stepRef.current && recommendedStartIndex > 0) {
+      // Daha yumuşak bir kaydırma için setTimeout kullanıyoruz
+      const timer = setTimeout(() => {
+        stepRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 500); // Sayfanın yüklenmesi için biraz bekle
+      
+      return () => clearTimeout(timer);
+    }
+  }, [recommendedStartIndex]); // Sadece recommendedStartIndex değiştiğinde çalış
+
   return (
     <div className="roadmap-timeline">
       {/* Road path background */}
@@ -101,7 +118,7 @@ const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ roadmap, onStepStatus
           const isEvenStep = index % 2 === 0;
           
           return (
-            <div key={step.id} className="relative">
+            <div key={step.id} className="relative" ref={isRecommendedStart ? stepRef : null}>
               {/* Step node (circle with number) */}
               <div className="flex justify-center mb-4">
                 <div 

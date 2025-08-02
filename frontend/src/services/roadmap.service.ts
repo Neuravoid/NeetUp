@@ -4,7 +4,7 @@ export interface CareerPath {
   id: string;
   title: string;
   description?: string;
-  skills_required?: string;
+  skills_required?: string | string[];
   avg_salary?: number;
   created_at: string;
   updated_at: string;
@@ -406,10 +406,13 @@ export const roadmapService = {
   // Get available career paths
   getCareerPaths: async (): Promise<CareerPath[]> => {
     try {
-      const response = await apiService.get<CareerPath[]>('/career-paths');
-      return response.data || [];
+      const response = await apiService.get<CareerPath[]>('/career-paths/');
+      if (response && response.data && Array.isArray(response.data)) {
+        return response.data;
+      }
+      return [];
     } catch (error) {
-      console.error('Error fetching career paths:', error);
+      console.error('Kariyer alanları alınırken hata:', error);
       return [];
     }
   },
@@ -482,7 +485,7 @@ export const roadmapService = {
           console.log('Mevcut bilgi testleri:', tests);
           
           // Kişilik sonucuna uygun test ID'sini bul
-          let matchingTestId = null;
+          let matchingTestId: string | null = null;
           
           for (const test of tests) {
             if (test.title && personalityResult && 
@@ -513,25 +516,101 @@ export const roadmapService = {
       
       // 4. Kişilik testine göre önerilen kariyer alanını bul
       if (personalityResult && careerPaths.length > 0) {
-        for (const path of careerPaths) {
-          if (!path.title) continue;
+        // Kesin eşleştirme için doğrudan mapping
+        const directMapping: Record<string, string> = {
+          'UI/UX Designer': 'UX Tasarımı',
+          'Backend Developer': 'Backend Geliştirme',
+          'Data Science': 'Veri Analizi',
+          'Project Management': 'Proje Yönetimi'
+        };
+        
+        // Önce doğrudan eşleştirmeyi dene
+        if (personalityResult in directMapping) {
+          const targetTitle = directMapping[personalityResult];
+          const matchedPath = careerPaths.find(path => 
+            path.title && path.title.includes(targetTitle)
+          );
           
-          // Kariyer alanı başlığını ve kişilik sonucunu normalize et
-          const normalizedPathTitle = path.title.toLowerCase().trim();
+          if (matchedPath) {
+            recommendedCareerPath = matchedPath;
+            console.log(`Doğrudan eşleştirme: "${personalityResult}" için "${matchedPath.title}" kariyer alanı eşleşti`);
+          }
+        }
+        
+        // Doğrudan eşleştirme başarısız olursa, alternatif eşleştirme yöntemlerini dene
+        if (!recommendedCareerPath) {
+          // Kişilik testi sonuçlarını kariyer alanlarıyla eşleştirme haritası
+          const careerMapping: Record<string, string[]> = {
+            'UI/UX Designer': ['UX Tasarımı', 'UI Tasarımı', 'UX/UI'],
+            'Backend Developer': ['Backend Geliştirme', 'Backend', 'Backend Developer'],
+            'Data Science': ['Veri Analizi', 'Data Science', 'Veri Bilimi'],
+            'Project Management': ['Proje Yönetimi', 'Project Management']
+          };
+
+          // Normalize edilmiş kişilik sonucu
           const normalizedPersonalityResult = personalityResult.toLowerCase().trim();
           
-          // Eşleşme kontrolü
-          if (normalizedPathTitle.includes(normalizedPersonalityResult) || 
-              normalizedPersonalityResult.includes(normalizedPathTitle)) {
-            recommendedCareerPath = path;
-            break;
+          // Önce tam eşleşme kontrolü
+          for (const [testResult, careerTitles] of Object.entries(careerMapping)) {
+            if (normalizedPersonalityResult.includes(testResult.toLowerCase()) || 
+                testResult.toLowerCase().includes(normalizedPersonalityResult)) {
+              // Eşleşen kariyer alanını bul
+              for (const path of careerPaths) {
+                if (!path.title) continue;
+                
+                const normalizedPathTitle = path.title.toLowerCase().trim();
+                
+                // Kariyer başlıklarından herhangi biriyle eşleşiyor mu kontrol et
+                for (const careerTitle of careerTitles) {
+                  if (normalizedPathTitle.includes(careerTitle.toLowerCase())) {
+                    recommendedCareerPath = path;
+                    console.log(`Kişilik sonucu "${personalityResult}" için "${path.title}" kariyer alanı eşleşti`);
+                    break;
+                  }
+                }
+                
+                if (recommendedCareerPath) break;
+              }
+            }
+            
+            if (recommendedCareerPath) break;
+          }
+        }
+        
+        // Hala eşleşme bulunamadıysa, basit eşleştirme dene
+        if (!recommendedCareerPath) {
+          console.log('Kariyer eşleştirme haritasında eşleşme bulunamadı, basit eşleştirme deneniyor');
+          for (const path of careerPaths) {
+            if (!path.title) continue;
+            
+            const normalizedPathTitle = path.title.toLowerCase().trim();
+            const normalizedPersonalityResult = personalityResult.toLowerCase().trim();
+            
+            // Basit eşleşme kontrolü
+            if (normalizedPathTitle.includes(normalizedPersonalityResult) || 
+                normalizedPersonalityResult.includes(normalizedPathTitle)) {
+              recommendedCareerPath = path;
+              console.log(`Basit eşleştirme: "${personalityResult}" için "${path.title}" kariyer alanı eşleşti`);
+              break;
+            }
           }
         }
       }
       
       // 5. Eşleşme bulunamadıysa, varsayılan olarak ilk kariyer alanını seç
       if (!recommendedCareerPath && careerPaths.length > 0) {
-        recommendedCareerPath = careerPaths[0];
+        // Özel durum: "Project Management" için özel kontrol
+        const projectManagementPath = careerPaths.find(path => 
+          path.title && path.title.toLowerCase().includes('proje yönetimi')
+        );
+        
+        if (personalityResult && personalityResult.toLowerCase().includes('project management') && projectManagementPath) {
+          recommendedCareerPath = projectManagementPath;
+          console.log('Özel durum: Project Management için Proje Yönetimi kariyer alanı seçildi');
+        } else {
+          recommendedCareerPath = careerPaths[0];
+          console.log('Eşleşme bulunamadı, ilk kariyer alanı seçildi:', careerPaths[0].title);
+        }
       }
       
       console.log('SONUÇ - Önerilen kariyer alanı:', recommendedCareerPath);
@@ -546,6 +625,18 @@ export const roadmapService = {
       
       // Hata durumunda bile bir sonuç döndür
       if (careerPaths.length > 0) {
+        // Özel durum: "Project Management" için özel kontrol
+        const projectManagementPath = careerPaths.find(path => 
+          path.title && path.title.toLowerCase().includes('proje yönetimi')
+        );
+        
+        if (personalityResult && personalityResult.toLowerCase().includes('project management') && projectManagementPath) {
+          return {
+            careerPath: projectManagementPath,
+            knowledgeLevel: 'başlangıç'
+          };
+        }
+        
         return {
           careerPath: careerPaths[0],
           knowledgeLevel: 'başlangıç'
@@ -569,7 +660,8 @@ export const roadmapService = {
   },
 
   // Bilgi seviyesine göre başlangıç aşaması belirleme
-  getStartingStageIndex: (knowledgeLevel: string): number => {
+  getStartingStageIndex: (knowledgeLevel: string | null): number => {
+    if (!knowledgeLevel) return 0;
     switch (knowledgeLevel.toLowerCase()) {
       case 'başlangıç':
         return 0; // 1. aşamadan başla (0-indexed)
@@ -593,17 +685,32 @@ export const roadmapService = {
         throw new Error('Kariyer alanı bulunamadı');
       }
       
-      const careerPathTitle = selectedCareerPath.title;
+      let careerPathTitle = selectedCareerPath.title;
+      
+      // İngilizce-Türkçe kariyer yolu başlığı eşleştirmesi
+      const careerPathMapping: Record<string, string> = {
+        'Project Management': 'Proje Yönetimi',
+        'UI/UX Design': 'UX Tasarımı',
+        'Backend Development': 'Backend Geliştirme',
+        'Data Science': 'Veri Bilimi'
+      };
+      
+      // Eğer İngilizce başlık varsa Türkçe karşılığını kullan
+      if (careerPathMapping[careerPathTitle]) {
+        careerPathTitle = careerPathMapping[careerPathTitle];
+        console.log(`Kariyer yolu başlığı çevrildi: ${selectedCareerPath.title} -> ${careerPathTitle}`);
+      }
       
       // Şablonu seç
       const template = ROADMAP_TEMPLATES[careerPathTitle as keyof typeof ROADMAP_TEMPLATES];
       
-      if (!template) {
+      if (!template || template.length === 0) {
+        console.error(`${careerPathTitle} için şablon bulunamadı. Mevcut şablonlar:`, Object.keys(ROADMAP_TEMPLATES));
         throw new Error(`${careerPathTitle} için şablon bulunamadı`);
       }
       
       // Başlangıç aşamasını belirle
-      const startingIndex = roadmapService.getStartingStageIndex(knowledgeLevel);
+      const startingIndex = roadmapService.getStartingStageIndex(knowledgeLevel || 'başlangıç');
       
       // Roadmap adımlarını oluştur
       const steps = template.map((stage, index) => {
@@ -644,19 +751,47 @@ export const roadmapService = {
       
       // Roadmap'i API'ye gönder ve oluştur
       // Bu endpoint roadmap_steps tablosuna tüm adımları kaydedecek
-      const response = await apiService.post<{id: string; steps: RoadmapStep[]}>('/roadmaps/create', roadmapData);
-      
-      // Oluşturulan roadmap'i döndür - API'den dönen adımları kullan
-      return {
-        id: response.data?.id || 'temp-id', // response.data undefined olabilir kontrolü
-        user_id: '', // API'den gelecek
-        career_path_id: careerPathId,
-        created_date: new Date().toISOString(),
-        completion_percentage: 0, // Yeni oluşturulduğu için tamamlanma yüzdesi 0
-        career_path: selectedCareerPath,
-        steps: response.data?.steps || steps, // API'den dönen adımları kullan, yoksa yerel adımları kullan
-        recommended_start_index: startingIndex
-      };
+      try {
+        console.log('API isteği gönderiliyor:', roadmapData);
+        const response = await apiService.post<{id: string; steps: RoadmapStep[]}>('/roadmaps/create', roadmapData);
+        console.log('API yanıtı:', response);
+        
+        if (!response.data) {
+          console.error('API yanıtında data yok');
+          throw new Error('Roadmap oluşturulamadı: API yanıtında data yok');
+        }
+        
+        // Oluşturulan roadmap'i döndür - API'den dönen adımları kullan
+        return {
+          id: response.data?.id || 'temp-id', // response.data undefined olabilir kontrolü
+          user_id: '', // API'den gelecek
+          career_path_id: careerPathId,
+          created_date: new Date().toISOString(),
+          completion_percentage: 0, // Yeni oluşturulduğu için tamamlanma yüzdesi 0
+          career_path: selectedCareerPath,
+          steps: response.data?.steps || steps, // API'den dönen adımları kullan, yoksa yerel adımları kullan
+          recommended_start_index: startingIndex
+        };
+      } catch (apiError) {
+        console.error('API hatası:', apiError);
+        
+        // API hatası durumunda yerel şablonu kullan
+        console.log('API hatası nedeniyle yerel şablon kullanılıyor');
+        
+        // Yerel roadmap oluştur
+        const localRoadmap: UserRoadmap = {
+          id: 'local-' + new Date().getTime(),
+          user_id: '',
+          career_path_id: careerPathId,
+          created_date: new Date().toISOString(),
+          completion_percentage: 0,
+          career_path: selectedCareerPath,
+          steps: steps,
+          recommended_start_index: startingIndex
+        };
+        
+        return localRoadmap;
+      }
     } catch (error) {
       console.error('Roadmap oluşturma hatası:', error);
       throw error;
@@ -664,10 +799,14 @@ export const roadmapService = {
   },
 
   // Bilgi seviyesine göre roadmap oluşturma (farklı isimle)
-  createRoadmapWithKnowledge: async (careerPathId: string, knowledgeLevel: string): Promise<UserRoadmap> => {
+  createRoadmapWithKnowledge: async (careerPathId: string, knowledgeLevel?: string): Promise<UserRoadmap> => {
     try {
+      // Varsayılan bilgi seviyesi
+      const level = knowledgeLevel || 'başlangıç';
+      console.log(`Roadmap oluşturuluyor: Kariyer=${careerPathId}, Seviye=${level}`);
+      
       // Gemini AI ile roadmap oluştur
-      return await roadmapService.createRoadmapWithGemini(careerPathId, knowledgeLevel);
+      return await roadmapService.createRoadmapWithGemini(careerPathId, level);
     } catch (error) {
       console.error('Roadmap oluşturma hatası:', error);
       throw error;
