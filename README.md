@@ -1,4 +1,5 @@
 
+
 ## Takım & Ürün İsmi
 <h1>NeetUp</h1>
 
@@ -46,8 +47,8 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 
 - **Yapay Zeka & Makine Öğrenmesi:** Gemini, TensorFlow, Scikit-learn
 - **Front-end:** React / Vue.js
-- **Back-end:** Python (FastAPI)
-- **Veritabanı:** PostgreSQL
+- **Back-end:** Python (FastAPI, Flask)
+- **Veritabanı:** PostgreSQL, SQLite
 - **Proje Yönetimi:** Trello, Google Sheets
 - **Versiyon Kontrol:** Git & GitHub
 
@@ -59,7 +60,7 @@ Tüm proje planlama ve görev takibi süreçlerimiz Trello ve Google Sheets üze
 [**Product Backlog Board'a Göz Atın**](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
 
 
-### Sprint 1 Raporu
+# Sprint 1 Raporu
 
 - **Sprint Notları:** Google Sheets'te tuttuğumuz product backlog'da üç sprintlik işleri önceden belirledik. Bu bize daha uzun vadeli bir görünüm sağladı. Trello'da oluşturduğumuz sprint board'da ise yalnızca ilk sprintin işlerine odaklandık. Bu sayede ekibimiz mevcut sprint hedeflerine daha iyi odaklandı.
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
@@ -94,7 +95,7 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
 - Bir sonraki sprint için öncelikli geliştirme alanlarını belirledik ve önceki sprintten kalan görevleri yeniden önceliklendirdik.
 
-**Katılımcılar:** Tüm ekip üyeleri
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş, Ebru Güleç
 
 ## Sprint Retrospective:
 
@@ -111,20 +112,124 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 - Önümüzdeki sprintler için kişisel sebeplerden ötürü yoğun olabileceğimiz tarihleri paylaştık.
 - Proje ilerleme hızını artırmak amacıyla akşam saatlerinde mümkün olduğunca her gün düzenli toplantılar yapılmasına karar verdik. Ayrıca süreci motive devam ettirebilmek adına pazar günlerinin tatil olmasına karar verdik
 
-**Katılımcılar:** Tüm ekip üyeleri
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş, Ebru Güleç
 
 
-### Sprint 2 Raporu
+# Sprint 2 Raporu
 
 - **Sprint Notları:** Google Sheets’te tuttuğumuz product backlog Sprint 1’de yaşanan bazı teknik eksiklikler ve özellikle frontend/backend tarafında ortaya çıkan problemler nedeniyle güncellendi. Ayrıca önceliklendirme çalışmaları doğrultusunda bazı User Story'ler revize edildi, bazı görevlerin öncelikleri yeniden belirlendi. Sprint board’daki görevler yine yalnızca bu sprint için planlanan işlere odaklanacak şekilde düzenlendi. Böylece ekibimiz mevcut sprint hedeflerine daha iyi odaklanmayı sürdürdü: [Güncellenmiş Product Backlog](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
-- **Ekip Durumu:** Projemiz başlangıçta 5 kişilik bir ekip ile başlamıştır. Ancak Sprint 2 sürecinin başlangıcında ekip üyelerinden Ebru Güleç proje ekibinden kalıcı olarak ayrılmıştır. Bu gelişme sonrası iş yükü ekipte kalan 4 kişi arasında yeniden paylaştırılmış ve çalışmalar bu doğrultuda sürdürülmüştür.
+-  **Ekip Durumu:** Projemiz başlangıçta 5 kişilik bir ekip ile başlamıştır. Ancak Sprint 2 sürecinin başlangıcında ekip üyelerinden Ebru Güleç proje ekibinden kalıcı olarak ayrılmıştır. Bu gelişme sonrası iş yükü ekipte kalan 4 kişi arasında yeniden paylaştırılmış ve çalışmalar bu doğrultuda sürdürülmüştür. Şu anda aktif olarak görev alan ekip üyelerimiz:
+*Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş*
 - **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
 - **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
-- **Daily Scrum Raporları:** Daily Scrum toplantıları planlandığı üzere her gün saat 19.00’da düzenli olarak gerçekleştirildi. Pazar günleri ise ekibin dinlenmesi adına tatil günü uygulamasına devam edildi. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 2- Daily Scrum Chats](link eklenecek)  
-- **Sprint Board Updates:** Product backlog yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir. Yeni olarak Critical fixes and optimizations görevleri için turuncu renk eklenmiştir. *görsel eklenecek
-* burndown chart eklenecek
-* uygulama görselleri eklenecek
-* sprint review eklenecek
-* sprint retrospective eklenecek
+- **Daily Scrum Raporları:** Daily Scrum toplantıları planlandığı üzere her gün saat 19.00’da düzenli olarak gerçekleştirildi. Pazar günleri ise ekibin dinlenmesi adına tatil günü uygulamasına devam edildi. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 2- Daily Scrum Chats](https://docs.google.com/document/d/1hY6M5jKc257hj3juAayWF2ntffvdPKxiDnqV3PBf3Is/edit)  
+- **Sprint Board Updates:** Product backlog yaşanan teknik eksikliklerden ötürü yeniden gözden geçirilerek gelecek sprintlerin temelini daha sağlam oluşturacak şekilde düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam edildi: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, koyu sarı item’lar ise user storyleri temsil etmektedir. Yeni olarak Critical fixes and optimizations görevleri için turuncu renk eklenmiştir.
+  
+ <img src="images/1. hafta sonu trello.png" alt="sprintboard1" width="700"/> <br>
+ <img src="images/2. hafta trello.png" alt="sprintboard2" width="700"/> <br>
+ 
+<details>
+  <summary><b>Burndown Chart </b> </summary>
+Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir şekilde tamamlamak için çalıştı. Ancak ideal burndown çizgisine kıyasla ilerleme biraz daha yavaş kaldı. Gelecek sprintte daha gerçekçi planlama ve önceliklendirme ile sürecin iyileştirilmesi hedefleniyor.  
+ 
+ <img src="images/burndownchart 2.png" alt="burndownchart2" width="500"/> <br>
+ 
+</details>
+
+ <details>
+  <summary><b>Uygulamanın Sprint 2 Sonu Görselleri:</b> </summary>
+<img src="images/Uygulama görsel 6.png" alt="potansiyelini_keşfet" width="500"/> <br> 
+<img src="images/uygulama görseli.png" alt="uygulama_arayüz" width="500"/> <br>  
+<img src="images/uygulama görsel 3.png" alt="üye_ol" width="500"/> <br>
+<img src="images/uygulama görsel 2.png" alt="giris_yap" width="500"/> <br>
+<img src="images/uygulama görsel5.png" alt="ana_sayfa" width="500"/> <br> 
+<img src="images/uygulama görsel 4.png" alt="test_sayfası" width="500"/> <br>  
+</details>
+
+## Sprint Review:
+- İkinci sprint sürecinde backend-frontend bağlantıları, database tablo ve bağlantıları oluşturulması gibi noktalar fazlaca zaman aldı.
+- Sprint sürecinde günlük toplantılara ve planlanan ilerleme hızına uyulsa da kişi sayısındaki eksilme görev yükünü artırdı.
+- Üçüncü sprintte hem uygulamanın son halini alıp düzgün çalışması hem de ikinci sprintten kalan kısımların biran önce tamamlanmasına karar verdik.
+  
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
+  
+## Sprint Retrospective:
+
+**Güçlü Yönlerimiz**
+- İkinci sprint boyunca günlük toplantılarımızı aksatmadık ve bu düzeni oturtup koruyabildik.
+- Takıldığımız noktalarda risk alıp yeni bir plan denemekten çekinmedik.
+- Gerektiğinde herkes developer görevi üstlendi.
+
+**Geliştirmemiz Gereken Yönlerimiz**
+- Geliştirme süreci hatalarında uzun vakit harcadık.
+- Düzenlilik açısından birden çok branch üzerinde çalışmak istedik ancak bu bazen kafa karışıklığı yarattı.
+
+**Alınan Kararlar**
+- Geliştirme sürecindeki hataları daha hızlı tespit edebilmek adına her iş sonunda kısa kod incelemeleri yapılmasına karar verildi.
+- Riskli durumlarda yeni planları uygulamadan önce ekipçe kısa bir değerlendirme toplantısı yapılmasına karar verildi.
+- Sprint planlamasında görev tahminleri daha gerçekçi yapılmasına ve kapasite fazlası iş yüklenmemesine karar verildi.
+
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
+  
+  
+# Sprint 3 Raporu
+
+- **Sprint Notları:** Google Sheet's de tuttuğumuz Product backlog'umuz yaşanan bazı aksaklıklar doğrultusunda minik değişikliklerle güncellendi. Önceki sprintlerden kalan eksikliklerin yanı sıra Sprint 3 kapsamındaki yeni görevler ve iyileştirmelere ağırlıklı olarak odaklanıldı. Böylece hem teknik açıklar kapatıldı hem de projenin son haline ulaşması için gerekli adımlar netleştirildi.  Sprint board’daki görevler yine yalnızca bu sprint için planlanan işlere odaklanacak şekilde düzenlendi. Böylece ekibimiz mevcut sprint hedeflerine daha iyi odaklanmayı sürdürdü: [Güncellenmiş Product Backlog](https://docs.google.com/spreadsheets/d/1ynAhO7LanHIHpbSdVnmgKz6QWdaCWMFgfougikQC6Q0/edit?usp=sharing)
+-  **Ekip Durumu:** Projemiz başlangıçta 5 kişilik bir ekiple sürece başlamıltır. Ancak Sprint 2'nin başında ekip üyelerimizden Ebru Güleç projeden kalıcı olarak ayrılmıştır. Bu durumun ardından iş yükü ekipte kalan 4 kişi arasında yeniden dağıtılmış ve çalışmalar bu doğrultuda devam ettirilmiştir. Sprint 3 aşamasında ise ekip yapısında herhangi bir değişiklik olmamıştır. Şu anda aktif olarak görev alan ekip üyelerimiz:
+*Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş*
+- **Sprint İçinde Tamamlanması Tahmin Edilen Puan:** 120 Puan
+- **Puan Tamamlama Mantığı:** Proje kapsamında tamamlanması gereken toplam 360 puan bulunmaktadır. Bu puanın üç sprinte bölünmesiyle her bir sprintin 120 puanlık iş yüküne bölünmesi uygun görülmüştür.
+- **Daily Scrum Raporları:** Daily Scrum toplantıları, planlandığı üzere her gün düzenli olarak gerçekleştirildi ancak başlangıç saati gün içindeki yoğunluk nedeniyle 19.00'dan 22.00'ye alınmıştır. Toplantılar ağırlıklı olarak Google Meets ve Whatsapp üzerinden yürütüldü. Yapılan tüm görüşme görselleri Google Docs dosyasında toplanmıştır. [Sprint 3- Daily Scrum Chats](https://docs.google.com/document/d/1-yaF38E22qbmYsxQcHqUN6zEnDffd9EexkxmfM8osio/edit?usp=sharing)
+- **Sprint Board Updates:** Product backlog bazı ekip üyelerinin bilgisayarlarında yaşanan teknik arızalar ve buna bağlı aksaklıklar nedeniyle yeniden gözden geçirilerek düzenlendi. Görevler güncellenmiş Product Backlog doğrultusunda ekip üyelerine dağıtılarak planlama Trello üzerinden yapıldı. Trello’da renk kodları korunarak kullanılmaya devam etti: koyu kırmızı item’lar frontend, açık limon yeşili item’lar backend, yeşil item’lar Business Logic/Workflow, siyah item’lar AI/ML görevlerini; mor item’lar genel taskları, kritik düzeltmeler ve optimizasyonlar için turuncu renk, koyu sarı item’lar ise user story’leri temsil etmektedir.
+ <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint 3 sprint board.png" alt="sprintboard" width="800"/> <br>
+
+<details>
+  <summary><b>Burndown Chart </b> </summary>
+ Sprint boyunca ekibimiz, spirnt 2'den kalan ve yeni sprint'in iş yükünü tamamlamak için yoğun bir çaba sarf etti. İdeal burndown çizgisine ulaşmak için son ana kadar performansımızı artırmaya odaklandık. Özellikle son haftada yapılan hataların giderilmesi ve performans iyileştirmeleri sayesinde, sprint hedeflerimize büyük ölçüde yaklaştık.
+
+ <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/burndownchart3.png" alt="burndownchart" width="500"/> <br>
+ 
+</details>
+
+ <details>
+  <summary><b>Uygulamanın Sprint 3 Sonu Görselleri:</b> </summary>
+*görsel eklenecek
+
+</details>
+
+## Sprint Review:
+Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak için yoğun bir çaba sarf etti.
+
+- Kullanıcı yetenek testi ve kişiselleştirilmiş yol haritası gibi temel modüllerin geliştirilmesine odaklandık. Uygulamamızın ana arayüzünde önemli iyileştirmeler yaptık ve kullanıcıların platformda daha rahat gezinmesini sağlayacak düzenlemeler entegre ettik.
+- Projemizin temel fonksiyonlarını sağlamlaştırdık ve kullanıcı deneyimini iyileştirmeye yönelik önemli adımlar attık. 
+- İş ilanı modülünü geliştirerek, kullanıcıların yeteneklerine uygun iş fırsatlarını platform üzerinde görüntüleyebilmesini sağladık.
+- Girişimci Koçu Chatbot entegrasyonu tamamlandı.
+
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
+
+## Sprint Retrospective:
+
+**Güçlü Yönlerimiz**
+- Yoğun iş yüküne rağmen günlük toplantıları aksatmadan sürdürdük ve sürekli iletişim halinde kaldık.
+- Karşılaştığımız teknik zorluklara rağmen yeni çözümler denemekten çekinmedik ve esnek bir yaklaşımla problemleri aştık.
+- Herkesin gerektiğinde developer rolünü üstlenmesi, ekip içindeki dayanışmamızı ve adaptasyon yeteneğimizi gösterdi.
+- Özellikle projenin sonuna yaklaşırken hata ayıklama ve kod inceleme süreçlerini daha sıkı tutarak ürün kalitesini artırdık.
+
+**Geliştirmemiz Gereken Yönlerimiz**
+- Geliştirme sürecindeki hataların tespitinde ve çözümünde hala zaman kaybı yaşanabiliyor, bu alanda daha proaktif yaklaşımlar geliştirmeliyiz.
+- Çoklu branch yönetimi konusunda zaman zaman yaşanan kafa karışıklığını minimize etmek için daha net bir iş akışı belirleyebiliriz.
+- Uygulamanın farklı bilgisayarlarda çalıştırılması sırasında sürüm uyumsuzlukları nedeniyle hatalar yaşanabiliyor bu duruma karşı alternatif çözümler geliştirmek faydalı olurdu.
+
+**Alınan Kararlar**
+- Gelecekteki projelerde geliştirme sürecindeki hataları daha hızlı tespit edebilmek adına her iş sonunda kısa kod incelemeleri yapılmasına devam edilecektir.
+- Sprint planlamasında görev tahminlerinin daha gerçekçi yapılmasına ve ekibin kapasitesi üzerinde iş yüklenmemesine özen gösterilecektir. Bu sprintte yaşanan yoğunluk gelecek bize gelecek projelerimiz adına ders niteliğindeydi.
+- Proje teslimi sonrası NeetUp'ın tanıtımı ve yaygınlaştırılması için sosyal medya ve diğer platformlarda aktif olunmasına karar verildi.
+
+**Katılımcılar:** Umut Alkan, Rüya İşlek, Zeynep Turhanoğlu, Ahmet Tarık Karakaş
+
+
+
+ 
+
 
 
