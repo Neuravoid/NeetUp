@@ -9,7 +9,7 @@
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQGuXaCv257ctA/profile-displayphoto-shrink_400_400/B4DZdoaiRZG8Ao-/0/1749803477088?e=1756944000&v=beta&t=6QMGFoCZfS505aAKaAPaZAIxQm3RqEK7kIX90fE0UFE" alt="Profil Fotoğrafı" width="100"/>  | Umut Alkan| Product Owner     | [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/umutalkan42)   | 
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQHDZJ2e6BGRnA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1699962563484?e=1756944000&v=beta&t=xsh0-pw3QB0Ktkc4FEuxa93Y7Il4PC2Ti32ygcWG8-Q" alt="Rüya Foto" width="100"/>  | Rüya İşlek    | Scrum Master     |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ruyaislek/) |
 |<img src="https://media.licdn.com/dms/image/v2/D4D03AQEoMRn-_uDOOQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709408151491?e=1756944000&v=beta&t=D1Ii9e5fTkdeMIZxfRjBOkYchsFmOi7PJpcSgVnYq4o" alt="Zeynep Foto" width="100"/> | Zeynep Turhanoğlu    | Developer      |  [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/zeynepturhanoglu/)   |
-|<img src="https://media.licdn.com/dms/image/v2/D4D03AQGsJHlzUPyDYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714472155348?e=1756944000&v=beta&t=fbmHy3ZB_Vj4UrUaj37b-1U9aLBprAvCQ7ZZTQEtyN8" alt="Tarık Foto" width="100"/>| Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
+|<img src="images/tarikfoto.jpeg" alt="Profil Fotoğrafı" width="100"/> <br> | Ahmet Tarık Karakaş     | Developer     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](http://www.linkedin.com/in/ahmettarikkarakas)    |
 |<img src="https://avatars.githubusercontent.com/u/47587417?v=4" alt="Ebru Foto" width="100"/>| Ebru Güleç     | Developer/Pasif     |    [![linkedin](https://github.com/user-attachments/assets/3baa645a-33bc-4786-8327-cb0f92356f0a)](https://www.linkedin.com/in/ebrugulec/)    |
 ## Ürün Logosu
 <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/NeetUp.PNG" alt="NeetUp Logo" width="200"/>
@@ -193,8 +193,19 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
  <details>
   <summary><b>Uygulamanın Sprint 3 Sonu Görselleri:</b> </summary>
-*görsel eklenecek
-
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto1.jpg" alt="uygulama" width="300"/> <br> 
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto2.jpg" alt="uygulama" width="300"/> <br>  
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto3.jpg" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto4.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto5.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto6.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto7.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto8.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto9.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto10.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto11.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto12.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto13.jpg" alt="uygulama" width="300"/>
 </details>
 
 ## Sprint Review:
@@ -230,6 +241,8 @@ Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak içi
 
 
  
+
+
 
 
 
