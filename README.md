@@ -52,6 +52,9 @@ Türkiye'deki en büyük sosyal ve ekonomik sorunlardan biri olan NEET gençlik 
 - **Proje Yönetimi:** Trello, Google Sheets
 - **Versiyon Kontrol:** Git & GitHub
 
+##  Juri Notları
+
+- Değerlendirme yaparken lütfen yalnızca v4 branch'ini dikkate alın. Önceki branch'ler geliştirme sürecindeki denemeler ve hatalar içermektedir.
 
 ##  Proje Yönetimi ve Sprint Raporları
 
@@ -241,6 +244,7 @@ Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak içi
 
 
  
+
 
 
 
