@@ -1,246 +1,174 @@
 import { useState, useEffect } from 'react';
-import { coursesService, type Course, type UserCourse } from '../../services/courses.service';
-import { Link } from 'react-router-dom';
+import { ChevronDown, ExternalLink, CheckCircle, Circle } from 'lucide-react';
+import { coursesData, type Course } from '../../data/coursesData';
 
-const CoursesPage = () => {
-  const [userCourses, setUserCourses] = useState<UserCourse[]>([]);
-  const [recommendedCourses, setRecommendedCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
+interface CompletedResources {
+  [key: string]: boolean;
+}
+
+export default function CoursesPage() {
+  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
+  const [expandedStages, setExpandedStages] = useState<Record<string, boolean>>({});
+  const [completedResources, setCompletedResources] = useState<CompletedResources>({});
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        setLoading(true);
-        const [enrolled, recommended] = await Promise.all([
-          coursesService.getUserCourses(),
-          coursesService.getRecommendedCourses()
-        ]);
-        
-        setUserCourses(enrolled);
-        setRecommendedCourses(recommended);
-      } catch (error) {
-        console.error('Error fetching courses:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
+    const stored = localStorage.getItem('completedResources');
+    if (stored) {
+      setCompletedResources(JSON.parse(stored));
+    }
   }, []);
-  return (
-    <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Kurslarım</h1>
-        <p className="mt-1 text-gray-600 dark:text-gray-400">
-          Devam eden ve tamamlanan kurslarınız
-        </p>
-      </div>
-      
-      {loading ? (
-        <div className="card p-6">
-          <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">Kurslar yükleniyor...</p>
-          </div>
-        </div>
-      ) : (
-        <>
-          {/* User's Enrolled Courses */}
-          {userCourses.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Kayıtlı Kurslarım</h2>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {userCourses.map((userCourse) => {
-                  const getStatusColor = (status: string) => {
-                    switch (status) {
-                      case 'completed': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
-                      case 'in_progress': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
-                      case 'not_started': return 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400';
-                      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400';
-                    }
-                  };
 
-                  const getStatusText = (status: string) => {
-                    switch (status) {
-                      case 'completed': return 'Tamamlandı';
-                      case 'in_progress': return 'Devam Ediyor';
-                      case 'not_started': return 'Başlanmadı';
-                      default: return 'Bilinmiyor';
-                    }
-                  };
+  useEffect(() => {
+    localStorage.setItem('completedResources', JSON.stringify(completedResources));
+  }, [completedResources]);
 
-                  return (
-                    <div key={userCourse.id} className="card p-6">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                            {userCourse.course.title}
-                          </h3>
-                          {userCourse.course.description && (
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
-                              {userCourse.course.description}
-                            </p>
-                          )}
-                          <div className="flex items-center justify-between mb-3">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(userCourse.status)}`}>
-                              {getStatusText(userCourse.status)}
-                            </span>
-                            {userCourse.course.duration_hours && (
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
-                                {userCourse.course.duration_hours} saat
-                              </span>
-                            )}
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700 mb-3">
-                            <div 
-                              className="bg-primary h-2 rounded-full" 
-                              style={{ width: `${userCourse.progress}%` }}
-                            ></div>
-                          </div>
-                          <p className="text-xs text-right text-gray-500 dark:text-gray-400 mb-4">
-                            %{userCourse.progress} Tamamlandı
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex space-x-3">
-                        <button className="flex-1 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-600 transition-colors">
-                          Kursa Devam Et
-                        </button>
-                        {userCourse.course.url && (
-                          <a 
-                            href={userCourse.course.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                          >
-                            Dış Bağlantı
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+  const toggleResource = (resourceId: string) => {
+    setCompletedResources(prev => ({
+      ...prev,
+      [resourceId]: !prev[resourceId]
+    }));
+  };
+
+  const toggleStage = (stageName: string) => {
+    setExpandedStages(prev => ({
+      ...prev,
+      [stageName]: !prev[stageName]
+    }));
+  };
+
+  const handleBackToCourses = () => {
+    setSelectedCourse(null);
+    setExpandedStages({});
+  };
+
+  const generateResourceId = (courseName: string, stageName: string, resourceIndex: number) => {
+    return `${courseName}-${stageName}-${resourceIndex}`.replace(/\s+/g, '-').toLowerCase();
+  };
+
+  const renderCourseDetails = (courseName: string, course: Course) => {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12 animate-fade-in">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <button
+            onClick={handleBackToCourses}
+            className="inline-flex items-center gap-2 text-gray-600 font-semibold mb-8 hover:text-gray-900 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm45.66-93.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32-11.32L154.34,136H80a8,8,0,0,1,0-16h74.34l-39.66-39.66a8,8,0,0,1,11.32-11.32Z"/>
+            </svg>
+            Tüm Kurslara Dön
+          </button>
+
+          <div className="flex items-center gap-4 mb-8">
+            <div className={`p-4 rounded-2xl bg-gradient-to-r ${course.color} text-white shadow-lg`}>
+              {course.icon}
             </div>
-          )}
+            <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight">{courseName}</h1>
+          </div>
 
-          {/* Recommended Courses */}
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              {userCourses.length > 0 ? 'Önerilen Kurslar' : 'Sizin İçin Önerilen Kurslar'}
-            </h2>
-            {recommendedCourses.length > 0 ? (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {recommendedCourses.map((course) => (
-                  <div key={course.id} className="card p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                          {course.title}
-                        </h3>
-                        {course.description && (
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-3">
-                            {course.description}
-                          </p>
-                        )}
-                        <div className="flex items-center justify-between mb-3">
-                          {course.difficulty_level && (
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              course.difficulty_level === 'beginner' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                              course.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
-                              'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
-                            }`}>
-                              {course.difficulty_level === 'beginner' ? 'Başlangıç' :
-                               course.difficulty_level === 'intermediate' ? 'Orta' : 'İleri'}
-                            </span>
-                          )}
-                          {course.duration_hours && (
-                            <span className="text-xs text-gray-500 dark:text-gray-400">
-                              {course.duration_hours} saat
-                            </span>
-                          )}
-                        </div>
-                        {course.provider && (
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-                            Sağlayıcı: {course.provider}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex space-x-3">
-                      <button className="flex-1 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-600 transition-colors">
-                        Kursa Kaydol
-                      </button>
-                      {course.url && (
-                        <a 
-                          href={course.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                        >
-                          Önizle
-                        </a>
-                      )}
+          <div className="space-y-6">
+            {Object.entries(course.stages).map(([stageName, stage]) => (
+              <div key={stageName} className="bg-white rounded-2xl border border-gray-200/80 shadow-sm overflow-hidden transition-all duration-300">
+                <button
+                  onClick={() => toggleStage(stageName)}
+                  className="w-full p-6 flex justify-between items-center hover:bg-gray-50/50 transition-colors"
+                >
+                  <div className="text-left">
+                    <h3 className="font-bold text-lg text-gray-700">{stageName}</h3>
+                    <div className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 mt-1">
+                      <span><strong className="font-medium text-gray-600">Süre:</strong> {stage.details['Süre']}</span>
+                      <span><strong className="font-medium text-gray-600">Görev:</strong> {stage.details['Görev sayısı']}</span>
                     </div>
                   </div>
-                ))}
+                  <ChevronDown
+                    className={`w-6 h-6 text-gray-400 transition-transform duration-300 ${expandedStages[stageName] ? 'rotate-180' : ''}`}
+                  />
+                </button>
+
+                {expandedStages[stageName] && (
+                  <div className="border-t border-gray-200/80 animate-fade-in-down">
+                    <div className="p-6 bg-gray-50/50">
+                      <p className="text-sm text-gray-600 mb-4">
+                        <strong className="font-semibold text-gray-700">Öğrenilecekler:</strong> {stage.details['Öğrenilecekler']}
+                      </p>
+                    </div>
+                    
+                    <ul className="p-6 space-y-4 bg-white">
+                      {stage.resources.map((resource, resourceIndex) => {
+                        const resourceId = generateResourceId(courseName, stageName, resourceIndex);
+                        const isCompleted = completedResources[resourceId];
+                        
+                        return (
+                          <li key={resourceId} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200/80 hover:border-gray-300 transition-all">
+                            <button
+                              onClick={() => toggleResource(resourceId)}
+                              className="mt-1 flex-shrink-0 p-1 rounded-full hover:bg-gray-100 transition-colors"
+                            >
+                              {isCompleted ? (
+                                <CheckCircle className="w-6 h-6 text-green-500" />
+                              ) : (
+                                <Circle className="w-6 h-6 text-gray-300" />
+                              )}
+                            </button>
+                            <div className="flex-grow">
+                              <h4 className={`font-semibold text-gray-800 ${isCompleted ? 'line-through text-gray-500' : ''}`}>{resource.name}</h4>
+                              <p className={`text-sm text-gray-500 mt-1 ${isCompleted ? 'text-gray-400' : ''}`}>{resource.desc}</p>
+                            </div>
+                            <a href={resource.link} target="_blank" rel="noopener noreferrer" className="self-center ml-4 p-2 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-all">
+                              <ExternalLink className="w-5 h-5" />
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className="card p-6">
-                <div className="text-center py-12">
-                  <svg
-                    className="mx-auto h-12 w-12 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M12 14l9-5-9-5-9 5 9 5z"
-                    />
-                    <path
-                      d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                    />
-                  </svg>
-                  <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">Henüz önerilen kurs bulunmuyor</h3>
-                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    Kariyer hedeflerinizi belirlemek için roadmap oluşturun.
-                  </p>
-                  <div className="mt-6">
-                    <Link
-                      to="/roadmap"
-                      className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                    >
-                      <svg
-                        className="-ml-1 mr-2 h-5 w-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Roadmap Oluştur
-                    </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const renderCourseList = () => {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12 animate-fade-in">
+        <div className="container mx-auto px-4">
+          <h1 className="text-5xl font-extrabold text-center text-gray-800 mb-4 tracking-tight">Kurslar</h1>
+          <p className="text-center text-lg text-gray-600 max-w-2xl mx-auto mb-12">Kariyer hedeflerinize ulaşmak için tasarlanmış, kapsamlı ve etkileşimli öğrenme yollarını keşfedin.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {Object.entries(coursesData).map(([name, course]) => (
+              <div
+                key={name}
+                onClick={() => setSelectedCourse(name)}
+                className={`relative p-8 rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-r ${course.color} text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1`}
+              >
+                <div className="relative z-10">
+                  <div className="mb-4">
+                    {course.icon}
+                  </div>
+                  <h2 className="text-3xl font-bold mb-2 text-gray-900">{name}</h2>
+                  <p className="opacity-90 mb-6 text-gray-800">{course.description}</p>
+                  <div className="inline-flex items-center gap-2 font-semibold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-white/30 transition-colors text-gray-900">
+                    Başla
+                    <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.49a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/>
+                    </svg>
                   </div>
                 </div>
               </div>
-            )}
+            ))}
           </div>
-        </>
-      )}
-    </div>
-  );
-};
+        </div>
+      </div>
+    );
+  }
 
-export default CoursesPage;
+  if (selectedCourse && coursesData[selectedCourse]) {
+    return renderCourseDetails(selectedCourse, coursesData[selectedCourse]);
+  }
+
+  return renderCourseList();
+}

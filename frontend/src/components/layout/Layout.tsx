@@ -4,10 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { getCurrentUser } from '../../store/slices/authSlice';
 import Navbar from './Navbar';
 
+
 const Layout: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated, user, isLoading } = useAppSelector(state => state.auth);
   const hasCalledGetCurrentUser = useRef(false);
+
 
   // Kullanıcı giriş yapmışsa ve user bilgisi yoksa, kullanıcı bilgilerini yükle (sadece bir kez)
   useEffect(() => {
@@ -43,6 +45,8 @@ const Layout: React.FC = () => {
           </p>
         </div>
       </footer>
+      
+
     </div>
   );
 };

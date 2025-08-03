@@ -18,7 +18,8 @@ class Settings(BaseSettings):
     SQLALCHEMY_DATABASE_URI: str = f"sqlite:///{SQLITE_DB}"
     
     # Google API Configuration
-    GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+    GOOGLE_API_KEY: str
+    GEMINI_API_KEY: str
 
     class Config:
         case_sensitive = True

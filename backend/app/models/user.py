@@ -28,3 +28,6 @@ class User(Base, BaseModel):
     roadmap = relationship("UserRoadmap", uselist=False, back_populates="user")
     courses = relationship("UserCourse", back_populates="user")
     personality_tests = relationship("PersonalityTest", back_populates="user")
+    weekly_tasks = relationship("WeeklyTask", back_populates="owner", cascade="all, delete-orphan")
+    my_work_tasks = relationship("UserTask", back_populates="owner", cascade="all, delete-orphan")
+    chat_sessions = relationship("ChatSession", back_populates="user", cascade="all, delete-orphan")

@@ -1,0 +1,45 @@
+/* Fade-in and fade-out animation for task cards */
+.task-card {
+  transition: all 0.8s ease;
+}
+
+.task-card-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.task-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.task-card-exit {
+  opacity: 1;
+}
+
+.task-card-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 800ms ease, transform 800ms ease;
+}
+
+/* Progressive fade-out as progress approaches 100% */
+.task-card[data-progress="80"],
+.task-card[data-progress="90"] {
+  opacity: 0.8;
+}
+
+.task-card[data-progress="95"] {
+  opacity: 0.6;
+}
+
+.task-card[data-progress="98"] {
+  opacity: 0.4;
+}
+
+/* When task is completed but not yet removed (transition state) */
+.task-card-completed {
+  opacity: 0.2;
+  transform: scale(0.95);
+  pointer-events: none;
+}
