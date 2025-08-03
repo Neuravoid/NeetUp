@@ -193,19 +193,19 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
  <details>
   <summary><b>Uygulamanın Sprint 3 Sonu Görselleri:</b> </summary>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto1.jpg" alt="uygulama" width="300"/> <br> 
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto2.jpg" alt="uygulama" width="300"/> <br>  
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto3.jpg" alt="uygulama" width="300"/> <br>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto4.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto5.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto6.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto7.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto8.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto9.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto10.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto11.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto12.jpg" alt="uygulama" width="300"/>
-<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto13.jpg" alt="uygulama" width="300"/>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto1.JPG" alt="uygulama" width="300"/> <br> 
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto2.JPG" alt="uygulama" width="300"/> <br>  
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto3.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto4.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto5.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto6.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto7.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint4foto8.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto9.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto10.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto11.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto12.JPG" alt="uygulama" width="300"/> <br>
+<img src="https://github.com/Neuravoid/NeetUp/blob/main/images/sprint3foto13.JPG" alt="uygulama" width="300"/> <br>
 </details>
 
 ## Sprint Review:
@@ -241,6 +241,7 @@ Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak içi
 
 
  
+
 
 
 
