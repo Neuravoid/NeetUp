@@ -185,9 +185,9 @@ Sprint boyunca ekibimiz toplam 120 story point’lik iş yükünü düzenli bir 
 
 <details>
   <summary><b>Burndown Chart </b> </summary>
- Sprint boyunca ekibimiz, kalan 240 story point'lik iş yükünü tamamlamak için yoğun bir çaba sarf etti. İdeal burndown çizgisine ulaşmak için son ana kadar performansımızı artırmaya odaklandık. Özellikle son haftada yapılan hataların giderilmesi ve performans iyileştirmeleri sayesinde, sprint hedeflerimize büyük ölçüde yaklaştık.
+ Sprint boyunca ekibimiz, spirnt 2'den kalan ve yeni sprint'in iş yükünü tamamlamak için yoğun bir çaba sarf etti. İdeal burndown çizgisine ulaşmak için son ana kadar performansımızı artırmaya odaklandık. Özellikle son haftada yapılan hataların giderilmesi ve performans iyileştirmeleri sayesinde, sprint hedeflerimize büyük ölçüde yaklaştık.
 
- <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/burndownchart3.jpg" alt="burndownchart" width="500"/> <br>
+ <img src="https://github.com/Neuravoid/NeetUp/blob/main/images/burndownchart3.png" alt="burndownchart" width="500"/> <br>
  
 </details>
 
@@ -230,5 +230,6 @@ Sprint 3 boyunca ekibimiz, NeetUp uygulamasını hedeflerimize ulaştırmak içi
 
 
  
+
 
 
