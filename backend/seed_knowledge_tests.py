@@ -2,6 +2,10 @@
 
 from app.core.database import engine, SessionLocal
 from app.models.test import Test, Question, Answer, TestType, QuestionType, DifficultyLevel
+# Import all models to ensure SQLAlchemy relationships are properly initialized
+from app.models.user import User
+from app.models.study_plan import UserTask
+from app.models.chat import ChatSession, ChatMessage
 import uuid
 
 def seed_knowledge_tests():

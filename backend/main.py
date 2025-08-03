@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -6,7 +10,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from jose.exceptions import JWTError
 
 from app.core.config import settings
-from app.api.routes import auth, tests, roadmaps, courses, users, admin, personality_test, knowledge_test, career_paths
+from app.core.database import engine, Base
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+from app.api.routes import auth, tests, roadmaps, courses, users, admin, personality_test, knowledge_test, career_paths, weekly_plan, study_plan, chat, analytics
 from app.middleware.error_handlers import (
     sqlalchemy_exception_handler,
     jwt_exception_handler,
@@ -42,6 +50,11 @@ app.include_router(admin.router, prefix="/api/admin")
 app.include_router(personality_test.router, prefix="/api")
 app.include_router(knowledge_test.router, prefix="/api/knowledge-tests")
 app.include_router(career_paths.router, prefix="/api/career-paths")
+app.include_router(weekly_plan.router, prefix="/api/weekly-plan", tags=["Weekly Plan"])
+app.include_router(study_plan.router, prefix="/api/my-work", tags=["My Work"])
+app.include_router(chat.router, prefix="/api/chat", tags=["NeetUp Spark Chat"])
+app.include_router(analytics.router, prefix="/api/analytics", tags=["User Analytics Dashboard"])
+
 
 @app.get("/")
 def read_root():

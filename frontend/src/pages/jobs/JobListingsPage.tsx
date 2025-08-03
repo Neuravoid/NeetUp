@@ -1,4 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
+
+interface Job {
+  id: string;
+  title: string;
+  company: string;
+  responsibilities: string[];
+  qualifications: string[];
+  benefits: string[];
+  tags: string[];
+  category?: string;
+}
 
 // --- DATA ---
 // We store all job data here. In a real application, this would likely come from an API.
@@ -349,7 +360,7 @@ const BackIcon = () => (
 // --- COMPONENTS ---
 
 // Search bar component
-const SearchBar = ({ searchTerm, setSearchTerm }) => (
+const SearchBar: React.FC<{ searchTerm: string; setSearchTerm: React.Dispatch<React.SetStateAction<string>> }> = ({ searchTerm, setSearchTerm }) => (
     <div className="relative mb-6">
         <input
             type="text"
@@ -365,7 +376,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => (
 );
 
 // Component to display a single job card in the list
-const JobCard = ({ job, onSelect }) => (
+const JobCard: React.FC<{ job: Job; onSelect: (job: Job) => void }> = ({ job, onSelect }) => (
     <div
         onClick={() => onSelect(job)}
         className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer border border-gray-200 dark:border-gray-700"
@@ -373,7 +384,7 @@ const JobCard = ({ job, onSelect }) => (
         <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">{job.title}</h3>
         <p className="text-gray-600 dark:text-gray-400 mb-3">{job.company}</p>
         <div className="flex flex-wrap gap-2">
-            {job.tags.map(tag => (
+            {job.tags.map((tag: string) => (
                 <span key={tag} className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">
                     {tag}
                 </span>
@@ -383,18 +394,18 @@ const JobCard = ({ job, onSelect }) => (
 );
 
 // Component to display the list of all jobs, categorized and filtered
-const JobList = ({ jobs, onSelect, searchTerm }) => {
+const JobList: React.FC<{ jobs: Record<string, Job[]>; onSelect: (job: Job) => void; searchTerm: string }> = ({ jobs, onSelect, searchTerm }) => {
     const filteredJobs = useMemo(() => {
         if (!searchTerm) return jobs;
 
         const lowercasedFilter = searchTerm.toLowerCase();
-        const filtered = {};
+        const filtered: Record<string, Job[]> = {};
 
-        Object.keys(jobs).forEach(category => {
-            const categoryJobs = jobs[category].filter(job =>
+        Object.keys(jobs).forEach((category: string) => {
+            const categoryJobs = jobs[category].filter((job: Job) =>
                 job.title.toLowerCase().includes(lowercasedFilter) ||
                 job.company.toLowerCase().includes(lowercasedFilter) ||
-                job.tags.some(tag => tag.toLowerCase().includes(lowercasedFilter))
+                job.tags.some((tag: string) => tag.toLowerCase().includes(lowercasedFilter))
             );
 
             if (categoryJobs.length > 0) {
@@ -410,11 +421,11 @@ const JobList = ({ jobs, onSelect, searchTerm }) => {
     return (
         <div className="space-y-8">
             {hasResults ? (
-                Object.keys(filteredJobs).map(category => (
+                Object.keys(filteredJobs).map((category: string) => (
                     <div key={category}>
                         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 pb-2 border-b-2 border-blue-500">{category}</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-                            {filteredJobs[category].map(job => (
+                            {filteredJobs[category].map((job: Job) => (
                                 <JobCard key={job.id} job={job} onSelect={onSelect} />
                             ))}
                         </div>
@@ -431,8 +442,8 @@ const JobList = ({ jobs, onSelect, searchTerm }) => {
 };
 
 // Component to display the detailed view of a selected job
-const JobDetail = ({ job, onBack }) => {
-    const DetailSection = ({ title, items }) => {
+const JobDetail: React.FC<{ job: Job; onBack: () => void }> = ({ job, onBack }) => {
+    const DetailSection: React.FC<{ title: string; items: string[] }> = ({ title, items }) => {
         if (!items || items.length === 0) return null;
         return (
             <div>
@@ -489,11 +500,11 @@ const JobDetail = ({ job, onBack }) => {
 };
 
 // --- MAIN PAGE COMPONENT ---
-const JobListingsPage = () => {
-    const [selectedJob, setSelectedJob] = useState(null);
+const JobListingsPage: React.FC = () => {
+    const [selectedJob, setSelectedJob] = useState<Job | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSelectJob = (job) => {
+    const handleSelectJob = (job: Job) => {
         setSelectedJob(job);
     };
 
@@ -512,6 +523,13 @@ const JobListingsPage = () => {
                 .animate-fade-in {
                     animation: fade-in 0.3s ease-out forwards;
                 }
+                @keyframes modal-fade-in {
+                    from { opacity: 0; transform: scale(0.95); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+                .animate-modal-fade-in {
+                    animation: modal-fade-in 0.3s ease-out forwards;
+                }
                 `}
             </style>
             <header className="bg-white dark:bg-gray-800 shadow-sm">
@@ -521,33 +539,23 @@ const JobListingsPage = () => {
             </header>
 
             <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                <div className={`grid ${selectedJob ? 'grid-cols-1' : 'lg:grid-cols-3'} gap-8`}>
-                    {/* Left Column: Search and Job List */}
-                    <div className={`lg:col-span-2 ${selectedJob ? 'hidden lg:block' : 'block'}`}>
+                <div className="grid lg:grid-cols-1 gap-8">
+                    {/* Search and Job List */}
+                    <div>
                         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                         <JobList jobs={jobData} onSelect={handleSelectJob} searchTerm={searchTerm} />
                     </div>
-
-                    {/* Right Column: Job Detail */}
-                    <div className="lg:col-span-1">
-                        {selectedJob ? (
-                            <div className="sticky top-8">
-                                <JobDetail job={selectedJob} onBack={handleBack} />
-                            </div>
-                        ) : (
-                            <div className="hidden lg:flex sticky top-8 h-[calc(100vh-10rem)] bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 items-center justify-center text-center p-8">
-                                <div>
-                                    <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-white">Bir iş ilanı seçin</h3>
-                                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Detayları görmek için soldaki listeden bir ilana tıklayın.</p>
-                                </div>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </main>
+
+            {/* Modal Overlay for Job Detail */}
+            {selectedJob && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-modal-fade-in">
+                        <JobDetail job={selectedJob} onBack={handleBack} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

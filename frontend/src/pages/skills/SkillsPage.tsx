@@ -13,7 +13,6 @@ interface Skill {
 const SkillsPage = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
-  const [personalityResult, setPersonalityResult] = useState<string | null>(null);
   const navigate = useNavigate();
 
   // Fetch personality test result
@@ -29,10 +28,9 @@ const SkillsPage = () => {
         });
 
         if (response.ok) {
-          const data = await response.json();
-          if (data && data.personality_result) {
-            setPersonalityResult(data.personality_result);
-          }
+          // Removed data variable as it was not being used
+          // const data = await response.json();
+          // Removed setPersonalityResult call as the state variable was removed
         }
       } catch (error) {
         console.error('Error fetching personality test result:', error);
@@ -162,12 +160,8 @@ const SkillsPage = () => {
                   <button 
                     className="mt-4 w-full py-2 px-3 flex items-center justify-center text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md transition-colors shadow-md"
                     onClick={() => {
-                      // Get the skill level for this career area from the skills list
-                      const careerSkill = skills.find(s => s.category === skill.category);
-                      const knowledgeLevel = careerSkill ? getLevelText(careerSkill.level) : 'Başlangıç';
-                      
-                      // Navigate to roadmap with career area and knowledge level as query params
-                      navigate(`/roadmap?career=${encodeURIComponent(skill.category)}&level=${encodeURIComponent(knowledgeLevel)}`);
+                      // Navigate to roadmap with just the career area (ignore level for now)
+                      navigate(`/roadmap?career=${encodeURIComponent(skill.category)}`);
                     }}
                   >
                     <svg 

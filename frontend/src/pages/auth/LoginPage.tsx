@@ -31,9 +31,9 @@ const LoginPage: React.FC = () => {
   const { isLoading, error, isAuthenticated } = useAppSelector(state => state.auth);
 
   React.useEffect(() => {
-    // Zaten giriş yapmış kullanıcıyı ana sayfaya yönlendir
+    // Zaten giriş yapmış kullanıcıyı kontrol paneline yönlendir
     if (isAuthenticated) {
-      navigate('/');
+      navigate('/dashboard');
     }
     
     // Komponent unmount olduğunda hata mesajını temizle
@@ -46,10 +46,10 @@ const LoginPage: React.FC = () => {
     try {
       const result = await dispatch(login(data) as any);
       
-      // If login is successful, redirect to home page
+      // If login is successful, redirect to dashboard
       // Check if the login was successful from the payload
       if (result.payload && result.payload.success) {
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (error) {
       // Error is already handled by the auth slice
@@ -59,6 +59,15 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* NeetUp Logo - Top Left */}
+      <div className="absolute top-6 left-6 z-20">
+        <Link 
+          to="/landing" 
+          className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent hover:from-purple-700 hover:to-blue-700 transition-all"
+        >
+          NeetUp
+        </Link>
+      </div>
       {/* Transparan Arkaplan Görselleri */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Sol üst köşe - Education Background 1 */}

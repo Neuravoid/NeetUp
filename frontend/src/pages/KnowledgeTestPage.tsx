@@ -51,7 +51,7 @@ const KnowledgeTestPage: React.FC = () => {
   }, [testId]);
 
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout | undefined;
     
     if (testStarted && timeLeft > 0 && !testCompleted) {
       interval = setInterval(() => {
@@ -62,10 +62,12 @@ const KnowledgeTestPage: React.FC = () => {
           }
           return prev - 1;
         });
-      }, 1000);
+      }, 1000) as NodeJS.Timeout;
     }
     
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [testStarted, timeLeft, testCompleted]);
 
   const startTest = async () => {
@@ -178,9 +180,9 @@ const KnowledgeTestPage: React.FC = () => {
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case 'İleri': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
+      case 'Başlangıç': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400';
       case 'Orta': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400';
-      case 'Başlangıç': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
+      case 'İleri': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
       default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400';
     }
   };

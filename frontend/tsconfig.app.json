@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "neetup-landing/src/components/cta.tsx", "neetup-landing/src/components/features.tsx", "neetup-landing/src/components/footer.tsx", "neetup-landing/src/components/hero.tsx", "neetup-landing/src/components/how-it-works.tsx", "neetup-landing/src/components/pricing.tsx", "neetup-landing/src/components/statistics.tsx", "neetup-landing/src/components/team.tsx", "neetup-landing/src/components/ui/testimonials.tsx"]
 }

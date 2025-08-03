@@ -35,33 +35,49 @@ const RoadmapPage = () => {
   const [creatingRoadmap, setCreatingRoadmap] = useState(false);
   const [aiAnimation, setAiAnimation] = useState(false);
 
+  // Map knowledge test categories to career path titles
+  const mapCategoryToCareerPath = useCallback((category: string): string => {
+    switch (category) {
+      case 'UI/UX':
+        return 'UX Tasarımı';
+      case 'Backend':
+        return 'Backend Geliştirme';
+      case 'Data Science':
+        return 'Veri Analizi';
+      case 'Project Management':
+        return 'Proje Yönetimi';
+      default:
+        return category;
+    }
+  }, []);
+
   // Ensure we have default career paths if needed
   const ensureCareerPaths = useCallback(() => {
     if (careerPaths.length === 0) {
       const defaultPaths: CareerPath[] = [
         {
-          id: 'default-path-1',
+          id: 'backend-gelistirme',
           title: 'Backend Geliştirme',
           description: 'Backend geliştirme kariyeri için yol haritası',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         },
         {
-          id: 'default-path-2',
+          id: 'ux-tasarimi',
           title: 'UX Tasarımı',
           description: 'UX tasarımı kariyeri için yol haritası',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         },
         {
-          id: 'default-path-3',
+          id: 'veri-analizi',
           title: 'Veri Analizi',
           description: 'Veri analizi kariyeri için yol haritası',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         },
         {
-          id: 'default-path-4',
+          id: 'proje-yonetimi',
           title: 'Proje Yönetimi',
           description: 'Proje yönetimi kariyeri için yol haritası',
           created_at: new Date().toISOString(),
@@ -70,9 +86,6 @@ const RoadmapPage = () => {
       ];
       
       setCareerPaths(defaultPaths);
-      // Auto-select the first path
-      setSelectedCareerPath(defaultPaths[0].id);
-      console.log('Added default career paths and selected:', defaultPaths[0].id);
       return defaultPaths;
     }
     return careerPaths;
@@ -81,18 +94,52 @@ const RoadmapPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const careerParam = queryParams.get('career');
-  const knowledgeLevelParam = queryParams.get('level');
 
   useEffect(() => {
     const fetchRoadmap = async () => {
       try {
         console.log('Roadmap yükleniyor...');
         setLoading(true);
-        if (careerParam && knowledgeLevelParam) {
-          const newRoadmap = await roadmapService.createRoadmapWithKnowledge(careerParam, knowledgeLevelParam);
-          console.log('Oluşturulan roadmap:', newRoadmap);
-          setRoadmap(newRoadmap);
+        
+        // If career parameter is provided from skills page, create roadmap for that career
+        if (careerParam) {
+          console.log('Career parameter received:', careerParam);
+          
+          // Map the category to the correct career path title
+          const mappedCareerPath = mapCategoryToCareerPath(careerParam);
+          console.log('Mapped career path:', mappedCareerPath);
+          
+          // Get career paths from backend (not local defaults)
+          try {
+            const backendCareerPaths = await roadmapService.getCareerPaths();
+            console.log('Backend career paths:', backendCareerPaths);
+            
+            // Find the matching career path by title
+            const matchingPath = backendCareerPaths.find(path => path.title === mappedCareerPath);
+            
+            if (matchingPath) {
+              console.log('Found matching career path:', matchingPath);
+              setSelectedCareerPath(matchingPath.id);
+              
+              // Create roadmap for this career path using the backend ID
+              const newRoadmap = await roadmapService.createRoadmapWithKnowledge(matchingPath.id, 'Orta');
+              console.log('Oluşturulan roadmap:', newRoadmap);
+              setRoadmap(newRoadmap);
+            } else {
+              console.warn('No matching career path found for:', mappedCareerPath);
+              console.warn('Available career paths:', backendCareerPaths.map(p => p.title));
+              // Fallback to default behavior
+              const userRoadmap = await roadmapService.getPersonalRoadmap();
+              setRoadmap(userRoadmap);
+            }
+          } catch (error) {
+            console.error('Error fetching career paths:', error);
+            // Fallback to default behavior
+            const userRoadmap = await roadmapService.getPersonalRoadmap();
+            setRoadmap(userRoadmap);
+          }
         } else {
+          // No career parameter, load user's existing roadmap
           const userRoadmap = await roadmapService.getPersonalRoadmap();
           console.log('Roadmap başarıyla yüklendi:', userRoadmap);
           setRoadmap(userRoadmap);
@@ -115,7 +162,7 @@ const RoadmapPage = () => {
     };
 
     fetchRoadmap();
-  }, [careerParam, knowledgeLevelParam]);
+  }, [careerParam]); // Only depend on careerParam to prevent infinite loop
 
   // Önce handleCreateRoadmap fonksiyonunu tanımla
   const handleCreateRoadmap = useCallback(async (careerPathId: string) => {

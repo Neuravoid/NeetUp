@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import Button from '../common/Button';
-import FormInput from '../common/FormInput';
 import { User } from '../../types';
 
 interface ProfileEditModalProps {
@@ -18,7 +17,6 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
   onSave
 }) => {
   const [bio, setBio] = useState<string>(user?.profile?.bio || '');
-  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +24,6 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      setAvatarFile(file);
       
       // Create preview
       const reader = new FileReader();

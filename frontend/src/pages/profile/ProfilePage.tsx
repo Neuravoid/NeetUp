@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
 import ProfileEditModal from '../../components/profile/ProfileEditModal';
 import { updateProfile } from '../../store/slices/authSlice';
