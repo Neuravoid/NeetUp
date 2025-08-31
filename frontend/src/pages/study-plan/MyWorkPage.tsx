@@ -128,12 +128,12 @@ const MyWorkPage: React.FC = () => {
     
     try {
       // API çağrısını yap
-      console.log("API çağrısı başlatılıyor:", taskData);
+
       const response = await myWorkService.createUserTask(taskData);
       
       if (response.data) {
         const newTask = response.data as UserTask;
-        console.log("API'den yeni görev alındı:", newTask);
+
         
         // İki yöntem kullanarak state güncellemesini garanti edelim:
         // 1. Doğrudan yeni bir dizi oluştur ve state'i güncelle
@@ -149,10 +149,10 @@ const MyWorkPage: React.FC = () => {
         // 4. Yeni görevi ekledikten sonra bütün listeyi yenile
         setTimeout(() => {
           fetchData();
-          console.log("Görev listesi yenilendi");
+
         }, 100);
         
-        console.log("Yeni görev başarıyla oluşturuldu ve UI güncellendi!");
+
       }
     } catch (err) {
       console.error("Plan oluşturma hatası:", err);

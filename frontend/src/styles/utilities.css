@@ -1,0 +1,86 @@
+/* Duplicate Gradient Class Utilities */
+/* Bu dosya tekrarlanan gradient class'larını azaltmak için oluşturulmuştur */
+
+/* Primary Gradient Buttons */
+.btn-gradient-primary {
+  @apply bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+.btn-gradient-secondary {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all shadow-lg;
+}
+
+/* Navigation Gradients */
+.nav-gradient-orange {
+  @apply bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600;
+}
+
+.nav-gradient-red {
+  @apply bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600;
+}
+
+.nav-gradient-purple {
+  @apply bg-gradient-to-r from-purple-400 to-purple-500 hover:from-purple-500 hover:to-purple-600;
+}
+
+.nav-gradient-blue {
+  @apply bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600;
+}
+
+.nav-gradient-teal {
+  @apply bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-500 hover:to-cyan-600;
+}
+
+.nav-gradient-green {
+  @apply bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-500 hover:to-green-600;
+}
+
+.nav-gradient-indigo {
+  @apply bg-gradient-to-r from-indigo-400 to-purple-500 hover:from-indigo-500 hover:to-purple-600;
+}
+
+.nav-gradient-pink {
+  @apply bg-gradient-to-r from-pink-400 to-rose-500 hover:from-pink-500 hover:to-rose-600;
+}
+
+/* Common Navigation Link Styles */
+.nav-link-gradient {
+  @apply flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+}
+
+/* Background Gradients */
+.bg-gradient-light-green {
+  @apply bg-gradient-to-r from-green-50 to-green-100;
+}
+
+.bg-gradient-light-blue {
+  @apply bg-gradient-to-r from-blue-50 to-blue-100;
+}
+
+.bg-gradient-light-purple {
+  @apply bg-gradient-to-r from-purple-50 to-purple-100;
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+  @apply bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent hover:from-purple-700 hover:to-blue-700 transition-all;
+}
+
+/* Icon Gradients */
+.icon-gradient-primary {
+  @apply w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white;
+}
+
+.icon-gradient-secondary {
+  @apply w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white;
+}
+
+/* Progress Bar Gradients */
+.progress-gradient-primary {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-300;
+}
+
+/* Card Background Gradients */
+.card-gradient-purple {
+  @apply bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-700;
+}

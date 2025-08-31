@@ -1,3 +1,6 @@
+/* Import duplicate code cleanup utilities */
+@import './styles/utilities.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

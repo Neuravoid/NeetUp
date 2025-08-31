@@ -98,32 +98,32 @@ const RoadmapPage = () => {
   useEffect(() => {
     const fetchRoadmap = async () => {
       try {
-        console.log('Roadmap yükleniyor...');
+
         setLoading(true);
         
         // If career parameter is provided from skills page, create roadmap for that career
         if (careerParam) {
-          console.log('Career parameter received:', careerParam);
+
           
           // Map the category to the correct career path title
           const mappedCareerPath = mapCategoryToCareerPath(careerParam);
-          console.log('Mapped career path:', mappedCareerPath);
+
           
           // Get career paths from backend (not local defaults)
           try {
             const backendCareerPaths = await roadmapService.getCareerPaths();
-            console.log('Backend career paths:', backendCareerPaths);
+
             
             // Find the matching career path by title
             const matchingPath = backendCareerPaths.find(path => path.title === mappedCareerPath);
             
             if (matchingPath) {
-              console.log('Found matching career path:', matchingPath);
+
               setSelectedCareerPath(matchingPath.id);
               
               // Create roadmap for this career path using the backend ID
               const newRoadmap = await roadmapService.createRoadmapWithKnowledge(matchingPath.id, 'Orta');
-              console.log('Oluşturulan roadmap:', newRoadmap);
+
               setRoadmap(newRoadmap);
             } else {
               console.warn('No matching career path found for:', mappedCareerPath);
@@ -141,14 +141,14 @@ const RoadmapPage = () => {
         } else {
           // No career parameter, load user's existing roadmap
           const userRoadmap = await roadmapService.getPersonalRoadmap();
-          console.log('Roadmap başarıyla yüklendi:', userRoadmap);
+
           setRoadmap(userRoadmap);
         }
       } catch (error: any) {
         console.error('Roadmap yükleme hatası:', error);
         if (error.response?.status === 404) {
           // No roadmap exists yet
-          console.log('Roadmap bulunamadı, kariyer alanları alınacak...');
+
           setError(null);
           // Fetch available career paths and try to auto-select based on user's tests
           fetchCareerPathsAndAutoSelect();
@@ -169,12 +169,12 @@ const RoadmapPage = () => {
     try {
       setCreatingRoadmap(true);
       
-      console.log(`Roadmap oluşturuluyor: Kariyer Alanı ID=${careerPathId}`);
+
       
       // Roadmap oluştur - createRoadmapWithKnowledge kullanıyoruz (2 parametre alan)
       const newRoadmap = await roadmapService.createRoadmapWithKnowledge(careerPathId);
       
-      console.log('Oluşturulan roadmap:', newRoadmap);
+
       
       // Roadmap'i state'e kaydet
       setRoadmap(newRoadmap);
@@ -208,30 +208,30 @@ const RoadmapPage = () => {
   // Sonra fetchCareerPathsAndAutoSelect fonksiyonunu tanımla
   const fetchCareerPathsAndAutoSelect = useCallback(async () => {
     try {
-      console.log('Kariyer alanları ve önerilen yol haritası alınıyor...');
+
       setLoading(true);
       
       // Try to get recommended career path based on user's tests
       const { careerPath } = await roadmapService.getUserRecommendedCareerPath();
-      console.log('Önerilen kariyer yolu:', { careerPath });
+
       
       // Fetch available career paths
       const availablePaths = await roadmapService.getCareerPaths();
-      console.log('Mevcut kariyer alanları:', availablePaths);
+
       setCareerPaths(availablePaths);
       
       if (careerPath) {
-        console.log('Otomatik seçilen kariyer yolu:', careerPath.title);
+
         setSelectedCareerPath(careerPath.id);
         
         // Kullanıcının kişilik testi sonucuna göre otomatik olarak roadmap oluştur
         if (careerPath.id) {
-          console.log('Otomatik roadmap oluşturuluyor...');
+
           await handleCreateRoadmap(careerPath.id);
         }
       } else if (availablePaths && availablePaths.length > 0) {
         // Kariyer yolu önerisi yoksa ilk yolu seç
-        console.log('Kariyer yolu önerisi bulunamadı, ilk yol seçiliyor:', availablePaths[0].title);
+
         setSelectedCareerPath(availablePaths[0].id);
       } else {
         console.warn('Hiçbir kariyer yolu bulunamadı!');
@@ -261,32 +261,32 @@ const RoadmapPage = () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
       setAiAnimation(false);
       
-      console.log('Yol haritası oluşturma başlatılıyor...');
+
       
       // Önce kullanıcının önerilen kariyer yolunu al
       const { careerPath, knowledgeLevel } = await roadmapService.getUserRecommendedCareerPath();
-      console.log('Kullanıcının önerilen kariyer yolu:', careerPath);
-      console.log('Kullanıcının bilgi seviyesi:', knowledgeLevel);
+
+
       
       if (careerPath) {
-        console.log(`Önerilen kariyer yolu bulundu: ${careerPath.title} (ID: ${careerPath.id})`);
+
         
         // Kariyer yolunu state'e kaydet
         setSelectedCareerPath(careerPath.id);
         
         // Veritabanından roadmap oluştur
-        console.log(`Roadmap oluşturuluyor: Kariyer Alanı ID=${careerPath.id}, Bilgi Seviyesi=${knowledgeLevel}`);
+
         const newRoadmap = await roadmapService.createRoadmap(careerPath.id);
         
         if (newRoadmap) {
-          console.log('Veritabanından roadmap başarıyla alındı:', newRoadmap);
+
           setRoadmap(newRoadmap);
           toast.success('Kariyer yol haritanız başarıyla yüklendi.');
         } else {
-          console.log('Veritabanında roadmap bulunamadı, yeni oluşturuluyor...');
+
           // Veritabanında roadmap yoksa yeni oluştur
           const createdRoadmap = await roadmapService.createRoadmapWithKnowledge(careerPath.id, knowledgeLevel || 'orta');
-          console.log('Yeni roadmap oluşturuldu:', createdRoadmap);
+
           setRoadmap(createdRoadmap);
           toast.success('Kişiselleştirilmiş kariyer yol haritanız başarıyla oluşturuldu.');
         }
@@ -325,15 +325,7 @@ const RoadmapPage = () => {
     }
   }, [selectedCareerPath]);
 
-  // Debug bilgileri
-  console.log('Render durumu:', { 
-    roadmap, 
-    loading, 
-    error, 
-    careerPaths, 
-    selectedCareerPath,
-    creatingRoadmap 
-  });
+  // Debug bilgileri removed for cleanup
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -391,7 +383,7 @@ const RoadmapPage = () => {
         ) : roadmap ? (
           <>
             {/* Roadmap render ediliyor */}
-            {(() => { console.log('Roadmap render ediliyor:', roadmap); return null; })()} 
+
             {/* Career Path Overview */}
             <div className="card p-6 mb-8">
               <div className="flex items-start justify-between">
@@ -486,7 +478,7 @@ const RoadmapPage = () => {
         ) : (
           <div className="card p-6">
             {/* Boş durum render ediliyor */}
-            {(() => { console.log('Boş durum render ediliyor - roadmap yok'); return null; })()}
+
             <div className="text-center py-12">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"

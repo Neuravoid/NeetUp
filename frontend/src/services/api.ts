@@ -1,6 +1,14 @@
 import axios from 'axios';
 import type { ApiResponse } from '../types/index.js';
 
+// Centralized error handling utility
+export const handleApiError = (error: any): { success: false; error: string } => {
+  return {
+    success: false,
+    error: error.response?.data?.error || error.response?.data?.detail || 'İstek sırasında bir hata oluştu',
+  };
+};
+
 // API temel URL'i
 const API_URL = 'http://localhost:8080/api';
 
@@ -59,10 +67,7 @@ export const apiService = {
         };
       }
     } catch (error: any) {
-      return {
-        success: false,
-        error: error.response?.data?.error || error.response?.data?.detail || 'İstek sırasında bir hata oluştu',
-      };
+      return handleApiError(error);
     }
   },
 
@@ -73,10 +78,7 @@ export const apiService = {
       // Backend now returns {success, data, error} format directly, so we can return it as is.
       return response.data;
     } catch (error: any) {
-      return {
-        success: false,
-        error: error.response?.data?.error || error.response?.data?.detail || 'İstek sırasında bir hata oluştu',
-      };
+      return handleApiError(error);
     }
   },
 
@@ -97,10 +99,7 @@ export const apiService = {
       const response = await api.patch<ApiResponse<T>>(endpoint, data);
       return response.data;
     } catch (error: any) {
-      return {
-        success: false,
-        error: error.response?.data?.error || error.response?.data?.detail || 'İstek sırasında bir hata oluştu',
-      };
+      return handleApiError(error);
     }
   },
 

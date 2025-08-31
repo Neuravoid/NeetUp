@@ -1,7 +1,7 @@
 import os
-from typing import List, Optional, Union
+from typing import List, Optional
 
-from pydantic import AnyHttpUrl, field_validator
+from pydantic import AnyHttpUrl
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -13,13 +13,24 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
     
-    # SQLite Database Configuration
+    # Database configuration
     SQLITE_DB: str = os.getenv("SQLITE_DB", "career_dev.db")
-    SQLALCHEMY_DATABASE_URI: str = f"sqlite:///{SQLITE_DB}"
+    # Allow an explicit DATABASE_URL (Postgres) to override SQLite for containers
+    DATABASE_URL: Optional[str] = None
+    SQLALCHEMY_DATABASE_URI: Optional[str] = None
+
+    def __init__(self, **values):
+        # Initialize BaseSettings then derive SQLALCHEMY_DATABASE_URI
+        super().__init__(**values)
+        # prefer DATABASE_URL if provided, else use sqlite file
+        if self.DATABASE_URL:
+            self.SQLALCHEMY_DATABASE_URI = self.DATABASE_URL
+        else:
+            self.SQLALCHEMY_DATABASE_URI = f"sqlite:///{self.SQLITE_DB}"
     
-    # Google API Configuration
-    GOOGLE_API_KEY: str
-    GEMINI_API_KEY: str
+    # Google API Configuration (optional for local dev)
+    GOOGLE_API_KEY: Optional[str] = None
+    GEMINI_API_KEY: Optional[str] = None
 
     class Config:
         case_sensitive = True

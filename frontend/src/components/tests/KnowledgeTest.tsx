@@ -59,20 +59,20 @@ const KnowledgeTest: React.FC<KnowledgeTestProps> = ({ onTestResultsLoaded }) =>
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Full personality test result data:', data);
+
         if (data && data.personality_result) {
-          console.log('Personality test result:', data.personality_result);
+
           setPersonalityResult(data.personality_result);
         } else {
-          console.log('No personality_result field in data:', data);
+
         }
       } else {
-        console.log('Failed to fetch personality test result:', response.status);
+
         try {
-          const errorText = await response.text();
-          console.log('Error response:', errorText);
+          await response.text();
+
         } catch (e) {
-          console.log('Could not read error response');
+
         }
       }
     } catch (error) {
@@ -206,28 +206,28 @@ const KnowledgeTest: React.FC<KnowledgeTestProps> = ({ onTestResultsLoaded }) =>
   // Check if a test matches the personality result
   const matchesPersonalityResult = (testTitle: string): boolean => {
     if (!personalityResult) {
-      console.log('No personality result found');
+
       return false;
     }
     
-    console.log('Matching test:', testTitle, 'with personality result:', personalityResult);
+
     
     // Normalize both strings for comparison (remove case sensitivity and extra spaces)
     const normalizedResult = personalityResult.trim().toLowerCase();
     const normalizedTitle = testTitle.trim().toLowerCase();
     
-    console.log('Normalized result:', normalizedResult);
-    console.log('Normalized title:', normalizedTitle);
+
+
     
     // Direct check for UI/UX
     if (normalizedTitle.includes('ui/ux') && normalizedResult.includes('ui/ux')) {
-      console.log('UI/UX direct match found!');
+
       return true;
     }
     
     // Check for exact matches first
     if (normalizedTitle.includes(normalizedResult)) {
-      console.log('Direct match found!');
+
       return true;
     }
     
@@ -237,25 +237,25 @@ const KnowledgeTest: React.FC<KnowledgeTestProps> = ({ onTestResultsLoaded }) =>
        normalizedResult === 'ui/ux designer') && 
       normalizedTitle.includes('ui/ux')
     ) {
-      console.log('UI/UX match found!');
+
       return true;
     } else if (
       (normalizedResult.includes('backend') || normalizedResult.includes('backend developer')) && 
       normalizedTitle.includes('backend')
     ) {
-      console.log('Backend match found!');
+
       return true;
     } else if (
       (normalizedResult.includes('data science') || normalizedResult.includes('data')) && 
       normalizedTitle.includes('data science')
     ) {
-      console.log('Data Science match found!');
+
       return true;
     } else if (
       (normalizedResult.includes('project management') || normalizedResult.includes('project')) && 
       normalizedTitle.includes('project management')
     ) {
-      console.log('Project Management match found!');
+
       return true;
     }
     
@@ -364,7 +364,7 @@ const KnowledgeTest: React.FC<KnowledgeTestProps> = ({ onTestResultsLoaded }) =>
 
                   <button
                     onClick={() => handleStartTest(test.id)}
-                    className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all"
+                    className="btn-gradient-primary w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all"
                   >
                     {hasResult ? 'Tekrar Al' : 'Teste Başla'}
                     <svg className="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

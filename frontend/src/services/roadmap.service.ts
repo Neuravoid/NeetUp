@@ -271,26 +271,18 @@ export const roadmapService = {
   // Get user's personal roadmap
   getPersonalRoadmap: async (): Promise<UserRoadmap | null> => {
     try {
-      console.log('Kişisel roadmap isteği yapılıyor...');
+
       const response = await apiService.get<UserRoadmap>('/roadmaps/personal');
-      console.log('API yanıtı alındı:', response);
+
       
       // Yanıtın yapısını kontrol et
       if (response.data) {
-        console.log('Roadmap verileri:', {
-          id: response.data.id,
-          user_id: response.data.user_id,
-          career_path_id: response.data.career_path_id,
-          steps_count: response.data.steps?.length || 0,
-          career_path_exists: !!response.data.career_path,
-          recommended_start_index: response.data.recommended_start_index
-        });
         
         // Steps dizisini kontrol et
         if (!response.data.steps || response.data.steps.length === 0) {
           console.warn('Roadmap steps dizisi boş veya tanımsız!');
         } else {
-          console.log('Roadmap steps örnek:', response.data.steps[0]);
+
         }
         
         // Career path kontrolü
@@ -430,7 +422,7 @@ export const roadmapService = {
       try {
         const personalityResponse = await apiService.get<PersonalityTestResponse>('/personality-test/result');
         personalityResult = personalityResponse.data?.personality_result || null;
-        console.log('Kişilik testi sonucu:', personalityResult);
+
       } catch (personalityError) {
         console.error('Kişilik testi sonucu alınamadı:', personalityError);
         // Kişilik testi sonucu alınamadıysa devam et
@@ -440,7 +432,7 @@ export const roadmapService = {
       try {
         const careerPathsResponse = await roadmapService.getCareerPaths();
         careerPaths = careerPathsResponse || [];
-        console.log('Kariyer alanları:', careerPaths);
+
       } catch (careerPathsError) {
         console.error('Kariyer alanları alınamadı:', careerPathsError);
         // Varsayılan kariyer alanları oluştur
@@ -482,7 +474,7 @@ export const roadmapService = {
           // Önce tüm bilgi testlerini al
           const testsResponse = await apiService.get<any[]>('/knowledge-tests/');
           const tests = testsResponse.data || [];
-          console.log('Mevcut bilgi testleri:', tests);
+
           
           // Kişilik sonucuna uygun test ID'sini bul
           let matchingTestId: string | null = null;
@@ -500,7 +492,7 @@ export const roadmapService = {
             try {
               const knowledgeResponse = await apiService.get<KnowledgeTestResponse>(`/knowledge-tests/${matchingTestId}/result`);
               skillLevel = knowledgeResponse.data?.skill_level || 'başlangıç';
-              console.log(`Test ${matchingTestId} sonucu:`, skillLevel);
+
             } catch (testResultError) {
               console.warn(`Test ${matchingTestId} sonucu bulunamadı:`, testResultError);
               // Test sonucu yoksa varsayılan seviye kullanıldı
@@ -533,7 +525,7 @@ export const roadmapService = {
           
           if (matchedPath) {
             recommendedCareerPath = matchedPath;
-            console.log(`Doğrudan eşleştirme: "${personalityResult}" için "${matchedPath.title}" kariyer alanı eşleşti`);
+
           }
         }
         
@@ -564,7 +556,7 @@ export const roadmapService = {
                 for (const careerTitle of careerTitles) {
                   if (normalizedPathTitle.includes(careerTitle.toLowerCase())) {
                     recommendedCareerPath = path;
-                    console.log(`Kişilik sonucu "${personalityResult}" için "${path.title}" kariyer alanı eşleşti`);
+
                     break;
                   }
                 }
@@ -579,7 +571,7 @@ export const roadmapService = {
         
         // Hala eşleşme bulunamadıysa, basit eşleştirme dene
         if (!recommendedCareerPath) {
-          console.log('Kariyer eşleştirme haritasında eşleşme bulunamadı, basit eşleştirme deneniyor');
+
           for (const path of careerPaths) {
             if (!path.title) continue;
             
@@ -590,7 +582,7 @@ export const roadmapService = {
             if (normalizedPathTitle.includes(normalizedPersonalityResult) || 
                 normalizedPersonalityResult.includes(normalizedPathTitle)) {
               recommendedCareerPath = path;
-              console.log(`Basit eşleştirme: "${personalityResult}" için "${path.title}" kariyer alanı eşleşti`);
+
               break;
             }
           }
@@ -606,15 +598,15 @@ export const roadmapService = {
         
         if (personalityResult && personalityResult.toLowerCase().includes('project management') && projectManagementPath) {
           recommendedCareerPath = projectManagementPath;
-          console.log('Özel durum: Project Management için Proje Yönetimi kariyer alanı seçildi');
+
         } else {
           recommendedCareerPath = careerPaths[0];
-          console.log('Eşleşme bulunamadı, ilk kariyer alanı seçildi:', careerPaths[0].title);
+
         }
       }
       
-      console.log('SONUÇ - Önerilen kariyer alanı:', recommendedCareerPath);
-      console.log('SONUÇ - Önerilen bilgi seviyesi:', skillLevel);
+
+
       
       return {
         careerPath: recommendedCareerPath,
@@ -698,7 +690,7 @@ export const roadmapService = {
       // Eğer İngilizce başlık varsa Türkçe karşılığını kullan
       if (careerPathMapping[careerPathTitle]) {
         careerPathTitle = careerPathMapping[careerPathTitle];
-        console.log(`Kariyer yolu başlığı çevrildi: ${selectedCareerPath.title} -> ${careerPathTitle}`);
+
       }
       
       // Şablonu seç
@@ -752,9 +744,9 @@ export const roadmapService = {
       // Roadmap'i API'ye gönder ve oluştur
       // Bu endpoint roadmap_steps tablosuna tüm adımları kaydedecek
       try {
-        console.log('API isteği gönderiliyor:', roadmapData);
+
         const response = await apiService.post<{id: string; steps: RoadmapStep[]}>('/roadmaps/create', roadmapData);
-        console.log('API yanıtı:', response);
+
         
         if (!response.data) {
           console.error('API yanıtında data yok');
@@ -776,7 +768,7 @@ export const roadmapService = {
         console.error('API hatası:', apiError);
         
         // API hatası durumunda yerel şablonu kullan
-        console.log('API hatası nedeniyle yerel şablon kullanılıyor');
+
         
         // Yerel roadmap oluştur
         const localRoadmap: UserRoadmap = {
@@ -803,7 +795,7 @@ export const roadmapService = {
     try {
       // Varsayılan bilgi seviyesi
       const level = knowledgeLevel || 'başlangıç';
-      console.log(`Roadmap oluşturuluyor: Kariyer=${careerPathId}, Seviye=${level}`);
+
       
       // Gemini AI ile roadmap oluştur
       return await roadmapService.createRoadmapWithGemini(careerPathId, level);

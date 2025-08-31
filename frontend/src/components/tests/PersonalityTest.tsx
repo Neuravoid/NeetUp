@@ -127,7 +127,7 @@ const PersonalityTest: React.FC<PersonalityTestProps> = ({ isOpen, onClose }) =>
           setResult(localResults);
         }
 
-        console.log('✅ Test sonuçları database\'e kaydedildi!');
+
       } catch (err: any) {
         console.error('❌ Database kayıt hatası:', err);
         setError('Sonuçlar kaydedilirken hata oluştu: ' + (err.response?.data?.detail || err.message));

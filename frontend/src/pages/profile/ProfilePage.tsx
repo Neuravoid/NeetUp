@@ -10,7 +10,7 @@ const ProfilePage = () => {
 
   // Debug user data
   useEffect(() => {
-    console.log('User data in ProfilePage:', user);
+
   }, [user]);
 
   // Handle opening the edit modal
